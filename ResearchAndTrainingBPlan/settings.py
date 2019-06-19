@@ -23,9 +23,35 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mz$%=^4ay*&w-eg3%y@snp0*r4j9a#@3^$4w!w1f2)dl)+tiyl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+PythonAnywhere = False  # 设为False是为了本地支持
+# PythonAnywhere = True  # 设为True是为了上线PythonAnywhere支持
+
+if PythonAnywhere is False:
+    DEBUG = True
+    ALLOWED_HOSTS = []
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'bplan',
+            'USER': 'root',
+            'PASSWORD': '951753',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
+elif PythonAnywhere is True:
+    DEBUG = False
+    ALLOWED_HOSTS = ['mzx.pythonanywhere.com']
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': "mzx$zhcp",
+            'USER': 'mzx',
+            'PASSWORD': '86110339mzx',
+            'HOST': 'mzx.mysql.pythonanywhere-services.com',
+        }
+    }
 
 
 # Application definition
@@ -75,12 +101,12 @@ WSGI_APPLICATION = 'ResearchAndTrainingBPlan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -105,9 +131,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -120,3 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 普通文件
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
