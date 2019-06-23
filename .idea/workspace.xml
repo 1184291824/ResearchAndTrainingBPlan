@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94bd24e8-e2ea-46d1-b8a9-697fbd9aceff" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/32c29567-e607-4845-8292-a736a2c4ec20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BPlan/migrations/0006_auto_20190623_2105.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BPlan/migrations/0007_auto_20190623_2202.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BPlan/migrations/0008_auto_20190623_2210.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/更新日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/更新日志.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +30,23 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - bplan@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - bplan@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - bplan@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bplan: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -34,31 +55,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="39" column="22" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+            <state relative-caret-position="427">
+              <caret line="162" column="25" selection-start-line="162" selection-start-column="12" selection-end-line="162" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/更新日志.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="96">
+                <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -67,64 +79,19 @@
         <entry file="file://$PROJECT_DIR$/BPlan/apps.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="1800">
+              <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BPlan/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="48">
-                <caret line="2" selection-start-line="2" selection-end-line="2" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/更新日志.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="48">
-                <caret line="2" selection-start-line="2" selection-end-line="2" />
-              </first_editor>
-              <second_editor />
             </state>
           </provider>
         </entry>
@@ -154,17 +121,18 @@
         <option value="$PROJECT_DIR$/BPlan/urls.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/base.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/operations.py" />
-        <option value="$PROJECT_DIR$/更新日志.md" />
         <option value="$PROJECT_DIR$/BPlan/views.py" />
         <option value="$PROJECT_DIR$/BPlan/apps.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/BPlan/models.py" />
         <option value="$PROJECT_DIR$/BPlan/admin.py" />
+        <option value="$PROJECT_DIR$/更新日志.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="26" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1850" />
     <option name="height" value="1000" />
   </component>
@@ -174,7 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -202,13 +169,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../NJUSTzhcp-base" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="last_opened_file_path" value="E:/mysql-8.0.16-winx64" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -266,11 +235,14 @@
       <workItem from="1560957529240" duration="534000" />
       <workItem from="1561213644409" duration="3208000" />
       <workItem from="1561279326256" duration="6605000" />
+      <workItem from="1561286080120" duration="172000" />
+      <workItem from="1561289694885" duration="9186000" />
+      <workItem from="1561299171749" duration="142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24404000" />
+    <option name="totallyTimeSpent" value="33904000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -282,13 +254,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="26" width="1850" height="1000" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13128492" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12846482" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="调试" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290993" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -302,11 +272,13 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.23903002" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3290993" />
+      <window_info anchor="bottom" id="调试" order="13" />
+      <window_info anchor="bottom" id="Database Console" order="14" weight="0.3286334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.32960895" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.20415778" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,6 +403,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c2a81cd3-788b-4161-a0a5-bdc737964753/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -448,6 +429,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/32c29567-e607-4845-8292-a736a2c4ec20/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -457,25 +450,6 @@
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/更新日志.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="48">
-            <caret line="2" selection-start-line="2" selection-end-line="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c2a81cd3-788b-4161-a0a5-bdc737964753/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/views.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -487,6 +461,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/bplan_inventory">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -494,27 +486,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/inventory">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_permission">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_group_permissions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_user_groups">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_user_user_permissions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/django_admin_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/auth_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b1d8ec5b-20d8-4fdb-a981-e583881ec759">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="39" column="22" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+        <state relative-caret-position="427">
+          <caret line="162" column="25" selection-start-line="162" selection-start-column="12" selection-end-line="162" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="1800">
+          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/更新日志.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="96">
+            <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -35,3 +35,48 @@ class ClassesAdmin(admin.ModelAdmin):
     ]
 
     search_fields = ['group_id', 'group_name']  # 搜索字段
+
+
+@admin.register(Inventory)
+class InventoryAdmin(admin.ModelAdmin):
+    list_display = [
+        'pk',
+        'inventory_id',
+        'inventory_name',
+        'inventory_category',
+        'inventory_num',
+        'inventory_unit',
+        'inventory_details',
+        'inventory_create_user',
+        'inventory_create_time',
+        'inventory_recent_change_user',
+        'inventory_recent_change_time',
+    ]
+    search_fields = ['inventory_id', 'inventory_name']  # 搜索字段
+    list_filter = (
+        'inventory_category',
+        'inventory_num',
+        'inventory_create_user',
+        'inventory_recent_change_user'
+    )  # 筛选器
+    date_hierarchy = 'inventory_create_time'  # 详细时间分层筛选
+
+
+@admin.register(InventoryOperation)
+class InventoryOperationAdmin(admin.ModelAdmin):
+    list_display = [
+        'pk',
+        'inventory_operation_create_time',
+        'inventory_operation_user',
+        'inventory_operation_category',
+        'inventory_operation_num',
+        'inventory_num',
+    ]
+    search_fields = ['inventory_operation_user', 'inventory_operation_category']  # 搜索字段
+    list_filter = (
+        'inventory_operation_user',
+        'inventory_operation_category',
+        'inventory_operation_num',
+        'inventory_num',
+    )  # 筛选器
+    date_hierarchy = 'inventory_operation_create_time'  # 详细时间分层筛选
