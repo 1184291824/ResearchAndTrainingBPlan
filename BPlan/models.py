@@ -142,6 +142,7 @@ class InventoryOperation(models.Model):
     '''属性'''
     inventory_operation_create_time = models.DateTimeField(auto_now_add=True, verbose_name='操作时间')
     inventory_operation_user = models.CharField(max_length=12, verbose_name='操作者id')
+    inventory_operation_user_ip = models.GenericIPAddressField(protocol='both', unpack_ipv4=False, verbose_name='操作者ip')
     inventory_operation_category = models.PositiveSmallIntegerField(
         default=0,
         choices=INVENTORY_OPERATION_CHOICE,
@@ -152,6 +153,7 @@ class InventoryOperation(models.Model):
 
     inventory_num = models.PositiveIntegerField(verbose_name='审批后余量', blank=True)
     inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True)
+    inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
     inventory_operation_review_opinion = models.PositiveSmallIntegerField(
         default=0,
         choices=INVENTORY_OPERATION_REVIEW_OPINION_CHOICE,
@@ -163,12 +165,14 @@ class InventoryOperation(models.Model):
     def add_inventory_operation(  # 增加一个申请的操作
             cls,
             inventory_operation_user,
+            inventory_operation_user_ip,
             inventory_operation_category,
             inventory_operation_num,
             inventory_operation_object,
     ):
         inventory_operation = cls(
             inventory_operation_user=inventory_operation_user,
+            inventory_operation_user_ip=inventory_operation_user_ip,
             inventory_operation_category=inventory_operation_category,
             inventory_operation_num=inventory_operation_num,
             inventory_operation_object=inventory_operation_object,
@@ -182,3 +186,42 @@ class InventoryOperation(models.Model):
         db_table = "InventoryOperation"
         ordering = ['id']  # 以id为标准升序
         verbose_name_plural = '库存操作'
+
+
+class LoginRecord(models.Model):
+    """用户的登录记录"""
+    login_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户')
+    login_ip = models.GenericIPAddressField(protocol='both', unpack_ipv4=False, verbose_name='登录ip')
+    login_browser = models.CharField(max_length=30, default='未知的浏览器', verbose_name='浏览器')
+    login_system = models.CharField(max_length=30, default='未知的系统', verbose_name='操作系统')
+    login_device = models.CharField(max_length=30, default='未知的设备', verbose_name='设备')
+    login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
+    login_time = models.DateTimeField(auto_now_add=True, verbose_name='登录时间')
+
+    @classmethod
+    def add_login_record(  # 增加一个访问记录
+            cls,
+            login_user,
+            login_ip,
+            login_browser,
+            login_system,
+            login_device,
+            login_location,
+    ):
+        login_record = cls(
+            login_user=login_user,
+            login_ip=login_ip,
+            login_browser=login_browser,
+            login_system=login_system,
+            login_device=login_device,
+            login_location=login_location,
+        )
+        return login_record
+
+    def __int__(self):
+        return self.pk
+
+    class Meta:
+        db_table = "LoginRecord"
+        ordering = ['id']  # 以id为标准升序
+        verbose_name_plural = '访问记录'

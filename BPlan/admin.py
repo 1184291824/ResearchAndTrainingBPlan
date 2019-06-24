@@ -85,3 +85,19 @@ class InventoryOperationAdmin(admin.ModelAdmin):
         'inventory_num',
     )  # 筛选器
     date_hierarchy = 'inventory_operation_create_time'  # 详细时间分层筛选
+
+
+@admin.register(LoginRecord)
+class LoginRecordAdmin(admin.ModelAdmin):
+    list_display = [
+        'pk',
+        'login_user',
+        'login_ip',
+        'login_browser',
+        'login_system',
+        'login_device',
+        'login_location',
+        'login_time',
+    ]
+    search_fields = ['login_user']  # 搜索字段
+    date_hierarchy = 'login_time'  # 详细时间分层筛选
