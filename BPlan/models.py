@@ -2,8 +2,10 @@ from django.db import models
 
 
 class Group(models.Model):
+    """组"""
     group_id = models.CharField(verbose_name='组编号', max_length=12)
     group_name = models.CharField(verbose_name='组名称', max_length=12)
+    group_create_time = models.DateTimeField(auto_now_add=True, verbose_name='组创建时间')
 
     def __str__(self):
         return self.group_id
@@ -15,15 +17,17 @@ class Group(models.Model):
 
 
 class User(models.Model):
-    USER_GENDER_CHOICE = (
+    """用户"""
+    '''选项'''
+    USER_GENDER_CHOICE = (  # 性别选项
         (True, '男'),
         (False, '女'),
     )
-    USER_IDENTITY_CHOICE = (
+    USER_IDENTITY_CHOICE = (  # 身份选项
         (0, '普通职员'),
         (1, '管理员'),
     )
-    USER_QUESTION_CHOICE = (
+    USER_QUESTION_CHOICE = (  # 密保问题选项
         (0, '我最喜欢的颜色'),
         (1, '我的家乡'),
         (2, '我的出生年月（如2000.3.1）'),
@@ -61,16 +65,11 @@ class User(models.Model):
         verbose_name='密保问题'
     )  # 密保问题
     user_question_answer = models.CharField(default='', max_length=20, blank=True, verbose_name='密保问题答案')  # 密保问题答案
-    user_create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')  # 用户的创建时间
+    user_create_time = models.DateTimeField(auto_now_add=True, verbose_name='用户注册时间')
 
     @classmethod
     def add_user(cls, user_id, user_password, user_group):
-        """
-        :param user_id: 用户id
-        :param user_password: 用户密码
-        :param user_group: 组对象
-        :return: user
-        """
+        """用于增加一个用户"""
         user = cls(user_id=user_id, user_password=user_password, user_group=user_group)
         return user
 
@@ -134,6 +133,11 @@ class InventoryOperation(models.Model):
         (1, '出库'),
         (2, '创建'),
     )
+    INVENTORY_OPERATION_REVIEW_OPINION_CHOICE = (
+        (0, '未审核'),
+        (1, '同意'),
+        (2, '不同意'),
+    )
 
     '''属性'''
     inventory_operation_create_time = models.DateTimeField(auto_now_add=True, verbose_name='操作时间')
@@ -144,23 +148,29 @@ class InventoryOperation(models.Model):
         verbose_name='操作类别'
     )
     inventory_operation_num = models.PositiveIntegerField(verbose_name='操作数量')
-    inventory_num = models.PositiveIntegerField(verbose_name='操作后数量')
     inventory_operation_object = models.ForeignKey(Inventory, on_delete=models.CASCADE, verbose_name='操作的库存对象')
 
+    inventory_num = models.PositiveIntegerField(verbose_name='审批后余量', blank=True)
+    inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True)
+    inventory_operation_review_opinion = models.PositiveSmallIntegerField(
+        default=0,
+        choices=INVENTORY_OPERATION_REVIEW_OPINION_CHOICE,
+        verbose_name='审批意见',
+    )
+    inventory_operation_review_time = models.DateTimeField(auto_now=True, verbose_name='审批时间')
+
     @classmethod
-    def add_inventory_operation(
+    def add_inventory_operation(  # 增加一个申请的操作
             cls,
             inventory_operation_user,
             inventory_operation_category,
             inventory_operation_num,
-            inventory_num,
             inventory_operation_object,
     ):
         inventory_operation = cls(
             inventory_operation_user=inventory_operation_user,
             inventory_operation_category=inventory_operation_category,
             inventory_operation_num=inventory_operation_num,
-            inventory_num=inventory_num,
             inventory_operation_object=inventory_operation_object,
         )
         return inventory_operation
