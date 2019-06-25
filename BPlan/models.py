@@ -8,10 +8,10 @@ class Group(models.Model):
     group_create_time = models.DateTimeField(auto_now_add=True, verbose_name='组创建时间')
 
     def __str__(self):
-        return self.group_id
+        return self.group_name
 
     class Meta:
-        db_table = "Group"
+        db_table = "Groups"
         ordering = ['id']  # 以id为标准升序
         verbose_name_plural = '分组'
 
@@ -74,7 +74,7 @@ class User(models.Model):
         return user
 
     def __str__(self):
-        return self.user_id
+        return self.user_name
 
     class Meta:
         db_table = "User"
@@ -99,6 +99,7 @@ class Inventory(models.Model):
     def add_inventory(
             cls,
             inventory_id,
+            inventory_name,
             inventory_category,
             inventory_num,
             inventory_unit,
@@ -107,6 +108,7 @@ class Inventory(models.Model):
     ):
         inventory = cls(
             inventory_id=inventory_id,
+            inventory_name=inventory_name,
             inventory_category=inventory_category,
             inventory_num=inventory_num,
             inventory_unit=inventory_unit,
@@ -117,7 +119,7 @@ class Inventory(models.Model):
         return inventory
 
     def __str__(self):
-        return self.inventory_id
+        return self.inventory_name
 
     class Meta:
         db_table = "Inventory"

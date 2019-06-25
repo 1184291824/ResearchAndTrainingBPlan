@@ -26,6 +26,12 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['user_id', 'user_name']  # 搜索字段
 
 
+class UserInfo(admin.TabularInline):
+    """预添加1个用户"""
+    model = User
+    extra = 1
+
+
 @admin.register(Group)
 class ClassesAdmin(admin.ModelAdmin):
     list_display = [
@@ -37,6 +43,13 @@ class ClassesAdmin(admin.ModelAdmin):
 
     search_fields = ['group_id', 'group_name']  # 搜索字段
     date_hierarchy = 'group_create_time'  # 按创建的时间分层筛选
+    inlines = [UserInfo]  # 在创建组时预添加用户
+
+
+class InventoryOperationInfo(admin.TabularInline):
+    """在添加库存时预添加一条记录"""
+    model = InventoryOperation
+    extra = 1
 
 
 @admin.register(Inventory)
@@ -62,6 +75,7 @@ class InventoryAdmin(admin.ModelAdmin):
         'inventory_recent_change_user'
     )  # 筛选器
     date_hierarchy = 'inventory_create_time'  # 详细时间分层筛选
+    inlines = [InventoryOperationInfo]  # 在添加库存时预添加一条记录
 
 
 @admin.register(InventoryOperation)
@@ -69,16 +83,20 @@ class InventoryOperationAdmin(admin.ModelAdmin):
     list_display = [
         'pk',
         'inventory_operation_create_time',
+        'inventory_operation_object',
         'inventory_operation_user',
+        'inventory_operation_user_ip',
         'inventory_operation_category',
         'inventory_operation_num',
         'inventory_operation_review_user',
+        'inventory_operation_review_user_ip',
         'inventory_operation_review_opinion',
         'inventory_operation_review_time',
         'inventory_num',
     ]
     search_fields = ['inventory_operation_user', 'inventory_operation_review_user']  # 搜索字段
     list_filter = (
+        'inventory_operation_object',
         'inventory_operation_category',
         'inventory_operation_num',
         'inventory_operation_review_opinion',

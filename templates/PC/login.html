@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+	</head>
+	<body>
+		<form action="{% url 'BPlan:login_check' %}" method="post">
+            {% csrf_token %}
+			账号：<input type="text" name="user_id" id="text" value="" placeholder="请输入账号" maxlength="12" required/><br>
+			密码：<input type="password" name="user_password" id="password" placeholder="请输入密码" maxlength="20" required/><br>
+			<input type="submit" value="提交"/>
+		</form>
+		
+	</body>
+</html>

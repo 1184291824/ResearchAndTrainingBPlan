@@ -1,6 +1,7 @@
 from user_agents import parse
 import json
 from urllib.request import urlopen
+import urllib
 
 
 def get_agent(request):
@@ -29,14 +30,17 @@ def get_agent(request):
 def get_location(ip):
     """返回位置信息"""
     url = 'http://ip.taobao.com/service/getIpInfo.php?ip='+ip
-    location = json.loads(urlopen(url).read().decode('utf-8'))
-    country = location['data']['country']  # 国家
-    area = location['data']['area']  # 地区
-    region = location['data']['region']  # 省份
-    city = location['data']['city']  # 城市
-    isp = location['data']['isp']  # 运营商
-    ip_location = country+area+region+city+isp
-    return ip_location
+    try:
+        location = json.loads(urlopen(url).read().decode('utf-8'))
+        country = location['data']['country']  # 国家
+        area = location['data']['area']  # 地区
+        region = location['data']['region']  # 省份
+        city = location['data']['city']  # 城市
+        isp = location['data']['isp']  # 运营商
+        ip_location = country+area+region+city+isp
+        return ip_location
+    except urllib.request.HTTPError:
+        return '查询地址失败'
 
 
 def get_ip(request):
