@@ -31,7 +31,8 @@ def get_location(ip):
     """返回位置信息"""
     url = 'http://ip.taobao.com/service/getIpInfo.php?ip='+ip
     try:
-        location = json.loads(urlopen(url).read().decode('utf-8'))
+        ul_response = urlopen(url, timeout=1000)
+        location = json.loads(ul_response.read().decode('utf-8'))
         country = location['data']['country']  # 国家
         area = location['data']['area']  # 地区
         region = location['data']['region']  # 省份

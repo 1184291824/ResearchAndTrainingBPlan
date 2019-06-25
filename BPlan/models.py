@@ -58,13 +58,13 @@ class User(models.Model):
         default=0,
         choices=USER_IDENTITY_CHOICE,
         verbose_name='身份与权限'
-    )  # 0:职员，2:管理员
+    )  # 0:职员，1:管理员
     user_question = models.PositiveSmallIntegerField(
         choices=USER_QUESTION_CHOICE,
-        blank=True,
+        default=0,
         verbose_name='密保问题'
     )  # 密保问题
-    user_question_answer = models.CharField(default='', max_length=20, blank=True, verbose_name='密保问题答案')  # 密保问题答案
+    user_question_answer = models.CharField(default='', max_length=20, verbose_name='密保问题答案')  # 密保问题答案
     user_create_time = models.DateTimeField(auto_now_add=True, verbose_name='用户注册时间')
 
     @classmethod
@@ -153,8 +153,8 @@ class InventoryOperation(models.Model):
     inventory_operation_num = models.PositiveIntegerField(verbose_name='操作数量')
     inventory_operation_object = models.ForeignKey(Inventory, on_delete=models.CASCADE, verbose_name='操作的库存对象')
 
-    inventory_num = models.PositiveIntegerField(verbose_name='审批后余量', blank=True)
-    inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True)
+    inventory_num = models.PositiveIntegerField(verbose_name='审批后余量', blank=True, null=True)
+    inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True, null=True)
     inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
     inventory_operation_review_opinion = models.PositiveSmallIntegerField(
         default=0,

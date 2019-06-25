@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详细信息</title>
+</head>
+<body>
+	<form action="{% url 'BPlan:register_check_more' %}" method="post">
+        {% csrf_token %}
+		<input type="text" id="user_name" name="user_name" value="保密" placeholder="请输入姓名" maxlength="12" required /><br>
+		<select name="user_gender">
+			<option value="boy">男</option>
+            <option value="girl">女</option>
+		</select><br>
+        <select name="user_identity">
+            {% for k,v in user_identity_choice %}
+                <option value="{{ k }}">{{ v }}</option>
+            {% endfor %}
+		</select><br>
+        <select name="user_question">
+            {% for k,v in user_question_choice %}
+                <option value="{{ k }}">{{ v }}</option>
+            {% endfor %}
+		</select><br>
+        <input type="text" id="user_question_answer" name="user_question_answer" value="保密" placeholder="请输入密保问题答案" maxlength="20"/><br>
+		<input type="submit" value="提交"/>
+	</form>
+</body>
+</html>
