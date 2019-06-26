@@ -117,5 +117,5 @@ class LoginRecordAdmin(admin.ModelAdmin):
         'login_location',
         'login_time',
     ]
-    search_fields = ['login_user']  # 搜索字段
+    list_filter = ['login_user']  # 筛选器
     date_hierarchy = 'login_time'  # 详细时间分层筛选
