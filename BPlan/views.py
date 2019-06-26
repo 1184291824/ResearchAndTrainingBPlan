@@ -190,21 +190,44 @@ def change_password_check(request):
 
 
 def show_inventory_all_html(request):
-    """返回所有的库存信息"""
-    inventory_list = Inventory.objects.all()
-    inventory_group = []
-    for inventory in inventory_list:
-        inventory_group_dict = [
-            inventory.inventory_id,
-            inventory.inventory_name,
-            inventory.inventory_category,
-            inventory.inventory_num,
-            inventory.inventory_unit,
-            inventory.inventory_details,
-            User.objects.get(user_id__exact=inventory.inventory_create_user).user_name,
-            inventory.inventory_create_time,
-            User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name,
-            inventory.inventory_recent_change_time,
-        ]
-        inventory_group.append(inventory_group_dict)
-    return render(request, 'PC/showInventoryAll.html', {'inventory_group': inventory_group})
+    """返回所有的库存的摘要信息"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        inventory_list = Inventory.objects.all()
+    # inventory_group = []
+    # for inventory in inventory_list:
+    #     inventory_group_dict = [
+    #         # inventory.inventory_id,
+    #         inventory.inventory_name,
+    #         inventory.inventory_category,
+    #         inventory.inventory_num+inventory.inventory_unit,
+    #         inventory.inventory_details,
+    #         # User.objects.get(user_id__exact=inventory.inventory_create_user).user_name,
+    #         # inventory.inventory_create_time,
+    #         # User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name,
+    #         # inventory.inventory_recent_change_time,
+    #     ]
+    #     inventory_group.append(inventory_group_dict)
+        if whether_mobile(request) is False:
+            return render(request, 'PC/showInventoryAll.html', {'inventory_list': inventory_list})
+        else:
+            return HttpResponse('mobile')
+    else:
+        return redirect('BPlan:index')
+
+
+def show_inventory_detail_html(request):
+    """返回某一库存的详细信息"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        inventory_pk = request.GET.get('id')
+        try:
+            inventory = Inventory.objects.get(pk=inventory_pk)
+            if whether_mobile(request) is False:
+                return render(request, 'PC/showInventoryDetail.html', {'inventory': inventory})
+            else:
+                return HttpResponse('mobile')
+        except Inventory.DoesNotExist:
+            return redirect('BPlan:show_inventory_all_html')
+    else:
+        return redirect('BPlan:index')

@@ -17,6 +17,7 @@ urlpatterns = [
     path('register/more/check', views.register_check_more, name='register_check_more'),
     path('changePassword/', views.change_password_html, name='change_password_html'),
     path('changePassword/check', views.change_password_check, name='change_password_check'),
-    path('showInventoryAll/', views.show_inventory_all_html, name='show_inventory_all_html'),
+    path('showInventory/all/', views.show_inventory_all_html, name='show_inventory_all_html'),
+    path('showInventory/detail/', views.show_inventory_detail_html, name='show_inventory_detail_html'),
 
 ]

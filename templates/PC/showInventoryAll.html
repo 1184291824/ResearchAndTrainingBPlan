@@ -7,23 +7,25 @@
 	<body>
 		<table border="2" cellspacing="0" cellpadding="2">
 			<tr>
-				<th>库存编号</th>
+{#				<th>库存编号</th>#}
 				<th>库存名称</th>
 				<th>库存类别</th>
 				<th>数量</th>
-				<th>单位</th>
+{#				<th>单位</th>#}
 				<th>详细信息</th>
-				<th>创建人</th>
-				<th>创建时间</th>
-				<th>修改人</th>
-				<th>修改时间</th>
+{#				<th>创建人</th>#}
+{#				<th>创建时间</th>#}
+{#				<th>修改人</th>#}
+{#				<th>修改时间</th>#}
 			</tr>
-            {% for foo in inventory_group %}
-                <tr>
-                {% for v in foo %}
-                    <td>{{ v }}</td>
-                {% endfor %}
-                </tr>
+            {% for foo in inventory_list %}
+            <tr>
+                <td>{{ foo.inventory_name }}</td>
+                <td>{{ foo.inventory_category }}</td>
+                <td>{{ foo.inventory_num }}{{ foo.inventory_unit }}</td>
+                <td>{{ foo.inventory_details | slice:':20'}}...</td>
+                <td><a href="{% url 'BPlan:show_inventory_detail_html' %}?id={{ foo.pk }}">详细信息</a></td>
+            </tr>
             {% endfor %}
 
 		</table>

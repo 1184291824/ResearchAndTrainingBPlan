@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>详细信息</title>
+	</head>
+	<body>
+		<table border="2" cellspacing="0" cellpadding="2">
+            <tr><td>库存编号</td><td>{{ inventory.inventory_id }}</td></tr>
+            <tr><td>库存名称</td><td>{{ inventory.inventory_name }}</td></tr>
+            <tr><td>库存类别</td><td>{{ inventory.inventory_category }}</td></tr>
+            <tr><td>数量</td><td>{{ inventory.inventory_num }}</td></tr>
+            <tr><td>单位</td><td>{{ inventory.inventory_num }}</td></tr>
+            <tr><td>详细信息</td><td>{{ inventory.inventory_details }}</td></tr>
+            <tr><td>创建人</td><td>{{ inventory.inventory_create_user }}</td></tr>
+            <tr><td>创建时间</td><td>{{ inventory.inventory_create_time }}</td></tr>
+            <tr><td>修改人</td><td>{{ inventory.inventory_recent_change_user }}</td></tr>
+            <tr><td>修改时间</td><td>{{ inventory.inventory_recent_change_time }}</td></tr>
+		</table>
+	</body>
+</html>
