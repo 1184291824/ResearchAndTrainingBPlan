@@ -16,7 +16,7 @@ def test(request):
         '</h1><h1>system:' + login_information['system'] +
         '</h1><h1>device:' + login_information['device'] +
         '</h1><h1>ip:' + ip +
-        '</h1><h1>location:' + location + '</h1>'+
+        '</h1><h1>location:' + location + '</h1>' +
         request.META['HTTP_USER_AGENT']
     )
 
@@ -189,3 +189,22 @@ def change_password_check(request):
         return redirect('BPlan:index')
 
 
+def show_inventory_all_html(request):
+    """返回所有的库存信息"""
+    inventory_list = Inventory.objects.all()
+    inventory_group = []
+    for inventory in inventory_list:
+        inventory_group_dict = [
+            inventory.inventory_id,
+            inventory.inventory_name,
+            inventory.inventory_category,
+            inventory.inventory_num,
+            inventory.inventory_unit,
+            inventory.inventory_details,
+            User.objects.get(user_id__exact=inventory.inventory_create_user).user_name,
+            inventory.inventory_create_time,
+            User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name,
+            inventory.inventory_recent_change_time,
+        ]
+        inventory_group.append(inventory_group_dict)
+    return render(request, 'PC/showInventoryAll.html', {'inventory_group': inventory_group})

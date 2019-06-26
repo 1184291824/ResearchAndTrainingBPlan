@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>显示全部的库存</title>
+	</head>
+	<body>
+		<table border="2" cellspacing="0" cellpadding="2">
+			<tr>
+				<th>库存编号</th>
+				<th>库存名称</th>
+				<th>库存类别</th>
+				<th>数量</th>
+				<th>单位</th>
+				<th>详细信息</th>
+				<th>创建人</th>
+				<th>创建时间</th>
+				<th>修改人</th>
+				<th>修改时间</th>
+			</tr>
+            {% for foo in inventory_group %}
+                <tr>
+                {% for v in foo %}
+                    <td>{{ v }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+
+		</table>
+	</body>
+</html>

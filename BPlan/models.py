@@ -154,7 +154,7 @@ class InventoryOperation(models.Model):
     inventory_operation_num = models.PositiveIntegerField(verbose_name='操作数量')
     inventory_operation_object = models.ForeignKey(Inventory, on_delete=models.CASCADE, verbose_name='操作的库存对象')
 
-    inventory_num = models.PositiveIntegerField(verbose_name='审批后余量', blank=True, null=True)
+    inventory_num = models.PositiveIntegerField(verbose_name='审批后库存余量', blank=True, null=True)
     inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True, null=True)
     inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
     inventory_operation_review_opinion = models.PositiveSmallIntegerField(
