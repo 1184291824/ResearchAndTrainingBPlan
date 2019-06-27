@@ -136,11 +136,11 @@ class InventoryOperation(models.Model):
         (1, '出库'),
         (2, '创建'),
     )
-    INVENTORY_OPERATION_REVIEW_OPINION_CHOICE = (
-        (0, '未审核'),
-        (1, '同意'),
-        (2, '不同意'),
-    )
+    # INVENTORY_OPERATION_REVIEW_OPINION_CHOICE = (
+    #     (0, '未审核'),
+    #     (1, '同意'),
+    #     (2, '不同意'),
+    # )
 
     '''属性'''
     inventory_operation_create_time = models.DateTimeField(auto_now_add=True, verbose_name='操作时间')
@@ -154,15 +154,15 @@ class InventoryOperation(models.Model):
     inventory_operation_num = models.PositiveIntegerField(verbose_name='操作数量')
     inventory_operation_object = models.ForeignKey(Inventory, on_delete=models.CASCADE, verbose_name='操作的库存对象')
 
-    inventory_num = models.PositiveIntegerField(verbose_name='审批后库存余量', blank=True, null=True)
-    inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True, null=True)
-    inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
-    inventory_operation_review_opinion = models.PositiveSmallIntegerField(
-        default=0,
-        choices=INVENTORY_OPERATION_REVIEW_OPINION_CHOICE,
-        verbose_name='审批意见',
-    )
-    inventory_operation_review_time = models.DateTimeField(auto_now=True, verbose_name='审批时间')
+    inventory_num = models.PositiveIntegerField(verbose_name='库存余量', blank=True, null=True)
+    # inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True, null=True)
+    # inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
+    # inventory_operation_review_opinion = models.PositiveSmallIntegerField(
+    #     default=0,
+    #     choices=INVENTORY_OPERATION_REVIEW_OPINION_CHOICE,
+    #     verbose_name='审批意见',
+    # )
+    # inventory_operation_review_time = models.DateTimeField(auto_now=True, verbose_name='审批时间')
 
     @classmethod
     def add_inventory_operation(  # 增加一个申请的操作

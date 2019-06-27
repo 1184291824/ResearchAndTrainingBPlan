@@ -17,7 +17,12 @@ urlpatterns = [
     path('register/more/check', views.register_check_more, name='register_check_more'),
     path('changePassword/', views.change_password_html, name='change_password_html'),
     path('changePassword/check', views.change_password_check, name='change_password_check'),
-    path('showInventory/all/', views.show_inventory_all_html, name='show_inventory_all_html'),
-    path('showInventory/detail/', views.show_inventory_detail_html, name='show_inventory_detail_html'),
+    path('inventory/show/all/', views.inventory_show_all_html, name='inventory_show_all_html'),
+    path('inventory/show/detail/', views.inventory_show_detail_html, name='inventory_show_detail_html'),
+    path('inventory/create/', views.inventory_create_html, name='inventory_create_html'),
+    path('inventory/create/add/', views.inventory_create_add, name='inventory_create_add'),
+    path('inventory/change/', views.inventory_change_html, name='inventory_change_html'),
+    path('inventory/change/add', views.inventory_change_add, name='inventory_change_add'),
+
 
 ]

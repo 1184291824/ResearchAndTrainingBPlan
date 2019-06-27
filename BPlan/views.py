@@ -189,7 +189,7 @@ def change_password_check(request):
         return redirect('BPlan:index')
 
 
-def show_inventory_all_html(request):
+def inventory_show_all_html(request):
     """返回所有的库存的摘要信息"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
@@ -209,14 +209,14 @@ def show_inventory_all_html(request):
     #     ]
     #     inventory_group.append(inventory_group_dict)
         if whether_mobile(request) is False:
-            return render(request, 'PC/showInventoryAll.html', {'inventory_list': inventory_list})
+            return render(request, 'PC/inventoryShowAll.html', {'inventory_list': inventory_list})
         else:
             return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
 
-def show_inventory_detail_html(request):
+def inventory_show_detail_html(request):
     """返回某一库存的详细信息"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
@@ -224,10 +224,114 @@ def show_inventory_detail_html(request):
         try:
             inventory = Inventory.objects.get(pk=inventory_pk)
             if whether_mobile(request) is False:
-                return render(request, 'PC/showInventoryDetail.html', {'inventory': inventory})
+                return render(request, 'PC/inventoryShowDetail.html', {'inventory': inventory})
             else:
                 return HttpResponse('mobile')
         except Inventory.DoesNotExist:
-            return redirect('BPlan:show_inventory_all_html')
+            return redirect('BPlan:inventory_show_all_html')
     else:
         return redirect('BPlan:index')
+
+
+def inventory_create_html(request):
+    """返回创建新的库存的界面"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        if whether_mobile(request) is False:
+            return render(request, 'PC/inventoryCreate.html')
+        else:
+            return HttpResponse('mobile')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_change_html(request):
+    """返回出库入库的界面"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        change_type = request.GET.get('type', 0)
+        if change_type == 'in':
+            change_type = '入库'
+            request.session['inventory_operation_category'] = 0
+        elif change_type == 'out':
+            change_type = '出库'
+            request.session['inventory_operation_category'] = 1
+        else:
+            return redirect('BPlan:inventory_show_all_html')
+
+        inventory_pk = request.GET.get('id', 0)
+        try:
+            inventory = Inventory.objects.get(pk=inventory_pk)
+        except Inventory.DoesNotExist:
+            return HttpResponse('idDoesNotExist')
+
+        if whether_mobile(request) is False:
+            return render(request, 'PC/inventoryChange.html', {
+                'change_type': change_type,
+                'inventory_id': inventory.inventory_id,
+                'inventory_name': inventory.inventory_name,
+                'inventory_num': inventory.inventory_num,
+            })
+        else:
+            return HttpResponse('mobile')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_create_add(request):
+    """创建新的库存"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1 and request.method == 'POST':
+        inventory_id = request.POST['inventory_id']
+        if Inventory.objects.filter(inventory_id__exact=inventory_id):
+            return HttpResponse('idExist')
+        inventory_name = request.POST['inventory_name']
+        inventory_category = request.POST['inventory_category']
+        inventory_num = int(request.POST['inventory_num'])
+        inventory_unit = request.POST['inventory_unit']
+        inventory_details = request.POST['inventory_details']
+        inventory_create_user = request.session['user_id']  # 获取创建人的id
+        inventory = Inventory.add_inventory(  # 增加库存
+            inventory_id=inventory_id,
+            inventory_name=inventory_name,
+            inventory_category=inventory_category,
+            inventory_num=inventory_num,
+            inventory_unit=inventory_unit,
+            inventory_details=inventory_details,
+            inventory_create_user=inventory_create_user,
+        )
+        inventory.save()  # 保存生效
+        request.session['inventory_operation_category'] = 2
+
+        '''这里请加入添加库存记录的函数'''
+
+        return HttpResponse('success')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_change_add(request):
+    """出入库存"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1 and request.method == 'POST':
+        inventory_id = request.POST['inventory_id']
+        inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
+        inventory_operation_num = int(request.POST['inventory_operation_num'])
+        inventory_operation_category = int(request.session['inventory_operation_category'])
+        if inventory_operation_category == 0:
+            inventory.inventory_num += inventory_operation_num
+        else:
+            if inventory_operation_num <= inventory.inventory_num:
+                inventory.inventory_num -= inventory_operation_num
+            else:
+                return HttpResponse('outToMany')
+
+        inventory.save()  # 保存生效
+
+        '''这里请加入添加库存记录的函数'''
+
+        return HttpResponse('success')
+    else:
+        return redirect('BPlan:index')
+
+

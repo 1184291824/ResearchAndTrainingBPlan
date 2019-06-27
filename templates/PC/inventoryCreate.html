@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>创建新的库存项目</title>
+		<form action="{% url 'BPlan:inventory_create_add' %}" method="post">
+            {% csrf_token %}
+			<input type="text" id="inventory_id" name="inventory_id" value="" placeholder="请输入库存id" required maxlength="12"/><br>
+			<input type="text" id="inventory_name" name="inventory_name" value="" placeholder="请输入库存名称" required maxlength="20"/><br>
+			<input type="text" id="inventory_category" name="inventory_category" value="" placeholder="库存类别" required maxlength="12"/><br>
+			<input type="number" id="inventory_num" name="inventory_num" value="" placeholder="库存数量" max="32768" min="0" required /><br>
+			<input type="text" id="inventory_unit" name="inventory_unit" value="个" placeholder="单位" maxlength="12" /><br>
+			<textarea rows="5" cols="20" maxlength="300" id="inventory_details" name="inventory_details" placeholder="详细信息" required="required">无</textarea><br>
+			<input type="submit" value="提交"/>
+		</form>
+	</head>
+	<body>
+	</body>
+</html>
