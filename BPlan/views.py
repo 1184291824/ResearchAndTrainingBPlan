@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.http import JsonResponse
 from .models import *
 from django.contrib.auth import logout
 from django.utils import timezone
@@ -11,14 +12,16 @@ def test(request):
     login_information = get_agent(request)
     ip = get_ip(request)
     location = get_location(ip)
-    return HttpResponse(
-        '<h1>browser:' + login_information['browser'] +
-        '</h1><h1>system:' + login_information['system'] +
-        '</h1><h1>device:' + login_information['device'] +
-        '</h1><h1>ip:' + ip +
-        '</h1><h1>location:' + location + '</h1>' +
-        request.META['HTTP_USER_AGENT']
-    )
+    # return HttpResponse(
+    #     '<h1>browser:' + login_information['browser'] +
+    #     '</h1><h1>system:' + login_information['system'] +
+    #     '</h1><h1>device:' + login_information['device'] +
+    #     '</h1><h1>ip:' + ip +
+    #     '</h1><h1>location:' + location + '</h1>' +
+    #     request.META['HTTP_USER_AGENT']
+    # )
+
+    return JsonResponse(login_information)
 
 
 def index(request):
@@ -64,6 +67,7 @@ def login_check(request):
             if user_password == user.user_password:
                 request.session['login_status'] = 1
                 request.session['user_id'] = user.user_id
+                request.session['user_name'] = user.user_name
                 login_agent = get_agent(request)  # 获取登录的设备信息
                 ip = get_ip(request)  # 获取登录的ip
                 location = get_location(ip)  # 通过IP查询地理位置
@@ -118,6 +122,7 @@ def register_check_base(request):
         request.session['user_id'] = user_id
         request.session['lastPage'] = 'register/base/'
         return redirect('BPlan:register_html_more')
+        # return HttpResponse('success')  # for Ajax
     return redirect('BPlan:index')
 
 
@@ -194,20 +199,6 @@ def inventory_show_all_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         inventory_list = Inventory.objects.all()
-    # inventory_group = []
-    # for inventory in inventory_list:
-    #     inventory_group_dict = [
-    #         # inventory.inventory_id,
-    #         inventory.inventory_name,
-    #         inventory.inventory_category,
-    #         inventory.inventory_num+inventory.inventory_unit,
-    #         inventory.inventory_details,
-    #         # User.objects.get(user_id__exact=inventory.inventory_create_user).user_name,
-    #         # inventory.inventory_create_time,
-    #         # User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name,
-    #         # inventory.inventory_recent_change_time,
-    #     ]
-    #     inventory_group.append(inventory_group_dict)
         if whether_mobile(request) is False:
             return render(request, 'PC/inventoryShowAll.html', {'inventory_list': inventory_list})
         else:
@@ -256,13 +247,6 @@ def inventory_change_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         change_type = int(request.GET.get('type', 2))
-        # if change_type == 'in':
-        #     change_type = '入库'
-            # request.session['inventory_operation_category'] = 0
-        # elif change_type == 'out':
-        #     change_type = '出库'
-            # request.session['inventory_operation_category'] = 1
-        # else:
         if change_type < 0 or change_type > 1:
             return redirect('BPlan:inventory_show_all_html')
 
@@ -270,7 +254,7 @@ def inventory_change_html(request):
         try:
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
         except Inventory.DoesNotExist:
-            return HttpResponse('idDoesNotExist')
+            return redirect('BPlan:inventory_show_all_html')
 
         if whether_mobile(request) is False:
             return render(request, 'PC/inventoryChange.html', {
@@ -311,6 +295,15 @@ def inventory_create_add(request):
         # request.session['inventory_operation_category'] = 2
 
         '''这里请加入添加库存记录的函数'''
+        InventoryOperation.add_inventory_operation(
+            inventory_operation_user=inventory.inventory_create_user,
+            inventory_operation_user_name=request.session.get('user_name'),
+            inventory_operation_user_ip=get_ip(request),
+            inventory_operation_category=2,
+            inventory_operation_num=inventory.inventory_num,
+            inventory_num=inventory.inventory_num,
+            inventory_operation_object=inventory
+        ).save()
 
         return HttpResponse('success')
     else:
@@ -332,13 +325,68 @@ def inventory_change_add(request):
                 inventory.inventory_num -= inventory_operation_num
             else:
                 return HttpResponse('outToMany')
-        inventory.inventory_recent_change_user = request.session['user_id']
+        inventory.inventory_recent_change_user = request.session['user_id']  # 记录用户更改人的id
         inventory.save()  # 保存生效
 
         '''这里请加入添加库存记录的函数'''
+        InventoryOperation.add_inventory_operation(
+            inventory_operation_user=inventory.inventory_recent_change_user,
+            inventory_operation_user_name=request.session.get('user_name'),
+            inventory_operation_user_ip=get_ip(request),
+            inventory_operation_category=inventory_operation_category,
+            inventory_operation_num=inventory_operation_num,
+            inventory_num=inventory.inventory_num,
+            inventory_operation_object=inventory
+        ).save()
 
         return HttpResponse('success')
     else:
         return redirect('BPlan:index')
+
+
+def inventory_operation_html_inventory(request):
+    """显示某个库存的操作记录"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        inventory_id = request.GET.get('id')
+        inventory_operation = InventoryOperation.objects.\
+            filter(inventory_operation_object__inventory_id__exact=inventory_id).\
+            order_by('-inventory_operation_create_time')
+        if inventory_operation:
+            return render(request, 'PC/inventoryOperationInventory.html', {'inventory_operation': inventory_operation})
+        else:
+            return redirect('BPlan:inventory_show_all_html')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_operation_html_user(request):
+    """显示某个人的操作记录"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        user_id = request.session.get('user_id')
+        inventory_operation = InventoryOperation.objects.\
+            filter(inventory_operation_user=user_id).\
+            order_by('-inventory_operation_create_time')
+        return render(request, 'PC/inventoryOperationUser.html', {'inventory_operation': inventory_operation})
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_operation_check_user(request):
+    """检查这个人是否有操作记录"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        user_id = request.session.get('user_id')
+        inventory_operation = InventoryOperation.objects.\
+            filter(inventory_operation_user=user_id).\
+            order_by('-inventory_operation_create_time')
+        if inventory_operation:
+            return HttpResponse('success')
+        else:
+            return HttpResponse('DoesNotExist')
+    else:
+        return redirect('BPlan:index')
+
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>操作记录</title>
+	</head>
+	<body>
+{#		<h1>{{ inventory_operation.first.inventory_operation_object }}的操作记录</h1>#}
+    {% block title_h1 %}
+
+    {% endblock %}
+		<table border="1" cellspacing="0" cellpadding="3">
+			<tr>
+				<th>操作时间</th>
+				<th>操作人</th>
+				<th>操作人ip</th>
+				<th>操作类别</th>
+				<th>操作数量</th>
+				<th>操作的库存对象</th>
+				<th>库存余量</th>
+			</tr>
+            {% for foo in inventory_operation %}
+            <tr>
+                <td>{{ foo.inventory_operation_create_time }}</td>
+                <td>{{ foo.inventory_operation_user_name }}</td>
+                <td>{{ foo.inventory_operation_user_ip }}</td>
+                {% if foo.inventory_operation_category == 0 %}
+                <td>入库</td>
+                {% elif foo.inventory_operation_category == 1 %}
+                <td>出库</td>
+                {% else %}
+                <td>创建</td>
+                {% endif %}
+                <td>{{ foo.inventory_operation_num }}</td>
+                <td>{{ foo.inventory_operation_object }}</td>
+                <td>{{ foo.inventory_num }}</td>
+            </tr>
+            {% endfor %}
+		</table>
+	</body>
+</html>

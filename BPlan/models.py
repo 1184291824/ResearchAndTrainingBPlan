@@ -145,6 +145,7 @@ class InventoryOperation(models.Model):
     '''属性'''
     inventory_operation_create_time = models.DateTimeField(auto_now_add=True, verbose_name='操作时间')
     inventory_operation_user = models.CharField(max_length=12, verbose_name='操作者id')
+    inventory_operation_user_name = models.CharField(max_length=20, verbose_name='操作者姓名')
     inventory_operation_user_ip = models.GenericIPAddressField(protocol='both', unpack_ipv4=False, verbose_name='操作者ip')
     inventory_operation_category = models.PositiveSmallIntegerField(
         default=0,
@@ -154,7 +155,7 @@ class InventoryOperation(models.Model):
     inventory_operation_num = models.PositiveIntegerField(verbose_name='操作数量')
     inventory_operation_object = models.ForeignKey(Inventory, on_delete=models.CASCADE, verbose_name='操作的库存对象')
 
-    inventory_num = models.PositiveIntegerField(verbose_name='库存余量', blank=True, null=True)
+    inventory_num = models.PositiveIntegerField(verbose_name='库存余量')
     # inventory_operation_review_user = models.CharField(max_length=12, verbose_name='审批者id', blank=True, null=True)
     # inventory_operation_review_user_ip = models.GenericIPAddressField(blank=True, null=True, protocol='both', unpack_ipv4=False, verbose_name='审批者ip')
     # inventory_operation_review_opinion = models.PositiveSmallIntegerField(
@@ -165,19 +166,23 @@ class InventoryOperation(models.Model):
     # inventory_operation_review_time = models.DateTimeField(auto_now=True, verbose_name='审批时间')
 
     @classmethod
-    def add_inventory_operation(  # 增加一个申请的操作
+    def add_inventory_operation(  # 增加一个库存的操作
             cls,
             inventory_operation_user,
+            inventory_operation_user_name,
             inventory_operation_user_ip,
             inventory_operation_category,
             inventory_operation_num,
+            inventory_num,
             inventory_operation_object,
     ):
         inventory_operation = cls(
             inventory_operation_user=inventory_operation_user,
+            inventory_operation_user_name=inventory_operation_user_name,
             inventory_operation_user_ip=inventory_operation_user_ip,
             inventory_operation_category=inventory_operation_category,
             inventory_operation_num=inventory_operation_num,
+            inventory_num=inventory_num,
             inventory_operation_object=inventory_operation_object,
         )
         return inventory_operation

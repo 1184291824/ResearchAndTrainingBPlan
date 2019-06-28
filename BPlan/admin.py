@@ -85,6 +85,7 @@ class InventoryOperationAdmin(admin.ModelAdmin):
         'inventory_operation_create_time',
         'inventory_operation_object',
         'inventory_operation_user',
+        'inventory_operation_user_name',
         'inventory_operation_user_ip',
         'inventory_operation_category',
         'inventory_operation_num',
@@ -94,13 +95,12 @@ class InventoryOperationAdmin(admin.ModelAdmin):
         # 'inventory_operation_review_time',
         'inventory_num',
     ]
-    search_fields = ['inventory_operation_user']  # 搜索字段
+    search_fields = ['inventory_operation_user', 'inventory_operation_user_name']  # 搜索字段
     list_filter = (
         'inventory_operation_object',
         'inventory_operation_category',
         'inventory_operation_num',
         # 'inventory_operation_review_opinion',
-        'inventory_num',
     )  # 筛选器
     date_hierarchy = 'inventory_operation_create_time'  # 详细时间分层筛选
 
