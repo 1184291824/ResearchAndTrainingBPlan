@@ -220,11 +220,17 @@ def inventory_show_detail_html(request):
     """返回某一库存的详细信息"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
-        inventory_pk = request.GET.get('id')
+        inventory_id = request.GET.get('id')
         try:
-            inventory = Inventory.objects.get(pk=inventory_pk)
+            inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
+            create_user = User.objects.get(user_id__exact=inventory.inventory_create_user).user_name
+            change_user = User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name
             if whether_mobile(request) is False:
-                return render(request, 'PC/inventoryShowDetail.html', {'inventory': inventory})
+                return render(request, 'PC/inventoryShowDetail.html', {
+                    'inventory': inventory,
+                    'create_user': create_user,
+                    'change_user': change_user,
+                })
             else:
                 return HttpResponse('mobile')
         except Inventory.DoesNotExist:
@@ -249,19 +255,20 @@ def inventory_change_html(request):
     """返回出库入库的界面"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
-        change_type = request.GET.get('type', 0)
-        if change_type == 'in':
-            change_type = '入库'
-            request.session['inventory_operation_category'] = 0
-        elif change_type == 'out':
-            change_type = '出库'
-            request.session['inventory_operation_category'] = 1
-        else:
+        change_type = int(request.GET.get('type', 2))
+        # if change_type == 'in':
+        #     change_type = '入库'
+            # request.session['inventory_operation_category'] = 0
+        # elif change_type == 'out':
+        #     change_type = '出库'
+            # request.session['inventory_operation_category'] = 1
+        # else:
+        if change_type < 0 or change_type > 1:
             return redirect('BPlan:inventory_show_all_html')
 
-        inventory_pk = request.GET.get('id', 0)
+        inventory_id = request.GET.get('id', 0)
         try:
-            inventory = Inventory.objects.get(pk=inventory_pk)
+            inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
         except Inventory.DoesNotExist:
             return HttpResponse('idDoesNotExist')
 
@@ -301,7 +308,7 @@ def inventory_create_add(request):
             inventory_create_user=inventory_create_user,
         )
         inventory.save()  # 保存生效
-        request.session['inventory_operation_category'] = 2
+        # request.session['inventory_operation_category'] = 2
 
         '''这里请加入添加库存记录的函数'''
 
@@ -317,7 +324,7 @@ def inventory_change_add(request):
         inventory_id = request.POST['inventory_id']
         inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
         inventory_operation_num = int(request.POST['inventory_operation_num'])
-        inventory_operation_category = int(request.session['inventory_operation_category'])
+        inventory_operation_category = int(request.POST['inventory_operation_category'])
         if inventory_operation_category == 0:
             inventory.inventory_num += inventory_operation_num
         else:
@@ -325,7 +332,7 @@ def inventory_change_add(request):
                 inventory.inventory_num -= inventory_operation_num
             else:
                 return HttpResponse('outToMany')
-
+        inventory.inventory_recent_change_user = request.session['user_id']
         inventory.save()  # 保存生效
 
         '''这里请加入添加库存记录的函数'''

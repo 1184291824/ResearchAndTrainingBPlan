@@ -3,11 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{ change_type }}</title>
-		<h1>对{{ inventory_name }}的库存{{ change_type }}</h1>
+		<h1>对{{ inventory_name }}的库存{% if change_type == 0 %}入库{% else %}出库{% endif %}</h1>
         <h2>余量：{{ inventory_num }}</h2>
 		<form action="{% url 'BPlan:inventory_change_add' %}" method="post">
             {% csrf_token %}
             <input type="text" name="inventory_id" id="inventory_id" value="{{ inventory_id }}" readonly style="display: none"/>
+            <input type="number" name="inventory_operation_category" id="inventory_operation_category" value="{{ change_type }}" readonly style="display: none"/>
 			<input type="number" name="inventory_operation_num" id="inventory_operation_num" value="" placeholder="数量" min="0" max="32768" />
 			<input type="submit" value="提交"/>
 		</form>

@@ -22,9 +22,9 @@
                 <td>{{ foo.inventory_num }}{{ foo.inventory_unit }}</td>
                 <td>{{ foo.inventory_details | slice:':20'}}...</td>
                 <td>
-                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.pk }}&type=in">入库</a>
-                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.pk }}&type=out">出库</a>
-                    <a href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ foo.pk }}">详细信息</a>
+                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.inventory_id }}&type=0">入库</a>
+                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.inventory_id }}&type=1">出库</a>
+                    <a href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ foo.inventory_id }}">详细信息</a>
                 </td>
             </tr>
             {% endfor %}

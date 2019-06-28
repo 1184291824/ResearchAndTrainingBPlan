@@ -12,12 +12,12 @@
             <tr><td>数量</td><td>{{ inventory.inventory_num }}</td></tr>
             <tr><td>单位</td><td>{{ inventory.inventory_num }}</td></tr>
             <tr><td>详细信息</td><td>{{ inventory.inventory_details }}</td></tr>
-            <tr><td>创建人</td><td>{{ inventory.inventory_create_user }}</td></tr>
+            <tr><td>创建人</td><td>{{ create_user }}</td></tr>
             <tr><td>创建时间</td><td>{{ inventory.inventory_create_time }}</td></tr>
-            <tr><td>修改人</td><td>{{ inventory.inventory_recent_change_user }}</td></tr>
+            <tr><td>修改人</td><td>{{ change_user }}</td></tr>
             <tr><td>修改时间</td><td>{{ inventory.inventory_recent_change_time }}</td></tr>
-            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.pk }}&type=in">入库</a></td></tr>
-            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.pk }}&type=out">出库</a></td></tr>
+            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.inventory_id }}&type=0">入库</a></td></tr>
+            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.inventory_id }}&type=1">出库</a></td></tr>
 		</table>
 	</body>
 </html>
