@@ -35,7 +35,7 @@
     </div>
     <div class="body display">
         <div class="display-function">
-            <h2>我们的网站具有下列功能</h2>
+            <h2 class="display-function-title">我们的网站具有下列功能</h2>
             <!-- <div class="display-function-item">
                 <label class="display-function-item-title">库存查询</label>
             </div> -->
@@ -65,8 +65,8 @@
                         <img class="display-function-item-icon" src="{% static 'PC/img/员工.png' %}" >
                         <p class="display-function-item-title">用户登录</p>
                         <div class="display-function-item-contain">
-                            很方便、安全的登录到我们的网站<br>
-                            支持多用户同时登录，修改密码，快速免费注册用户等功能
+                            · 很方便、安全的登录到我们的网站<br>
+                            · 支持多用户同时登录，修改密码，快速免费注册用户等功能<br>
                         </div>
                     </div>
                 </div>
@@ -78,6 +78,74 @@
                             可以快速的完成出库和入库的操作
                         </div>
                     </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/入库.png' %}" >
+                        <p class="display-function-item-title">库存查询</p>
+                        <div class="display-function-item-contain">
+                            · 可实现根据不同的条件查询库存<br>
+                            · 模糊搜索，快速的搜索出你想要的库存信息<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/入库.png' %}" >
+                        <p class="display-function-item-title">批量操作</p>
+                        <div class="display-function-item-contain">
+                            · 对库存进行批量的出库和入库操作，只需上传规定好格式的excel表格就可以完成批量操作<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/入库.png' %}" >
+                        <p class="display-function-item-title">操作记录</p>
+                        <div class="display-function-item-contain">
+                            · 我们会记录下每一个对库存操作的详细信息，以便您的查阅<br>
+                            · 并且您可以查看自己的所有操作记录，以及某一个库存的详细操作记录<br>
+                            · 支持操作记录的导出功能，方便您打印<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="display-function">
+            <h2 class="display-function-title">我们使用了下面这些框架或插件</h2>
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                    <div class="display-framework-item">
+                        <div class="display-framework-item-icon">
+                            <img src="{% static 'PC/img/django.jpg' %}" width="100%" height="100%">
+                        </div>
+						<p class="display-framework-item-contain"><a href="https://www.djangoproject.com/" target="_blank">Django</a>是一个开放源代码的Web应用框架，
+						由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。
+						它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，
+						即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。
+						这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。</p>
+                    </div>
+                </div>
+                <div class="pure-u-1-2">
+                    <div class="display-framework-item">
+                        <div class="display-framework-item-icon" style="background-color: #1f8dd6">
+                            <img src="{% static 'PC/img/jquery.png' %}" width="90%" height="90%">
+                        </div>
+						<p class="display-framework-item-contain"><a href="https://jquery.com/" target="_blank">jQuery</a>
+                            是一个快速、简洁的JavaScript框架，
+                            是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。
+                            jQuery设计的宗旨是“write Less，Do More”，即倡导写更少的代码，做更多的事情。
+                            它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，
+                            优化HTML文档操作、事件处理、动画设计和Ajax交互。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="display-function">
+            <h2 class="display-function-title">联系我们</h2>
+            <div class="pure-g">
+                <div class="pure-u-1">
+                    <a class="header-menu-a header-button-a display-button" href="https://github.com/1184291824/ResearchAndTrainingBPlan" target="_blank">github</a>
                 </div>
             </div>
         </div>

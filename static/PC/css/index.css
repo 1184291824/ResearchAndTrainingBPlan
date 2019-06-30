@@ -42,40 +42,46 @@
     width: 100%;
     min-width: inherit;
     top: 650px;
-    height: 1000px;
+    height: auto;
     z-index: 2;
+    padding-bottom: 100px;
 }
 
 .display-function {
-    color: black;
+    /*color: black;*/
     width: 80%;
     margin: 0 auto;
-    /* font-weight: 300; */
 }
 
-.display-function-item {
+.display-function-title{
+    color: #000;
+    font-weight: lighter;
+    font-size: 2.5em;
+    padding-bottom: 20px;
+    /*margin-top: 20px;*/
+    border-bottom: solid #000 2px;
+}
+
+
+.display-function-item,
+.display-framework-item{
     background-color: white;
     border-radius: 4px;
     height: 200px;
     margin: 10px;
     text-align: left;
     font-size: 1.4em;
-    border: solid transparent 2px;
-    transition: border 0.5s;
-    -webkit-transition: border 0.5s;
     overflow: hidden;
-    /* box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5); */
 }
 
 .display-function-item-title {
     margin: 15px;
-    /*padding-left: 10px;*/
     text-align: center;
-    /*border-left: solid 2px var(--bkcolor);*/
     color: var(--bkcolor);
 }
 
-.display-function-item-icon{
+.display-function-item-icon,
+.display-framework-item-icon{
     display: block;
     margin: 10px auto;
 }
@@ -93,4 +99,46 @@
 }
 .display-function-item:hover > .display-function-item-contain{
     top: -200px;
+}
+
+.display-framework-item{
+    height: auto;
+    color: black;
+    padding: 20px;
+}
+
+/*.display-framework-item-title{*/
+/*    font-weight: lighter;*/
+/*    padding-bottom: 20px;*/
+/*    border-bottom: solid var(--bkcolor) 2px;*/
+/*    color: var(--bkcolor);*/
+/*}*/
+
+.display-framework-item-icon{
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.display-framework-item-icon>img{
+    display: block;
+    margin: 0 auto;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+.display-framework-item-icon>img:hover{
+    transform: scale(1.2);
+}
+
+.display-framework-item-contain{
+    font-size: 0.8em;
+}
+
+.display-button{
+    width: 98%;
+    margin: 0;
+    padding: 0;
+}
+.display-button:hover{
+    color: var(--bkcolor);
 }

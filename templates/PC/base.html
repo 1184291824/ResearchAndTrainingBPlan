@@ -49,10 +49,20 @@
 {% block body %}
 
 {% endblock %}
+    <footer class="footer">
+        <p>声明：本网站仅作为南京理工大学电光学院科研训练项目《多用户登录的库存管理系统》展示使用</p>
+        <p>本网站版权归马子轩所有</p>
+    </footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
         crossorigin="anonymous" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.footer').css('top', $(document).height())
+    })
+</script>
 {% block script %}
 
 {% endblock %}
+
 </html>
