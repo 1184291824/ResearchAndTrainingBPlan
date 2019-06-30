@@ -1,0 +1,96 @@
+/* 下面是主页的body属性 */
+.body {
+    width: 100%;
+    height: 600px;
+    color: white;
+    text-align: center;
+    /* background-color: red; */
+    position: fixed;
+    z-index: -1;
+    min-width: inherit;
+}
+
+.body-title {
+    font-size: 2.5em;
+    text-align: center;
+    width: 800px;
+    margin: 100px auto;
+    padding: 40px 0;
+    /* position: relative; */
+    border-bottom: white solid 2px;
+    letter-spacing: 0.5em;
+}
+
+.body-contain {
+    font-size: 1.2em;
+    height: 140px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 50px;
+    border: white solid 2px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.body-contain td {
+    padding: 5px 10px;
+}
+
+.display {
+    background-color: rgb(244,244,244);
+    position: absolute;
+    width: 100%;
+    min-width: inherit;
+    top: 650px;
+    height: 1000px;
+    z-index: 2;
+}
+
+.display-function {
+    color: black;
+    width: 80%;
+    margin: 0 auto;
+    /* font-weight: 300; */
+}
+
+.display-function-item {
+    background-color: white;
+    border-radius: 4px;
+    height: 200px;
+    margin: 10px;
+    text-align: left;
+    font-size: 1.4em;
+    border: solid transparent 2px;
+    transition: border 0.5s;
+    -webkit-transition: border 0.5s;
+    overflow: hidden;
+    /* box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5); */
+}
+
+.display-function-item-title {
+    margin: 15px;
+    /*padding-left: 10px;*/
+    text-align: center;
+    /*border-left: solid 2px var(--bkcolor);*/
+    color: var(--bkcolor);
+}
+
+.display-function-item-icon{
+    display: block;
+    margin: 10px auto;
+}
+
+.display-function-item-contain {
+    position: relative;
+    top: 0;
+    background-color: rgba(31, 141, 214, 0.8);
+    color: white;
+    z-index: 2;
+    height: 180px;
+    padding: 10px;
+    font-size: 16px;
+    transition: top 1s;
+}
+.display-function-item:hover > .display-function-item-contain{
+    top: -200px;
+}

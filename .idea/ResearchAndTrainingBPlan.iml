@@ -17,7 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/venvmzx" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (ResearchAndTrainingBPlan)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (venvmzx)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
+{% block link %}
+
+{% endblock %}
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">
+            <label>MYZ 库存管理系统</label>
+        </div>
+        <div class="header-menu">
+            <ul class="header-menu-ul">
+                <li class="header-menu-li">
+                    <a href="#" id="header-menu-1" class="header-menu-a">主页</a>
+                </li>
+                <li class="header-menu-li header-menu-has-children">
+                    <a href="#" id="header-menu-2" class="header-menu-a">库存</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">查看全部</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">查找</a><br>
+                </li>
+                <li class="header-menu-li header-menu-has-children">
+                    <a href="#" id="header-menu-3" class="header-menu-a">数据</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">每日出入库</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">库存统计</a><br>
+                </li>
+                <li class="header-menu-li header-menu-has-children">
+                    <a href="#" id="header-menu-4" class="header-menu-a">批量操作</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">批量入库</a><br>
+                    <a href="#" class="header-menu-a header-menu-children">批量出库</a><br>
+                </li>
+                <li class="header-menu-li">
+                    <a href="#" id="header-menu-5" class="header-menu-a">我的</a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-button">
+            <a class="header-menu-a header-button-a" href="#">登录</a>
+            <a class="header-menu-a header-button-a" href="#">注册</a>
+        </div>
+    </div>
+{% block body %}
+
+{% endblock %}
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous" type="text/javascript" charset="UTF-8"></script>
+{% block script %}
+
+{% endblock %}
+</html>

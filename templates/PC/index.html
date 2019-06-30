@@ -1,0 +1,92 @@
+{% extends 'PC/base.html' %}
+{% load staticfiles %}
+{% block title %}
+主页
+{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'PC/css/index.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="body">
+        <div class="body-title"><label>MYZ 库存管理系统</label></div>
+        <div class="body-contain">
+            <table>
+                <tr>
+                    <td>指导老师:</td>
+                    <td>李洪涛</td>
+                </tr>
+                <tr>
+                    <td>小组成员:</td>
+                    <td>马子轩</td>
+                    <td>9161040G0826</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>杨智渊</td>
+                    <td>9161040G1033</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>邹逸妍</td>
+                    <td>916114070228</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="body display">
+        <div class="display-function">
+            <h2>我们的网站具有下列功能</h2>
+            <!-- <div class="display-function-item">
+                <label class="display-function-item-title">库存查询</label>
+            </div> -->
+            <div class="pure-g">
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/库存.png' %}" >
+                        <p class="display-function-item-title">库存管理</p>
+                        <div class="display-function-item-contain">
+                            可以协助你随时随地的查询库存信息和出入库情况，甚至每条出入库的记录
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/统计.png' %}" >
+                        <p class="display-function-item-title">大数据统计</p>
+                        <div class="display-function-item-contain">
+                            可以统计出每日的出入库情况，形成汇总图表<br>
+                            并且可以查看某一种库存的出入库统计<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/员工.png' %}" >
+                        <p class="display-function-item-title">用户登录</p>
+                        <div class="display-function-item-contain">
+                            很方便、安全的登录到我们的网站<br>
+                            支持多用户同时登录，修改密码，快速免费注册用户等功能
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-4">
+                    <div class="display-function-item">
+                        <img class="display-function-item-icon" src="{% static 'PC/img/入库.png' %}" >
+                        <p class="display-function-item-title">出库入库</p>
+                        <div class="display-function-item-contain">
+                            可以快速的完成出库和入库的操作
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#header-menu-1').css('color', '#4ab2f6');
+        })
+    </script>
+{% endblock %}

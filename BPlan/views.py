@@ -9,19 +9,7 @@ from .request import *
 
 
 def test(request):
-    login_information = get_agent(request)
-    ip = get_ip(request)
-    location = get_location(ip)
-    # return HttpResponse(
-    #     '<h1>browser:' + login_information['browser'] +
-    #     '</h1><h1>system:' + login_information['system'] +
-    #     '</h1><h1>device:' + login_information['device'] +
-    #     '</h1><h1>ip:' + ip +
-    #     '</h1><h1>location:' + location + '</h1>' +
-    #     request.META['HTTP_USER_AGENT']
-    # )
-
-    return JsonResponse(login_information)
+    return render(request, 'PC/index.html')
 
 
 def index(request):
