@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,8 +42,13 @@
             </ul>
         </div>
         <div class="header-button">
-            <a class="header-menu-a header-button-a" href="#">登录</a>
-            <a class="header-menu-a header-button-a" href="#">注册</a>
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}">登录</a>
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html_base' %}">注册</a>
+        </div>
+        <div class="header-user">
+            <img class="header-user-icon" src="{% static 'PC/img/员工.png' %}">
+            <span class="header-user-name"></span>
+            <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}">退出登录</a>
         </div>
     </div>
 {% block body %}
@@ -54,11 +59,22 @@
         <p>本网站版权归马子轩所有</p>
     </footer>
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-        crossorigin="anonymous" type="text/javascript" charset="UTF-8"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.footer').css('top', $(document).height())
+        {#$('.footer').css('top', $(document).height());  /*设置footer位置为页面的最底端*/#}
+        $.ajax({
+            url: '{% url 'BPlan:whether_login' %}',
+            success: function(result){
+                if (result['login_status'] === 0) {
+                    $('.header-button').css('display', 'block');
+                } else{
+                    $('.header-user').css('display', 'block');
+                    $('.header-user-name').text(result['user_name']);
+                    console.log(result['user_name']);
+                }
+            }
+        })
     })
 </script>
 {% block script %}

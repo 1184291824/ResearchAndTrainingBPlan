@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.http import JsonResponse
 from .models import *
 from django.contrib.auth import logout
 from django.utils import timezone
 from .request import *
+
 
 # Create your views here.
 
@@ -12,8 +12,21 @@ def test(request):
     return render(request, 'PC/index.html')
 
 
-def index(request):
+def whether_login(request):
+    """判断是否处于登录状态"""
     login_status = request.session.get('login_status', 0)
+    user_id = request.session.get('user_id', 0)
+    user_name = request.session.get('user_name', 0)
+    result = {
+        'login_status': login_status,
+        'user_id': user_id,
+        'user_name': user_name,
+    }
+    return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
+
+
+def index(request):
+    # login_status = request.session.get('login_status', 0)
     ask_status = request.session.get('ask_status', 0)
     if ask_status == 0:
         user = User.objects.get(user_name__exact='访客记录')
@@ -30,7 +43,8 @@ def index(request):
         )
         login_record.save()  # 保存登录记录
     request.session['ask_status'] = 1
-    return HttpResponse('这是主页'+'login_status:'+str(login_status)+'ask_status:'+str(request.session['ask_status']))
+    return render(request, 'PC/index.html')
+    # return HttpResponse('这是主页'+'login_status:'+str(login_status)+'ask_status:'+str(request.session['ask_status']))
 
 
 def login_html(request):
@@ -50,29 +64,32 @@ def login_check(request):
     if request.method == 'POST':
         user_id = request.POST['user_id']
         user_password = request.POST['user_password']
-        try:
-            user = User.objects.get(user_id__exact=user_id)
-            if user_password == user.user_password:
-                request.session['login_status'] = 1
-                request.session['user_id'] = user.user_id
-                request.session['user_name'] = user.user_name
-                login_agent = get_agent(request)  # 获取登录的设备信息
-                ip = get_ip(request)  # 获取登录的ip
-                location = get_location(ip)  # 通过IP查询地理位置
-                login_record = LoginRecord.add_login_record(  # 增加一条登录记录
-                    user,
-                    login_ip=ip,
-                    login_browser=login_agent['browser'],
-                    login_system=login_agent['system'],
-                    login_device=login_agent['device'],
-                    login_location=location,
-                )
-                login_record.save()  # 保存登录记录
-                return HttpResponse("successLogin")  # 返回登录成功
-            else:
-                return HttpResponse("passwordWrong")  # 返回密码错误
-        except User.DoesNotExist:
-            return HttpResponse("idDoesNotExist")  # 返回用户不存在
+        if request.POST['code'] == request.session['verification_code']:
+            try:
+                user = User.objects.get(user_id__exact=user_id)
+                if user_password == user.user_password:
+                    request.session['login_status'] = 1
+                    request.session['user_id'] = user.user_id
+                    request.session['user_name'] = user.user_name
+                    login_agent = get_agent(request)  # 获取登录的设备信息
+                    ip = get_ip(request)  # 获取登录的ip
+                    location = get_location(ip)  # 通过IP查询地理位置
+                    login_record = LoginRecord.add_login_record(  # 增加一条登录记录
+                        user,
+                        login_ip=ip,
+                        login_browser=login_agent['browser'],
+                        login_system=login_agent['system'],
+                        login_device=login_agent['device'],
+                        login_location=location,
+                    )
+                    login_record.save()  # 保存登录记录
+                    return HttpResponse("successLogin")  # 返回登录成功
+                else:
+                    return HttpResponse("passwordWrong")  # 返回密码错误
+            except User.DoesNotExist:
+                return HttpResponse("idDoesNotExist")  # 返回用户不存在
+        else:
+            return HttpResponse('codeWrong')  # 返回验证码错误
     else:
         return redirect('BPlan:index')
 

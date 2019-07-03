@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views, VerificationCode
 
 app_name = "BPlan"
 
@@ -7,6 +7,7 @@ app_name = "BPlan"
 urlpatterns = [
     path('test/', views.test, name="test"),
 
+    path('index/whetherLogin', views.whether_login, name='whether_login'),
     path('index/', views.index, name='index'),
     path('login/', views.login_html, name='login_html'),
     path('login/loginCheck/', views.login_check, name='login_check'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('inventory/operation/inventory/', views.inventory_operation_html_inventory, name='inventory_operation_html_inventory'),
     path('inventory/operation/user/', views.inventory_operation_html_user, name='inventory_operation_html_user'),
     path('inventory/operation/user/check/', views.inventory_operation_check_user, name='inventory_operation_check_user'),
+    path('verificationCode/get', VerificationCode.verification_code, name='getVerificationCode'),
 
 
 ]
