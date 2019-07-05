@@ -21,9 +21,9 @@ def verification_code(request):
     :return:
     """
     # 1.1 定义变量，宽，高，背景颜色
-    width = 200
-    height = 60
-    background_color = get_random_color()
+    width = 100
+    height = 40
+    background_color = (255, 255, 255)
     # 1.2 创建画布对象
     image = Image.new('RGB', (width, height), background_color)
     # 1.3 创建画笔对象
@@ -57,20 +57,33 @@ def verification_code(request):
             truetype_str = 'segoepr.ttf'
         else:
             truetype_str = '/home/mzx/NJUSTzhcp-base/static/fonts/segoepr.ttf'
-        draw.text((i * (width/4) + 10, -12),
+        draw.text((i * (width/4) + 0, -10),
                   rand_python[i],
                   tuple(text_color),
-                  font=ImageFont.truetype(truetype_str, 50),
+                  font=ImageFont.truetype(truetype_str, 30),
                   # font=ImageFont.truetype('/home/mzx/NJUSTzhcp-base/static/fonts/segoepr.ttf', 50),
                   align='center')
 
     # 3 释放画笔
     del draw
     # 存入session,用于做进一步的验证
-    request.session['verification_code'] = rand_python
+    request.session['Code'] = rand_python
+    # print(rand_python)
     # 内存文件操作
     buf = BytesIO()
     # 将图片保存在内存中，文件类型为png
     image.save(buf, 'png')
     # 将内存中的图片数据返回给客户端，MIME类型为图片png
     return HttpResponse(buf.getvalue(), 'image/png')
+
+
+def verification_code_check(request):
+    """检查输入的验证码是否正确"""
+    code = request.POST.get('code', '1')
+    right_code = request.session.get('Code', '0')
+    # print(code + ' ' + right_code)
+
+    if code.upper() == right_code.upper():  # 大小写不计，所以都改成大写
+        return True
+    else:
+        return False

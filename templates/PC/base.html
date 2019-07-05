@@ -19,7 +19,7 @@
         <div class="header-menu">
             <ul class="header-menu-ul">
                 <li class="header-menu-li">
-                    <a href="#" id="header-menu-1" class="header-menu-a">主页</a>
+                    <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a">主页</a>
                 </li>
                 <li class="header-menu-li header-menu-has-children">
                     <a href="#" id="header-menu-2" class="header-menu-a">库存</a><br>
@@ -43,7 +43,7 @@
         </div>
         <div class="header-button">
             <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}">登录</a>
-            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html_base' %}">注册</a>
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}">注册</a>
         </div>
         <div class="header-user">
             <img class="header-user-icon" src="{% static 'PC/img/员工.png' %}">
@@ -61,8 +61,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    function refreshSrc(){  //刷新验证码图片
+            $('.code').attr('src', "{% url 'BPlan:getVerificationCode' %}?" + new Date().getTime());
+        }
     $(document).ready(function () {
-        {#$('.footer').css('top', $(document).height());  /*设置footer位置为页面的最底端*/#}
         $.ajax({
             url: '{% url 'BPlan:whether_login' %}',
             success: function(result){
@@ -71,7 +73,6 @@
                 } else{
                     $('.header-user').css('display', 'block');
                     $('.header-user-name').text(result['user_name']);
-                    console.log(result['user_name']);
                 }
             }
         })

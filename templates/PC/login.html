@@ -2,92 +2,82 @@
 {% load staticfiles %}
 {% block title %}登录{% endblock %}
 {% block link %}
-<style type="text/css">
-
-.body-title {
-    font-size: 2.5em;
-    text-align: center;
-    width: 800px;
-    margin: 100px auto;
-    padding: 40px 0;
-    color: white;
-    /* position: relative; */
-    border-bottom: white solid 2px;
-    letter-spacing: 0.5em;
-}
-
-.login{
-    margin: 0 auto;
-    text-align: center;
-    width: 300px;
-    margin-bottom: 100px;
-    padding: 20px;
-    border: solid white 2px;
-    border-radius: 5px;
-    color: white;
-
-}
-.login-title{
-    font-size: 1.4em;
-    line-height: 60px;
-    font-weight: lighter;
-}
-.login-form{
-    padding: 20px;
-    border-top: solid white 2px;
-}
-.login-button{
-    height: 1.8em;
-    width: 98%;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bkcolor);
-    border: solid white 2px;
-    border-radius: 5px;
-    color: white;
-    transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
-}
-.login-button:hover{
-    color: var(--bkcolor);
-    background-color: white;
-}
-</style>
+<link rel="stylesheet" href="{% static 'PC/css/login.css' %}">
 {% endblock %}
 {% block body %}
     <div class="body-title"><label>MYZ 库存管理系统</label></div>
+    <label class="login-title">用户登录</label>
     <div class="login">
-        <label class="login-title">用户登录</label>
-        <div class="login-form">
-            <form action="" method="post">
+        <form class="pure-form pure-form-aligned" method="post" action="#">
+            <fieldset>
             {% csrf_token %}
-                账号：<input class="input" type="text" name="user_id" id="user_id" value="" placeholder="请输入账号" maxlength="12" required/><br>
-                密码：<input class="input" type="password" name="user_password" id="user_password" placeholder="请输入密码" maxlength="20" required/><br>
-{#                这里加入验证码图片#}
-                <button class="login-button">提交</button>
-		    </form>
-        </div>
+                <div class="pure-control-group">
+                    <label for="user_id">账号</label>
+                    <input type="text" name="user_id" id="user_id" value="" placeholder="请输入账号" maxlength="12" required/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="user_password">密码</label>
+                    <input type="password" name="user_password" id="user_password" placeholder="请输入密码" maxlength="20" required/>
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="code">验证码</label>
+                    <input type="text" name="code" id="code" value="" placeholder="验证码" maxlength="4" minlength="4" required style="width: calc(17em - 100px - 5px)"/>
+                    <img class="code" onclick="refreshSrc()"/>
+                </div>
+                <div class="error"></div>
+                <button class="login-button" type="button">登录</button>
+            </fieldset>
+        </form>
     </div>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
     $(document).ready(function () {
+
+        refreshSrc();
+
         $('.login-button').click(function () {
             let user_id = $('#user_id').val();
             let user_password = $('#user_password').val();
+            let code = $('#code').val();
+            let error = $('.error');
             $.ajax({
-                url: {% url 'BPlan:login_check' %},
+                url: '{% url 'BPlan:login_check' %}',
                 data: {
                     'user_id': user_id,
                     'user_password': user_password,
+                    'code': code,
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
                 },
                 type: 'POST',
                 success: function (result) {
                     if (result === 'codeWrong'){
-                        alert('验证码错误!!');
-                        //刷新验证码，聚焦到输入框，清空输入框内容
+                        error.text('验证码错误！');
+                        $('#code').focus().val("");
+                        refreshSrc();
+                        return 0;
                     }
-                }
+                    if (result === 'idDoesNotExist') {
+                        error.text('您输入的用户名不存在');
+                        $('#user_id').focus();
+                        $('#code').val("");
+                        refreshSrc();
+                        return 0;
+                    }
+                    if (result === 'passwordWrong') {
+                        error.text('用户名或密码错误');
+                        $('#user_password').focus();
+                        $('#code').val("");
+                        refreshSrc();
+                        return 0;
+                    }
+                    if (result === 'successLogin') {
+                        window.location.href="{% url 'BPlan:index' %}";
+                        return 1;
+                    }
+                },
             })
         })
     })
