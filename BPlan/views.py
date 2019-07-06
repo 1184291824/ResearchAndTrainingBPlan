@@ -195,19 +195,21 @@ def change_password_html(request):
 def change_password_check(request):
     """检查密码更改的信息，如果正确就更改密码"""
     if request.method == 'POST':
-        user_id = request.POST['user_id']
-        try:
-            user = User.objects.get(user_id__exact=user_id)
-            if request.POST['user_name'] == user.user_name\
-                    and int(request.POST['user_question']) == user.user_question \
-                    and request.POST['user_question_answer'] == user.user_question_answer:
-                user.user_password = request.POST['user_password']
-                user.save()
-                return HttpResponse('success')
-            else:
-                return HttpResponse('wrong')
-        except User.DoesNotExist:
-            return HttpResponse('idDoesNotExist')
+        if verification_code_check(request):
+            user_id = request.POST['user_id']
+            try:
+                user = User.objects.get(user_id__exact=user_id)
+                if int(request.POST['user_question']) == user.user_question \
+                        and request.POST['user_question_answer'] == user.user_question_answer:
+                    user.user_password = request.POST['user_password']
+                    user.save()
+                    logout(request)
+                    return HttpResponse('success')
+                else:
+                    return HttpResponse('questionWrong')
+            except User.DoesNotExist:
+                return HttpResponse('idDoesNotExist')
+        return HttpResponse('codeWrong')
     else:
         return redirect('BPlan:index')
 

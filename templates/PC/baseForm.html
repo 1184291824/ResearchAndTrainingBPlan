@@ -1,0 +1,22 @@
+{% extends 'PC/base.html' %}
+{% load staticfiles %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'PC/css/form.css' %}">
+{% block style %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <div class="body-title"><label>MYZ 库存管理系统</label></div>
+    <label class="form-title">{% block form-title %}{% endblock %}</label>
+    <div class="form">
+        <form class="pure-form pure-form-aligned" method="post" action="#">
+            <fieldset>
+            {% csrf_token %}
+                {% block form %}
+
+                {% endblock %}
+                <div class="error"></div>
+                <button class="form-button" type="button">{% block button-text %}{% endblock %}</button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

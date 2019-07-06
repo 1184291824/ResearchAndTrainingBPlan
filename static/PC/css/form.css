@@ -9,7 +9,7 @@
     letter-spacing: 0.5em;
 }
 
-.login{
+.form{
     margin: 0 auto;
     width: 400px;
     margin-bottom: 100px;
@@ -17,10 +17,10 @@
     border-top: solid white 1px;
     border-bottom: solid white 1px;
 }
-.login label{
+.form label{
     color: white;
 }
-.login-title{
+.form-title{
     display: block;
     /*width: 4em;*/
     text-align: center;
@@ -36,8 +36,13 @@
 .pure-form-aligned .pure-control-group input {
     width: 17em;
 }
+.pure-form-aligned .pure-control-group select {
+    width: 17em;
+    padding: 0 .6em;
+    height: 38.8px;
+}
 
-.login-button{
+.form-button{
     display: block;
     height: 2.5em;
     width: 90%;
@@ -50,7 +55,7 @@
     transition: background-color 0.5s;
     -webkit-transition: background-color 0.5s;
 }
-.login-button:hover{
+.form-button:hover{
     color: var(--bkcolor);
     background-color: white;
 }
