@@ -24,6 +24,7 @@ class UserAdmin(admin.ModelAdmin):
         'user_create_time',
     ]
     search_fields = ['user_id', 'user_name']  # 搜索字段
+    list_per_page = 20
 
 
 class UserInfo(admin.TabularInline):
@@ -44,6 +45,7 @@ class ClassesAdmin(admin.ModelAdmin):
     search_fields = ['group_id', 'group_name']  # 搜索字段
     date_hierarchy = 'group_create_time'  # 按创建的时间分层筛选
     inlines = [UserInfo]  # 在创建组时预添加用户
+    list_per_page = 20
 
 
 class InventoryOperationInfo(admin.TabularInline):
@@ -76,6 +78,7 @@ class InventoryAdmin(admin.ModelAdmin):
     )  # 筛选器
     date_hierarchy = 'inventory_create_time'  # 详细时间分层筛选
     inlines = [InventoryOperationInfo]  # 在添加库存时预添加一条记录
+    list_per_page = 20
 
 
 @admin.register(InventoryOperation)
@@ -103,6 +106,7 @@ class InventoryOperationAdmin(admin.ModelAdmin):
         # 'inventory_operation_review_opinion',
     )  # 筛选器
     date_hierarchy = 'inventory_operation_create_time'  # 详细时间分层筛选
+    list_per_page = 20
 
 
 @admin.register(LoginRecord)
@@ -119,3 +123,4 @@ class LoginRecordAdmin(admin.ModelAdmin):
     ]
     list_filter = ['login_user']  # 筛选器
     date_hierarchy = 'login_time'  # 详细时间分层筛选
+    list_per_page = 20

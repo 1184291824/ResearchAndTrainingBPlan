@@ -16,8 +16,10 @@ urlpatterns = [
     path('register/check', views.register_check, name='register_check'),
     # path('register/more/', views.register_html_more, name='register_html_more'),
     # path('register/more/check', views.register_check_more, name='register_check_more'),
-    path('changePassword/', views.change_password_html, name='change_password_html'),
-    path('changePassword/check', views.change_password_check, name='change_password_check'),
+    path('change/password/', views.change_password_html, name='change_password_html'),
+    path('change/password/check', views.change_password_check, name='change_password_check'),
+    path('change/question', views.change_question_html, name='change_question_html'),
+    path('change/question/check', views.change_question_check, name='change_question_check'),
 
     path('inventory/show/all/', views.inventory_show_all_html, name='inventory_show_all_html'),
     path('inventory/show/detail/', views.inventory_show_detail_html, name='inventory_show_detail_html'),

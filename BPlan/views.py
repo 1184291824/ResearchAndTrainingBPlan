@@ -214,6 +214,39 @@ def change_password_check(request):
         return redirect('BPlan:index')
 
 
+def change_question_html(request):
+    """返回更改密保问题的界面"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        user_question_choice = User.USER_QUESTION_CHOICE
+        if whether_mobile(request) is False:
+            return render(request, 'PC/changeQuestion.html', {
+                'user_question_choice': user_question_choice,
+            })
+        else:
+            return HttpResponse('mobile')
+    else:
+        return redirect('BPlan:index')
+
+
+def change_question_check(request):
+    """验证密码的正确性，修改密保问题"""
+    if request.method == 'POST':
+        if verification_code_check(request):
+            user_id = request.session['user_id']
+            user = User.objects.get(user_id__exact=user_id)
+            if user.user_password == request.POST['user_password']:
+                user.user_question = int(request.POST['user_question'])
+                user.user_question_answer = request.POST['user_question_answer']
+                user.save()
+                return HttpResponse('success')
+            else:
+                return HttpResponse('passwordWrong')
+        return HttpResponse('codeWrong')
+    else:
+        return redirect('BPlan:index')
+
+
 def inventory_show_all_html(request):
     """返回所有的库存的摘要信息"""
     login_status = request.session.get('login_status', 0)

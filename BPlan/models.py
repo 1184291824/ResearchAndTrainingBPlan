@@ -231,5 +231,5 @@ class LoginRecord(models.Model):
 
     class Meta:
         db_table = "LoginRecord"
-        ordering = ['id']  # 以id为标准升序
+        ordering = ['-login_time']  # 以id为标准升序
         verbose_name_plural = '访问记录'
