@@ -5,8 +5,8 @@
 {% block style %}{% endblock %}
 {% endblock %}
 {% block body %}
-    <div class="body-title"><label>MYZ 库存管理系统</label></div>
-    <label class="form-title">{% block form-title %}{% endblock %}</label>
+    <div class="body-title"><label>{% block body-title %}{% endblock %}</label></div>
+{#    <label class="form-title">{% block form-title %}{% endblock %}</label>#}
     <div class="form">
         <form class="pure-form pure-form-aligned" method="post" action="#">
             <fieldset>

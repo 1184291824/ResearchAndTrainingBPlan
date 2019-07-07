@@ -1,0 +1,43 @@
+{% extends 'PC/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}个人信息{% endblock %}
+{% block style %}
+<style>
+.detail-header-item{
+    margin-left: 2em;
+    margin-right: 5em;
+    word-spacing: 1.5em;
+}
+.detail-body-item{
+    display: block;
+}
+</style>
+{% endblock %}
+{% block body-title %}
+个人信息
+{% endblock %}
+{% block detail-header %}
+    <label class="detail-header-item" style="color: lightgray">我的ID：{{ user.user_id }}</label><br>
+    <label class="detail-header-item">创建 0</label>
+    <label class="detail-header-item">入库 0</label>
+    <label class="detail-header-item">出库 0</label>
+{% endblock %}
+{% block detail-left %}
+    <label class="detail-body-item">姓名</label>
+    <label class="detail-body-item">性别</label>
+    <label class="detail-body-item">身份</label>
+    <label class="detail-body-item">所属组</label>
+    <label class="detail-body-item">注册时间</label>
+{% endblock %}
+{% block detail-right %}
+    <label class="detail-body-item">{{ user.user_name }}</label>
+    <label class="detail-body-item">{{ user.get_user_gender_display }}</label>
+    <label class="detail-body-item">{{ user.get_user_identity_display }}</label>
+    <label class="detail-body-item">{{ user.user_group }}</label>
+    <label class="detail-body-item">{{ user.user_create_time }}</label>
+{% endblock %}
+{% block detail-footer %}
+<div class="pure-u-1">
+<button id="change">修改我的信息</button>
+</div>
+{% endblock %}

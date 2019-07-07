@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_sfu66da7zw.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -39,7 +40,8 @@
                 <li class="header-menu-li header-menu-has-children">
                     <a href="#" id="header-menu-5" class="header-menu-a">我的</a><br>
                     <a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a header-menu-children">修改密码</a><br>
-                    <a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a header-menu-children">修改密保问题</a><br>
+                    <a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a header-menu-children">更改密保问题</a><br>
+                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a header-menu-children">个人信息</a><br>
                 </li>
             </ul>
         </div>
@@ -48,7 +50,8 @@
             <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}">注册</a>
         </div>
         <div class="header-user">
-            <img class="header-user-icon" src="{% static 'PC/img/员工.png' %}">
+{#            <img class="header-user-icon" src="{% static 'PC/img/员工.png' %}">#}
+            <i class="iconfont icon-icon-user"></i>
             <span class="header-user-name"></span>
             <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}">退出登录</a>
         </div>

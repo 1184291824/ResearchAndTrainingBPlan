@@ -1,0 +1,85 @@
+{% extends 'PC/base.html' %}
+{% load staticfiles %}
+{% block link %}
+    <style type="text/css">
+    .body-title {
+        font-size: 2.5em;
+        text-align: center;
+        width: 85%;
+        margin: 70px auto;
+        padding: 40px 0;
+        color: white;
+        border-bottom: white solid 2px;
+        letter-spacing: 0.5em;
+    }
+    .detail{
+        width: 75%;
+        margin: 0 auto;
+        color: white;
+        font-weight: lighter;
+        font-size: 1.2em;
+        line-height: 2em;
+    }
+    .detail-header{
+        text-align: left;
+        padding: 5px;
+        {#border-bottom: solid white 1px;#}
+    }
+    .detail-body{
+        padding: 0 2em;
+        border-bottom: solid white 1px;
+        border-top: solid white 1px;
+    }
+    .detail-footer{
+        {#border-bottom: solid white 1px;#}
+        width: 50%;
+        margin: 0 auto;
+    }
+    .detail-footer button{
+        display: block;
+        height: 2.5em;
+        width: 90%;
+        margin: 1em auto 0 auto;
+        padding: 0;
+        background-color: var(--bkcolor);
+        border: solid white 2px;
+        border-radius: 5px;
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
+    }
+    .detail-footer button:hover{
+        color: var(--bkcolor);
+        background-color: white;
+    }
+    </style>
+    {% block style %}
+
+    {% endblock %}
+{% endblock %}
+{% block body %}
+<div class="body-title"><label>{% block body-title %}{% endblock %}</label></div>
+    <div class="detail">
+        <div class="detail-header">
+        {% block detail-header %}{% endblock %}
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1-5">
+                <div class="detail-body" style="border-right: white solid 1px; text-align: right; font-weight: normal">
+                {% block detail-left %}
+
+                {% endblock %}
+                </div>
+            </div>
+            <div class="pure-u-4-5">
+                <div class="detail-body">
+                {% block detail-right %}
+
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="detail-footer">
+        <div class="pure-g">{% block detail-footer %}{% endblock %}</div>
+        </div>
+    </div>
+{% endblock %}

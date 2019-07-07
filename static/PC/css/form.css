@@ -1,21 +1,21 @@
-.body-title {
-    font-size: 2.5em;
-    text-align: center;
-    width: 800px;
-    margin: 70px auto;
-    padding: 40px 0;
-    color: white;
-    border-bottom: white solid 2px;
-    letter-spacing: 0.5em;
-}
+/*.body-title {*/
+/*    font-size: 2.5em;*/
+/*    text-align: center;*/
+/*    width: 85%;*/
+/*    margin: 70px auto;*/
+/*    padding: 40px 0;*/
+/*    color: white;*/
+/*    border-bottom: white solid 2px;*/
+/*    letter-spacing: 0.5em;*/
+/*}*/
 
 .form{
     margin: 0 auto;
     width: 400px;
     margin-bottom: 100px;
     padding: 20px;
-    border-top: solid white 1px;
-    border-bottom: solid white 1px;
+    /*border-top: solid white 1px;*/
+    /*border-bottom: solid white 1px;*/
 }
 .form label{
     color: white;

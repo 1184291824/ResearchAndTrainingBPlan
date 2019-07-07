@@ -11,16 +11,16 @@
     min-width: inherit;
 }
 
-.body-title {
-    font-size: 2.5em;
-    text-align: center;
-    width: 800px;
-    margin: 100px auto;
-    padding: 40px 0;
-    /* position: relative; */
-    border-bottom: white solid 2px;
-    letter-spacing: 0.5em;
-}
+/*.body-title {*/
+/*    font-size: 2.5em;*/
+/*    text-align: center;*/
+/*    width: 800px;*/
+/*    margin: 100px auto;*/
+/*    padding: 40px 0;*/
+/*    !* position: relative; *!*/
+/*    border-bottom: white solid 2px;*/
+/*    letter-spacing: 0.5em;*/
+/*}*/
 
 .body-contain {
     font-size: 1.2em;

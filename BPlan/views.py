@@ -10,7 +10,7 @@ from .VerificationCode import verification_code_check
 
 
 def test(request):
-    return render(request, 'PC/register.html')
+    return render(request, 'PC/changePersonalInformationShow.html')
 
 
 def whether_login(request):
@@ -243,6 +243,23 @@ def change_question_check(request):
             else:
                 return HttpResponse('passwordWrong')
         return HttpResponse('codeWrong')
+    else:
+        return redirect('BPlan:index')
+
+
+def change_personal_information_html(request):
+    """返回个人信息/修改个人信息界面"""
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1:
+        user = User.objects.get(user_id__exact=request.session['user_id'])
+        if request.GET.get('page', 'show') == 'change':
+            page = 'PC/changePersonalInformationChange.html'
+        else:
+            page = 'PC/changePersonalInformationShow.html'
+        if whether_mobile(request) is False:
+            return render(request, 'PC/changePersonalInformationShow.html', {'user': user})
+        else:
+            return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 

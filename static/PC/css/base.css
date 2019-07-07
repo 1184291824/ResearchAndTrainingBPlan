@@ -14,6 +14,17 @@ body {
     /*padding-bottom: 200px;*/
 }
 
+.body-title {
+    font-size: 2.5em;
+    text-align: center;
+    width: 85%;
+    margin: 70px auto;
+    padding: 40px 0;
+    color: white;
+    border-bottom: white solid 2px;
+    letter-spacing: 0.5em;
+}
+
 
 .header {
     background-color: var(--header-bkcolor);
