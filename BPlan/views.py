@@ -107,13 +107,12 @@ def register_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 0:
         group_list = Group.objects.all().exclude(group_id__iexact='9161040G00')
-        user_identity_choice = User.USER_IDENTITY_CHOICE
-        user_question_choice = User.USER_QUESTION_CHOICE
         if whether_mobile(request) is False:
             return render(request, 'PC/register.html', {
                 'group_list': group_list,
-                'user_identity_choice': user_identity_choice,
-                'user_question_choice': user_question_choice,
+                'user_identity_choice': User.USER_IDENTITY_CHOICE,
+                'user_question_choice': User.USER_QUESTION_CHOICE,
+                'user_gender_choice': User.USER_GENDER_CHOICE,
             })
         else:
             return HttpResponse('mobile')
@@ -132,8 +131,7 @@ def register_check(request):
             user_group = request.POST['user_group']
             group = Group.objects.get(pk=user_group)
             user = User.add_user(user_id=user_id, user_password=user_password, user_group=group)
-            if request.POST['user_gender'] == 'girl':
-                user.user_gender = False
+            user.user_gender = (request.POST['user_gender'] == 'True')
             user.user_name = request.POST['user_name']
             user.user_identity = int(request.POST['user_identity'])
             user.user_question = int(request.POST['user_question'])
@@ -142,41 +140,6 @@ def register_check(request):
             return HttpResponse('success')  # for Ajax
         return HttpResponse('codeWrong')
     return redirect('BPlan:index')
-
-
-# def register_html_more(request):
-#     """返回更多信息的注册界面"""
-#     last_page = request.session.get('lastPage', None)
-#     login_status = request.session.get('login_status', 0)
-#     if last_page == 'register/base/' and login_status == 0:
-#         user_identity_choice = User.USER_IDENTITY_CHOICE
-#         user_question_choice = User.USER_QUESTION_CHOICE
-#         if whether_mobile(request) is False:
-#             return render(request, 'PC/registerMore.html', {
-#                 'user_identity_choice': user_identity_choice,
-#                 'user_question_choice': user_question_choice,
-#             })
-#         else:
-#             return HttpResponse('mobile')
-#     else:
-#         return redirect('BPlan:index')
-#
-#
-# def register_check_more(request):
-#     """检查注册的更多信息，丰富用户的信息"""
-#     if request.method == 'POST':
-#         user_id = request.session['user_id']
-#         user = User.objects.get(user_id__exact=user_id)
-#         if request.POST['user_gender'] == 'girl':
-#             user.user_gender = False
-#         user.user_name = request.POST['user_name']
-#         user.user_identity = int(request.POST['user_identity'])
-#         user.user_question = int(request.POST['user_question'])
-#         user.user_question_answer = request.POST['user_question_answer']
-#         user.save()
-#         request.session['lastPage'] = 'register/more/'
-#         return HttpResponse('successRegister')
-#     return redirect('BPlan:index')
 
 
 def change_password_html(request):
@@ -257,9 +220,25 @@ def change_personal_information_html(request):
         else:
             page = 'PC/changePersonalInformationShow.html'
         if whether_mobile(request) is False:
-            return render(request, 'PC/changePersonalInformationShow.html', {'user': user})
+            return render(request, page, {'user': user})
         else:
             return HttpResponse('mobile')
+    else:
+        return redirect('BPlan:index')
+
+
+def change_personal_information_check(request):
+    """检查更改的个人信息"""
+    if request.method == "POST":
+        if verification_code_check(request):
+            user = User.objects.get(user_id__exact=request.session['user_id'])
+            user.user_name = request.POST['user_name']
+            user.user_gender = (request.POST['user_gender'] == 'True')
+            user.user_identity = int(request.POST['user_identity'])
+            user.save()
+            return HttpResponse('success')
+        else:
+            return HttpResponse('codeWrong')
     else:
         return redirect('BPlan:index')
 

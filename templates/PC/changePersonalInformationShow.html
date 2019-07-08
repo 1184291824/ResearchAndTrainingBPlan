@@ -38,6 +38,16 @@
 {% endblock %}
 {% block detail-footer %}
 <div class="pure-u-1">
-<button id="change">修改我的信息</button>
+<button id="change"><i class="iconfont icon-change"></i> 修改我的信息</button>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('#header-menu-5').css('color', '#4ab2f6');  /*设置主页标题颜色为蓝色*/
+    $('#change').click(function () {
+        window.location.href = '{% url "BPlan:change_personal_information_html" %}?page=change'
+    })
+})
+</script>
 {% endblock %}

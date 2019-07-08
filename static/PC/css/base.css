@@ -8,10 +8,6 @@ body {
     background-color: var(--bkcolor);
     font-family: "微软雅黑";
     min-width: 1100px;
-    /*position: relative;*/
-    /*height: auto;*/
-    /*min-height: 100%;*/
-    /*padding-bottom: 200px;*/
 }
 
 .body-title {
@@ -41,7 +37,7 @@ body {
     float: left;
     color: floralwhite;
     height: var(--header-height);
-    padding: 0px 10px 0px 10px;
+    padding: 0 10px 0 10px;
     text-align: center;
     font-size: 1.5em;
 }
@@ -69,11 +65,11 @@ body {
 }
 
 .header-menu-a{
-    display: inline-block;
-    width: 100px;
+    display: block;
+    /*width: 100px;*/
     height: var(--header-height);
-    padding: 0;
-    margin: 0;
+    padding: 0 1em;
+    margin: 0 auto;
     line-height: var(--header-height);
     text-align: center;
     vertical-align: bottom;
@@ -104,19 +100,20 @@ body {
 }
 
 .header-menu-has-children:hover {
-    height: 155px;
+    height: auto;
 }
 
 .header-button {
     float: right;
     margin-right: 10px;
-    /* width: 100px; */
     display: none;
 }
 
 .header-button-a {
+    display: inline-block;
     background-color: var(--bkcolor);
     height: 40px;
+    width: 4em;
     margin: 5px 0;
     padding: 0 20px;
     line-height: 40px;

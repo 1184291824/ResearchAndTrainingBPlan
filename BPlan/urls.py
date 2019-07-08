@@ -21,6 +21,7 @@ urlpatterns = [
     path('change/question/', views.change_question_html, name='change_question_html'),
     path('change/question/check/', views.change_question_check, name='change_question_check'),
     path('change/personalInformation/', views.change_personal_information_html, name='change_personal_information_html'),
+    path('change/personalInformation/check', views.change_personal_information_check, name='change_personal_information_check'),
 
     path('inventory/show/all/', views.inventory_show_all_html, name='inventory_show_all_html'),
     path('inventory/show/detail/', views.inventory_show_detail_html, name='inventory_show_detail_html'),

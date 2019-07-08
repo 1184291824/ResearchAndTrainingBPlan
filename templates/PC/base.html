@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_sfu66da7zw.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_b3ccq6pbjz4.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -20,28 +20,31 @@
         <div class="header-menu">
             <ul class="header-menu-ul">
                 <li class="header-menu-li">
-                    <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a">主页</a>
+                    <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a"><i class="iconfont icon-shouye"></i> 主页</a>
                 </li>
                 <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-2" class="header-menu-a">库存</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">查看全部</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">查找</a><br>
+                    <a href="#" id="header-menu-2" class="header-menu-a">
+                        <i class="iconfont icon-kucun"></i> 库存</a>
+                    <a href="#" class="header-menu-a header-menu-children">查看全部</a>
+                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-kucunchaxun"></i> 查找</a>
                 </li>
                 <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-3" class="header-menu-a">数据</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">每日出入库</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">库存统计</a><br>
+                    <a href="#" id="header-menu-3" class="header-menu-a">
+                        <i class="iconfont icon-tongji"></i> 数据</a>
+                    <a href="#" class="header-menu-a header-menu-children">每日出入库</a>
+                    <a href="#" class="header-menu-a header-menu-children">库存统计</a>
                 </li>
                 <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-4" class="header-menu-a">批量操作</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">批量入库</a><br>
-                    <a href="#" class="header-menu-a header-menu-children">批量出库</a><br>
+                    <a href="#" id="header-menu-4" class="header-menu-a"><i class="iconfont icon-piliangcaozuo"></i> 批量操作</a>
+                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-ruku"></i> 批量入库</a>
+                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-chuku"></i> 批量出库</a>
                 </li>
                 <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-5" class="header-menu-a">我的</a><br>
-                    <a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a header-menu-children">修改密码</a><br>
-                    <a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a header-menu-children">更改密保问题</a><br>
-                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a header-menu-children">个人信息</a><br>
+                    <a href="#" id="header-menu-5" class="header-menu-a"><i class="iconfont icon-yuangong"></i> 我的</a>
+                    <a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 修改密码</a>
+                    <a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 更改密保问题</a>
+                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a header-menu-children">个人信息</a>
+                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 修改个人信息</a>
                 </li>
             </ul>
         </div>
@@ -50,9 +53,7 @@
             <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}">注册</a>
         </div>
         <div class="header-user">
-{#            <img class="header-user-icon" src="{% static 'PC/img/员工.png' %}">#}
-            <i class="iconfont icon-icon-user"></i>
-            <span class="header-user-name"></span>
+            <i class="header-user-name iconfont icon-yuangong"></i>
             <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}">退出登录</a>
         </div>
     </div>

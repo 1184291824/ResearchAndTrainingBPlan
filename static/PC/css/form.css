@@ -1,35 +1,47 @@
-/*.body-title {*/
-/*    font-size: 2.5em;*/
-/*    text-align: center;*/
-/*    width: 85%;*/
-/*    margin: 70px auto;*/
-/*    padding: 40px 0;*/
-/*    color: white;*/
-/*    border-bottom: white solid 2px;*/
-/*    letter-spacing: 0.5em;*/
-/*}*/
-
 .form{
     margin: 0 auto;
     width: 400px;
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
     padding: 20px;
-    /*border-top: solid white 1px;*/
-    /*border-bottom: solid white 1px;*/
+
 }
+form{
+    animation: formIn 1s;
+    -moz-animation: formIn 1s;	/* Firefox */
+    -webkit-animation: formIn 1s;	/* Safari 和 Chrome */
+    -o-animation: formIn 1s;	/* Opera */
+}
+/*form载入动画*/
+@keyframes formIn
+{
+0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+80% {margin-left: 5vw; margin-right: -5vw;}
+100% {margin-left: 0; opacity: 1;margin-right: 0;}
+}
+
+@-moz-keyframes formIn /* Firefox */
+{
+from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+to {margin-left: 0; opacity: 1;margin-right: 0;}
+}
+
+@-webkit-keyframes formIn /* Safari 和 Chrome */
+{
+from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+to {margin-left: 0; opacity: 1;margin-right: 0;}
+}
+
+@-o-keyframes formIn /* Opera */
+{
+from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+to {margin-left: 0; opacity: 1;margin-right: 0;}
+}
+
+
 .form label{
     color: white;
 }
-.form-title{
-    display: block;
-    /*width: 4em;*/
-    text-align: center;
-    font-size: 2em;
-    line-height: 60px;
-    font-weight: lighter;
-    margin: 10px auto;
-    color: white;
-}
+
 .pure-form-aligned .pure-control-group label {
     width: 4em;
 }
