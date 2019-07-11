@@ -17,37 +17,46 @@
         <div class="header-logo">
             <label>MYZ 库存管理系统</label>
         </div>
-        <div class="header-menu">
-            <ul class="header-menu-ul">
-                <li class="header-menu-li">
-                    <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a"><i class="iconfont icon-shouye"></i> 主页</a>
-                </li>
-                <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-2" class="header-menu-a">
-                        <i class="iconfont icon-kucun"></i> 库存</a>
-                    <a href="#" class="header-menu-a header-menu-children">查看全部</a>
-                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-kucunchaxun"></i> 查找</a>
-                </li>
-                <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-3" class="header-menu-a">
-                        <i class="iconfont icon-tongji"></i> 数据</a>
-                    <a href="#" class="header-menu-a header-menu-children">每日出入库</a>
-                    <a href="#" class="header-menu-a header-menu-children">库存统计</a>
-                </li>
-                <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-4" class="header-menu-a"><i class="iconfont icon-piliangcaozuo"></i> 批量操作</a>
-                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-ruku"></i> 批量入库</a>
-                    <a href="#" class="header-menu-a header-menu-children"><i class="iconfont icon-chuku"></i> 批量出库</a>
-                </li>
-                <li class="header-menu-li header-menu-has-children">
-                    <a href="#" id="header-menu-5" class="header-menu-a"><i class="iconfont icon-yuangong"></i> 我的</a>
-                    <a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 修改密码</a>
-                    <a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 更改密保问题</a>
-                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a header-menu-children">个人信息</a>
-                    <a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a header-menu-children"><i class="iconfont icon-change"></i> 修改个人信息</a>
-                </li>
-            </ul>
-        </div>
+        <ul class="header-menu-ul">
+            <li class="header-menu-li">
+                <hr class="header-line">
+                <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a"><i class="iconfont icon-shouye"></i> 主页</a>
+            </li>
+            <li class="header-menu-li">
+                <hr class="header-line">
+                <i class="iconfont icon-kucun"></i> 库存
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="#" class="header-menu-a">查看全部</a></li>
+                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-tongji"></i> 数据
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="#" class="header-menu-a">每日出入库</a></li>
+                    <li class="header-menu-li"><a href="#" class="header-menu-a">库存统计</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-piliangcaozuo"></i> 批量操作
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-ruku"></i> 批量入库</a></li>
+                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-chuku"></i> 批量出库</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-yuangong"></i> 我的</a>
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"><i class="iconfont icon-change"></i> 修改密码</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-change"></i> 更改密保问题</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a">个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
+                </ul>
+            </li>
+        </ul>
         <div class="header-button">
             <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}">登录</a>
             <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}">注册</a>
@@ -57,9 +66,12 @@
             <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}">退出登录</a>
         </div>
     </div>
-{% block body %}
+    <div class="body-right">
+        {% block body %}
 
-{% endblock %}
+        {% endblock %}
+    </div>
+
     <footer class="footer">
         <p>声明：本网站仅作为南京理工大学电光学院科研训练项目《多用户登录的库存管理系统》展示使用</p>
         <p>本网站版权归马子轩所有</p>

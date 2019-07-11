@@ -203,7 +203,7 @@ class LoginRecord(models.Model):
     login_browser = models.CharField(max_length=30, default='未知的浏览器', verbose_name='浏览器')
     login_system = models.CharField(max_length=30, default='未知的系统', verbose_name='操作系统')
     login_device = models.CharField(max_length=30, default='未知的设备', verbose_name='设备')
-    login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
+    # login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
     login_time = models.DateTimeField(auto_now_add=True, verbose_name='登录时间')
 
     @classmethod
@@ -214,7 +214,7 @@ class LoginRecord(models.Model):
             login_browser,
             login_system,
             login_device,
-            login_location,
+            # login_location,
     ):
         login_record = cls(
             login_user=login_user,
@@ -222,7 +222,7 @@ class LoginRecord(models.Model):
             login_browser=login_browser,
             login_system=login_system,
             login_device=login_device,
-            login_location=login_location,
+            # login_location=login_location,
         )
         return login_record
 

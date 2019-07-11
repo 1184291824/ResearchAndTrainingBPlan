@@ -118,7 +118,7 @@ class LoginRecordAdmin(admin.ModelAdmin):
         'login_browser',
         'login_system',
         'login_device',
-        'login_location',
+        # 'login_location',
         'login_time',
     ]
     list_filter = ['login_user']  # 筛选器
