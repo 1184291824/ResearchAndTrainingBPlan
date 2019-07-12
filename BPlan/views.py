@@ -52,10 +52,10 @@ def login_html(request):
     """返回登录界面"""
     login_status = request.session.get('login_status', 0)
     if login_status == 0:
-        if whether_mobile(request) is False:
-            return render(request, 'PC/login.html')
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/login.html')
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -107,15 +107,15 @@ def register_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 0:
         group_list = Group.objects.all().exclude(group_id__iexact='9161040G00')
-        if whether_mobile(request) is False:
-            return render(request, 'PC/register.html', {
-                'group_list': group_list,
-                'user_identity_choice': User.USER_IDENTITY_CHOICE,
-                'user_question_choice': User.USER_QUESTION_CHOICE,
-                'user_gender_choice': User.USER_GENDER_CHOICE,
-            })
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/register.html', {
+            'group_list': group_list,
+            'user_identity_choice': User.USER_IDENTITY_CHOICE,
+            'user_question_choice': User.USER_QUESTION_CHOICE,
+            'user_gender_choice': User.USER_GENDER_CHOICE,
+        })
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -146,13 +146,13 @@ def change_password_html(request):
     """返回更改密码的页面"""
     user_id = request.session.get('user_id', '')
     user_question_choice = User.USER_QUESTION_CHOICE
-    if whether_mobile(request) is False:
-        return render(request, 'PC/changePassword.html', {
-            'user_id': user_id,
-            'user_question_choice': user_question_choice,
-        })
-    else:
-        return HttpResponse('mobile')
+    # if whether_mobile(request) is False:
+    return render(request, 'PC/changePassword.html', {
+        'user_id': user_id,
+        'user_question_choice': user_question_choice,
+    })
+    # else:
+    #     return HttpResponse('mobile')
 
 
 def change_password_check(request):
@@ -182,12 +182,12 @@ def change_question_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         user_question_choice = User.USER_QUESTION_CHOICE
-        if whether_mobile(request) is False:
-            return render(request, 'PC/changeQuestion.html', {
-                'user_question_choice': user_question_choice,
-            })
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/changeQuestion.html', {
+            'user_question_choice': user_question_choice,
+        })
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -219,10 +219,10 @@ def change_personal_information_html(request):
             page = 'PC/changePersonalInformationChange.html'
         else:
             page = 'PC/changePersonalInformationShow.html'
-        if whether_mobile(request) is False:
-            return render(request, page, {'user': user})
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, page, {'user': user})
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -248,10 +248,10 @@ def inventory_show_all_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         inventory_list = Inventory.objects.all()
-        if whether_mobile(request) is False:
-            return render(request, 'PC/inventoryShowAll.html', {'inventory_list': inventory_list})
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/inventoryShowAll.html', {'inventory_list': inventory_list})
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -265,14 +265,14 @@ def inventory_show_detail_html(request):
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
             create_user = User.objects.get(user_id__exact=inventory.inventory_create_user).user_name
             change_user = User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name
-            if whether_mobile(request) is False:
-                return render(request, 'PC/inventoryShowDetail.html', {
-                    'inventory': inventory,
-                    'create_user': create_user,
-                    'change_user': change_user,
-                })
-            else:
-                return HttpResponse('mobile')
+            # if whether_mobile(request) is False:
+            return render(request, 'PC/inventoryShowDetail.html', {
+                'inventory': inventory,
+                'create_user': create_user,
+                'change_user': change_user,
+            })
+            # else:
+            #     return HttpResponse('mobile')
         except Inventory.DoesNotExist:
             return redirect('BPlan:inventory_show_all_html')
     else:
@@ -283,10 +283,10 @@ def inventory_create_html(request):
     """返回创建新的库存的界面"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
-        if whether_mobile(request) is False:
-            return render(request, 'PC/inventoryCreate.html')
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/inventoryCreate.html')
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -305,15 +305,15 @@ def inventory_change_html(request):
         except Inventory.DoesNotExist:
             return redirect('BPlan:inventory_show_all_html')
 
-        if whether_mobile(request) is False:
-            return render(request, 'PC/inventoryChange.html', {
-                'change_type': change_type,
-                'inventory_id': inventory.inventory_id,
-                'inventory_name': inventory.inventory_name,
-                'inventory_num': inventory.inventory_num,
-            })
-        else:
-            return HttpResponse('mobile')
+        # if whether_mobile(request) is False:
+        return render(request, 'PC/inventoryChange.html', {
+            'change_type': change_type,
+            'inventory_id': inventory.inventory_id,
+            'inventory_name': inventory.inventory_name,
+            'inventory_num': inventory.inventory_num,
+        })
+        # else:
+        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 

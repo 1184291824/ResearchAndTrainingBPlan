@@ -4,14 +4,14 @@
 {% block style %}
 <style type="text/css">
 .form{
-    width: 800px;
+    {#width: 80%;#}
 }
 </style>
 {% endblock %}
 {% block body-title %}注册新用户{% endblock %}
 {% block form %}
 <div class="pure-g">
-    <div class="pure-u-1-2">
+    <div class="pure-u-1 pure-u-xl-1-2">
         <div class="pure-control-group">
             <label for="user_id">账号</label>
             <input type="text" name="user_id" id="user_id" value="" placeholder="请输入账号" maxlength="12" required/>
@@ -36,7 +36,7 @@
             <img class="code" onclick="refreshSrc()"/>
         </div>
     </div>
-    <div class="pure-u-1-2">
+    <div class="pure-u-1 pure-u-xl-1-2">
         <div class="pure-control-group">
             <label for="user_group">组别</label>
             <select name="user_group" id="user_group" required>
@@ -90,7 +90,7 @@ $(document).ready(function () {
     login_button.click(function () {
         if (user_password.val() !== user_password_again.val()) {
             error.text('两次输入的密码不一致');
-            user_password.focus().val("");
+            user_password.val("");
             user_password_again.val("");
             return 0;
         }
@@ -113,14 +113,14 @@ $(document).ready(function () {
             success: function (result) {
                 if (result === 'codeWrong'){
                     error.text('验证码错误！');
-                    code.focus().val("");
+                    code.val("");
                     refreshSrc();
                     login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');
                     return 0;
                 }
                 if (result === 'idExist') {
                     error.text('您输入的账号已经存在');
-                    user_id.focus().val("");
+                    user_id.val("");
                     code.val("");
                     refreshSrc();
                     login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');

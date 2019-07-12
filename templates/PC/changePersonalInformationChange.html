@@ -57,7 +57,7 @@ $(document).ready(function () {
             success: function (result) {
                 if (result === 'codeWrong'){
                     error.text('验证码错误！');
-                    code.focus().val("");
+                    code.val("");
                     refreshSrc();
                     change_button.html('<i class="iconfont icon-change"></i> 确认修改').removeAttr('disabled');
                     return 0;

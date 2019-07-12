@@ -1,8 +1,5 @@
 .form{
     margin: 0 auto;
-    width: 400px;
-    /*margin-bottom: 100px;*/
-    padding: 20px;
 
 }
 form{
@@ -21,34 +18,40 @@ form{
 
 @-moz-keyframes formIn /* Firefox */
 {
-from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-to {margin-left: 0; opacity: 1;margin-right: 0;}
+0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+80% {margin-left: 5vw; margin-right: -5vw;}
+100% {margin-left: 0; opacity: 1;margin-right: 0;}
 }
 
 @-webkit-keyframes formIn /* Safari 和 Chrome */
 {
-from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-to {margin-left: 0; opacity: 1;margin-right: 0;}
+0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+80% {margin-left: 5vw; margin-right: -5vw;}
+100% {margin-left: 0; opacity: 1;margin-right: 0;}
 }
 
 @-o-keyframes formIn /* Opera */
 {
-from {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-to {margin-left: 0; opacity: 1;margin-right: 0;}
+0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
+80% {margin-left: 5vw; margin-right: -5vw;}
+100% {margin-left: 0; opacity: 1;margin-right: 0;}
 }
 
 
 .form label{
     color: white;
 }
-
-.pure-form-aligned .pure-control-group label {
-    width: 4em;
+.pure-form .pure-control-group{
+    text-align: center;
 }
-.pure-form-aligned .pure-control-group input {
+
+.pure-form .pure-control-group label {
+    min-width: 4em;
+}
+.pure-form .pure-control-group input {
     width: 17em;
 }
-.pure-form-aligned .pure-control-group select {
+.pure-form .pure-control-group select {
     width: 17em;
     padding: 0 .6em;
     height: 38.8px;
@@ -58,6 +61,7 @@ to {margin-left: 0; opacity: 1;margin-right: 0;}
     display: block;
     height: 2.5em;
     width: 90%;
+    max-width: 400px;
     margin: 1em auto 0 auto;
     padding: 0;
     background-color: var(--bkcolor);
@@ -70,4 +74,36 @@ to {margin-left: 0; opacity: 1;margin-right: 0;}
 .form-button:hover{
     color: var(--bkcolor);
     background-color: white;
+}
+.error{
+    color: red;
+    height: 1.5em;
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+@media only screen and (max-width: 768px) {
+    .code{
+        height: 38.8px;
+        vertical-align: top;
+    }
+}
+@media screen and (max-width: 480px) {
+    .pure-form .pure-control-group{
+        text-align: left;
+    }
+    .form{
+        width: 273px;
+    }
+    #code{
+        width: calc(17em - 100px - 5px);
+        display: inline-block;
+    }
+    .error{
+        font-size: 1em;
+        height: 1.2em;
+        line-height: 1.2em;
+    }
 }

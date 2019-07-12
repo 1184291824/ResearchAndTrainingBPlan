@@ -6,16 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_b3ccq6pbjz4.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_3pelr6uo6s.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
 {% endblock %}
 </head>
 <body>
+    <div class="body-left">
     <div class="header">
         <div class="header-logo">
             <label>MYZ 库存管理系统</label>
+        </div>
+        <div class="header-button">
+            <hr class="header-line">
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}"><i class="iconfont icon-login"></i> 登录</a>
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}"><i class="iconfont icon-register"></i> 注册</a>
+        </div>
+        <div class="header-user">
+            <hr class="header-line">
+            <i class="header-user-name iconfont icon-yuangong"></i>
+            <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}"><i class="iconfont icon-logout"></i> 退出登录</a>
         </div>
         <ul class="header-menu-ul">
             <li class="header-menu-li">
@@ -26,7 +38,7 @@
                 <hr class="header-line">
                 <i class="iconfont icon-kucun"></i> 库存
                 <ul class="header-menu-ul">
-                    <li class="header-menu-li"><a href="#" class="header-menu-a">查看全部</a></li>
+                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 查看全部</a></li>
                     <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
                 </ul>
             </li>
@@ -50,21 +62,17 @@
                 <hr class="header-line">
                 <i class="iconfont icon-yuangong"></i> 我的</a>
                 <ul class="header-menu-ul">
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"><i class="iconfont icon-change"></i> 修改密码</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-change"></i> 更改密保问题</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a">个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
                 </ul>
             </li>
         </ul>
-        <div class="header-button">
-            <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}">登录</a>
-            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}">注册</a>
-        </div>
-        <div class="header-user">
-            <i class="header-user-name iconfont icon-yuangong"></i>
-            <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}">退出登录</a>
-        </div>
+    </div>
+    <div class="header-picker">
+        <i class="iconfont icon-header-picker"></i>
+    </div>
     </div>
     <div class="body-right">
         {% block body %}
