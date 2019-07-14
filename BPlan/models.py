@@ -92,8 +92,10 @@ class Inventory(models.Model):
     inventory_unit = models.CharField(max_length=12, default='个', verbose_name='单位')
     inventory_details = models.TextField(max_length=300, default='无', verbose_name='详细信息')
     inventory_create_user = models.CharField(max_length=12, verbose_name='创建人id')
+    inventory_create_user_name = models.CharField(max_length=20, verbose_name='创建人姓名')
     inventory_create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     inventory_recent_change_user = models.CharField(max_length=12, verbose_name='最近修改人id')
+    inventory_recent_change_user_name = models.CharField(max_length=20, verbose_name='最近修改人姓名')
     inventory_recent_change_time = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
 
     @classmethod
@@ -106,6 +108,7 @@ class Inventory(models.Model):
             inventory_unit,
             inventory_details,
             inventory_create_user,
+            inventory_create_user_name,
     ):
         inventory = cls(
             inventory_id=inventory_id,
@@ -115,7 +118,9 @@ class Inventory(models.Model):
             inventory_unit=inventory_unit,
             inventory_details=inventory_details,
             inventory_create_user=inventory_create_user,
+            inventory_create_user_name=inventory_create_user_name,
             inventory_recent_change_user=inventory_create_user,
+            inventory_recent_change_user_name=inventory_create_user_name,
         )
         return inventory
 

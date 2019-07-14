@@ -55,7 +55,7 @@
                 success: function (result) {
                     if (result === 'codeWrong'){
                         error.text('验证码错误！');
-                        code.val("").focus();
+                        code.val("");
                         refreshSrc();
                         return 0;
                     }

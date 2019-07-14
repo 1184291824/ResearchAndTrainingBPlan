@@ -1,0 +1,20 @@
+{% extends 'PC/base.html' %}
+{% load staticfiles %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'PC/css/show.css' %}">
+{% block style %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <div class="body-title">{% block body-title %}{% endblock %}</div>
+    <div class="show-header">
+        <div class="show-body-card-header">{% block show-title-1 %}{% endblock %}</div>
+        <div class="show-body-card-body">{% block show-title-2 %}{% endblock %}</div>
+        <div class="show-body-card-footer">{% block show-title-3 %}{% endblock %}</div>
+    </div>
+    {% block show-body %}{% endblock %}
+    <div class="show-footer">
+        {% if paginator.has_previous %}<a class="show-footer-previousPage" href="./?page={{ paginator.previous_page_number }}" >上一页</a>{% else %}<a class="show-footer-previousPage" href="#">上一页</a>{% endif %}
+        <a class="show-footer-pageNum">{{ paginator.number }}/{{ paginator.paginator.num_pages }}</a>
+        {% if paginator.has_next %}<a class="show-footer-nextPage" href="./?page={{ paginator.next_page_number }}">下一页</a>{% else %}<a class="show-footer-nextPage" href="#">下一页</a>{% endif %}
+    </div>
+{% endblock %}

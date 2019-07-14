@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_3pelr6uo6s.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_688w7olbo3r.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -38,8 +38,9 @@
                 <hr class="header-line">
                 <i class="iconfont icon-kucun"></i> 库存
                 <ul class="header-menu-ul">
-                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 查看全部</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 查看全部</a></li>
                     <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_create_html' %}" class="header-menu-a"><i class="iconfont icon-create"></i> 创建库存</a></li>
                 </ul>
             </li>
             <li class="header-menu-li header-menu-has-children">
@@ -60,9 +61,9 @@
             </li>
             <li class="header-menu-li header-menu-has-children">
                 <hr class="header-line">
-                <i class="iconfont icon-yuangong"></i> 我的</a>
+                <i class="iconfont icon-yuangong"></i> 我的
                 <ul class="header-menu-ul">
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"  id="change-password"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
@@ -82,7 +83,7 @@
 
     <footer class="footer">
         <p>声明：本网站仅作为南京理工大学电光学院科研训练项目《多用户登录的库存管理系统》展示使用</p>
-        <p>本网站版权归马子轩所有</p>
+        <p>本网站版权归MYZ所有</p>
     </footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

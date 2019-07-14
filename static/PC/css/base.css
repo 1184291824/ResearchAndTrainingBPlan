@@ -91,16 +91,11 @@ body {
     text-decoration: none;
     transition: background-color 0.2s;
     -webkit-transition: background-color 0.2s;
-
 }
 
 .header-menu-a:hover {
     /*color: #4ab2f6;*/
     background-color: #3d4e60;
-}
-
-.header-menu-select {
-    color: #4ab2f6;
 }
 
 .header-button {

@@ -64,17 +64,17 @@ class InventoryAdmin(admin.ModelAdmin):
         'inventory_num',
         'inventory_unit',
         'inventory_details',
-        'inventory_create_user',
+        'inventory_create_user_name',
         'inventory_create_time',
-        'inventory_recent_change_user',
+        'inventory_recent_change_user_name',
         'inventory_recent_change_time',
     ]
     search_fields = ['inventory_id', 'inventory_name']  # 搜索字段
     list_filter = (
         'inventory_category',
         'inventory_num',
-        'inventory_create_user',
-        'inventory_recent_change_user'
+        'inventory_create_user_name',
+        'inventory_recent_change_user_name'
     )  # 筛选器
     date_hierarchy = 'inventory_create_time'  # 详细时间分层筛选
     inlines = [InventoryOperationInfo]  # 在添加库存时预添加一条记录

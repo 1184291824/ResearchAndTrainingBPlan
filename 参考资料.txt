@@ -1,0 +1,38 @@
+1. python的学习书：
+题名/责任者:Head First编程之旅:Python语言描述/Eric Freeman著 乔莹, 宿相萍等译
+出版发行项:北京:中国电力出版社,2018
+ISBN及定价:978-7-5198-2660-4/CNY128.00
+
+2. Django学习视频：
+[千锋python教程：Django基础到实战讲解（精华版）]https://www.bilibili.com/video/av17879644
+
+3. Django官网：https://www.djangoproject.com/
+
+4. 前端学习视频：
+[千锋python前端教程：入门python前端，很简单]https://www.bilibili.com/video/av17890571
+[快学网-刘力超--chart.js图表创建]https://www.bilibili.com/video/av40302272
+[【前端移动端开发】MUI视频教程（移动端开发神器）]https://www.bilibili.com/video/av19939063
+[从零开始玩转前端与移动开发（第二阶段CSS3）]https://www.bilibili.com/video/av15269197
+
+5. 学习网站：
+【w3c school】http://www.w3school.com.cn/h.asp
+【CSDN博客，基本上都是在这个上面查的问题】https://www.csdn.net/
+【mui框架，移动端的开发】http://dev.dcloud.net.cn/mui/
+【jQuery，非常好用的js框架】https://jquery.com/
+【pure，轻量级css框架，也是非常好用】http://www.purecss.cn/
+【图标框架，非常好用的数据可视化框架】https://www.chartjs.org/
+
+6. 数据库：
+【MySQL】https://www.mysql.com/
+
+7. 服务器支持：
+【pythonanywhere， 免费的英国服务器，就是慢】https://www.pythonanywhere.com/
+【关于服务器的一些问题】https://www.jianshu.com/p/b7cb4173cdcb
+【python3 安装成功后，引入pymysql出错，No module named 'pymysql'】https://segmentfault.com/q/1010000012831919/a-1020000012858074
+
+8. 网站图标字体管理：
+【阿里云iconfont】https://www.iconfont.cn/
+
+9. 版本管理：
+【github】https://github.com/
+

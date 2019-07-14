@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib.auth import logout
+from django.core.paginator import Paginator
 from django.utils import timezone
 from .request import *
 from .VerificationCode import verification_code_check
@@ -248,10 +249,12 @@ def inventory_show_all_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         inventory_list = Inventory.objects.all()
-        # if whether_mobile(request) is False:
-        return render(request, 'PC/inventoryShowAll.html', {'inventory_list': inventory_list})
-        # else:
-        #     return HttpResponse('mobile')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(inventory_list, 6)
+        inventory_display = paginator.get_page(page)
+        return render(request, 'PC/inventoryShowAll.html', {
+            'paginator': inventory_display,
+        })
     else:
         return redirect('BPlan:index')
 
@@ -322,6 +325,8 @@ def inventory_create_add(request):
     """创建新的库存"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1 and request.method == 'POST':
+        if verification_code_check(request) is False:
+            return HttpResponse('codeWrong')
         inventory_id = request.POST['inventory_id']
         if Inventory.objects.filter(inventory_id__exact=inventory_id):
             return HttpResponse('idExist')
@@ -339,6 +344,7 @@ def inventory_create_add(request):
             inventory_unit=inventory_unit,
             inventory_details=inventory_details,
             inventory_create_user=inventory_create_user,
+            inventory_create_user_name=request.session['user_name'],
         )
         inventory.save()  # 保存生效
         # request.session['inventory_operation_category'] = 2

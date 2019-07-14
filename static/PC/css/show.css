@@ -1,0 +1,117 @@
+.show-footer{
+    width: 100%;
+    text-align: center;
+    margin: 2em auto;
+}
+.show-footer a{
+    display: inline-block;
+    width: 10em;
+    height: 2em;
+    background-color: white;
+    text-decoration: none;
+    color: #1f8dd6;
+    line-height: 2em;
+}
+
+.show-header,
+.show-body-card{
+    width: 90%;
+    margin: 1px auto;
+    height: 55px;
+    background-color: white;
+    transition: box-shadow 0.5s;
+    -webkit-transition: box-shadow 0.5s;
+}
+.show-header{
+    text-align: center;
+    line-height: 55px;
+    color: gray;
+    font-weight: bolder;
+    margin-bottom: 1em;
+}
+.show-body-card:hover{
+    box-shadow: lightgray 0 0 20px 1px;
+}
+.show-body-card-header{
+    float: left;
+    width: 240px;
+    margin: 2px;
+    height: 52px;
+}
+.show-body-card-body{
+    float: left;
+    width: calc(100% - 228px - 240px - 8px);
+    color: gray;
+    font-size: 0.9em;
+    margin: 2px;
+    text-indent: 2em;
+    height: 52px;
+    overflow: hidden;
+}
+.show-body-card-footer{
+    width: 228px;
+    float: right;
+    height: 52px;
+    line-height: 52px;
+}
+.inventory-name{
+    color: var(--bkcolor);
+    font-size: 1.5em;
+    font-weight: lighter;
+    padding-left: 16px;
+}
+.inventory-id{
+    color: gray;
+    font-size: 0.9em;
+    padding-left: 16px;
+}
+.show-body-card-footer-a{
+    display: inline-block;
+    line-height: 33px;
+    width: 31%;
+    text-align: center;
+    color: var(--bkcolor);
+    font-size: 1em;
+    text-decoration: none;
+}
+@media screen and (max-width: 768px){
+    .show-body-card{
+        max-width: 500px;
+        height: 145px;
+        margin: 8px auto;
+    }
+    .show-body-card-header{
+        border-bottom: #80808063 solid 1px;
+        float: none;
+        width: auto;
+        height: 48px;
+    }
+    .inventory-name{
+        font-size: 1.2em;
+        font-weight: normal;
+    }
+    .show-body-card-body{
+        float: none;
+        width: auto;
+        overflow: hidden;
+        height: 4em;
+    }
+    .show-body-card-footer{
+        border-top: #80808063 solid 1px;
+        float: none;
+        width: auto;
+        height: 33px;
+        line-height: 33px;
+    }
+    .show-body-card-footer-a{
+        border-left: #80808063 solid 1px;
+        float: none;
+        width: 30%;
+    }
+    .show-header{
+        display: none;
+    }
+    .show-footer a{
+        width: 5em;
+    }
+}

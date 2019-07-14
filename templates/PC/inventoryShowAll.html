@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>显示全部的库存</title>
-	</head>
-	<body>
-		<table border="2" cellspacing="0" cellpadding="2">
-			<tr>
-{#				<th>库存编号</th>#}
-				<th>库存名称</th>
-				<th>库存类别</th>
-				<th>数量</th>
-{#				<th>单位</th>#}
-				<th>详细信息</th>
-                <th>操作</th>
-			</tr>
-            {% for foo in inventory_list %}
-            <tr>
-                <td>{{ foo.inventory_name }}</td>
-                <td>{{ foo.inventory_category }}</td>
-                <td>{{ foo.inventory_num }}{{ foo.inventory_unit }}</td>
-                <td>{{ foo.inventory_details | slice:':20'}}...</td>
-                <td>
-                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.inventory_id }}&type=0">入库</a>
-                    <a href="{% url 'BPlan:inventory_change_html' %}?id={{ foo.inventory_id }}&type=1">出库</a>
-                    <a href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ foo.inventory_id }}">详细信息</a>
-                    <a href="{% url 'BPlan:inventory_operation_html_inventory' %}?id={{ foo.inventory_id }}">操作记录</a>
-                </td>
-            </tr>
-            {% endfor %}
-
-		</table>
-	</body>
-</html>
+{% extends 'PC/baseShow.html' %}
+{% load staticfiles %}
+{% block title %}
+全部库存
+{% endblock %}
+{% block body-title %}
+全部库存
+{% endblock %}
+{% block show-title-1 %}基本信息{% endblock %}
+{% block show-title-2 %}详细信息{% endblock %}
+{% block show-title-3 %}操作{% endblock %}
+{% block show-body %}
+    {% for inventory in paginator %}
+        <div class="show-body-card">
+            <div class="show-body-card-header">
+                <div class="inventory-name"><i class="iconfont icon-kucun"></i> {{ inventory.inventory_name }}</div>
+                <div class="inventory-id"><i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp;<i class="iconfont icon-login"></i> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<i class="iconfont icon-inventory"></i> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>
+            </div>
+            <div class="show-body-card-body">
+                {{ inventory.inventory_details | slice:'50' }}
+            </div>
+            <div class="show-body-card-footer">
+                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
+                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
+                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
