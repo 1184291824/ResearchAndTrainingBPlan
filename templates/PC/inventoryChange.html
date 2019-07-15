@@ -1,18 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{ change_type }}</title>
-		<h1>对{{ inventory_name }}的库存{% if change_type == 0 %}入库{% else %}出库{% endif %}</h1>
-        <h2>余量：{{ inventory_num }}</h2>
-		<form action="{% url 'BPlan:inventory_change_add' %}" method="post">
-            {% csrf_token %}
-            <input type="text" name="inventory_id" id="inventory_id" value="{{ inventory_id }}" readonly style="display: none"/>
-            <input type="number" name="inventory_operation_category" id="inventory_operation_category" value="{{ change_type }}" readonly style="display: none"/>
-			<input type="number" name="inventory_operation_num" id="inventory_operation_num" value="" placeholder="数量" min="0" max="32768" />
-			<input type="submit" value="提交"/>
-		</form>
-	</head>
-	<body>
-	</body>
-</html>
+{% extends 'PC/baseForm.html' %}
+{% load staticfiles %}
+{% block title %}
+    {% if change_type %}
+    出库|{{ inventory_name }}
+    {% else %}
+    入库|{{ inventory_name }}
+    {% endif %}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block body-title %}
+    {% if change_type %}
+    出库|{{ inventory_name }}
+    {% else %}
+    入库|{{ inventory_name }}
+    {% endif %}
+{% endblock %}
+{% block form %}
+    <div class="pure-control-group">
+        <label for="inventory_operation_num">{% if change_type %}出库{% else %}入库{% endif %}数量</label>
+        <input type="number" name="inventory_operation_num" id="inventory_operation_num" value="" placeholder="{% if change_type %}库存余量{{ inventory_num }}{% endif %}" min="0" max="32768" required />
+    </div>
+    <input type="text" name="inventory_id" id="inventory_id" value="{{ inventory_id }}" readonly hidden/>
+    <input type="number" name="inventory_operation_category" id="inventory_operation_category" value="{{ change_type }}" readonly hidden/>
+{% endblock %}
+{% block button-text %}
+{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    let error = $('.error');
+    let button = $('.form-button');
+    button.click(function () {
+        button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
+        let check = true;
+        $('input').each(function () {
+            if(!this.value || this.value.trim() == "") {
+                let label = this.previousElementSibling;
+                error.text(label.innerText + "不允许为空");
+                button.html('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}').removeAttr('disabled');
+                check = false;
+                return 0;
+            }
+        });
+        if (check === true) {
+            $.ajax({
+                url: "{% url 'BPlan:inventory_change_add' %}",
+                type: "POST",
+                data: {
+                    'inventory_id': $('#inventory_id').val(),
+                    'inventory_operation_category': $('#inventory_operation_category').val(),
+                    'inventory_operation_num': $('#inventory_operation_num').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function (result) {
+                    if (result === 'success') {
+                        error.text("");
+                        $("form").hide(1000);
+                        $(".body-title").text("{% if change_type %}出库{% else %}入库{% endif %}成功");
+                        return 1;
+                    }
+                    if (result === 'outToMany') {
+                        error.text("出库数量超出库存");
+                        button.html('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}').removeAttr('disabled');
+                        return 0;
+                    }
+                }
+            })
+        }
+
+
+    })
+})
+</script>
+{% endblock %}

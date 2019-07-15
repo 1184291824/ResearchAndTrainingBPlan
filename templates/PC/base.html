@@ -89,8 +89,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     function refreshSrc(){  //刷新验证码图片
-            $('.code').attr('src', "{% url 'BPlan:getVerificationCode' %}?" + new Date().getTime());
-        }
+        $('.code').attr('src', "{% url 'BPlan:getVerificationCode' %}?" + new Date().getTime());
+    }
     $(document).ready(function () {
         $.ajax({
             url: '{% url 'BPlan:whether_login' %}',

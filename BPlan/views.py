@@ -195,7 +195,8 @@ def change_question_html(request):
 
 def change_question_check(request):
     """验证密码的正确性，修改密保问题"""
-    if request.method == 'POST':
+    login_status = request.session.get('login_status', 0)
+    if login_status == 1 and request.method == 'POST':
         if verification_code_check(request):
             user_id = request.session['user_id']
             user = User.objects.get(user_id__exact=user_id)
@@ -230,7 +231,8 @@ def change_personal_information_html(request):
 
 def change_personal_information_check(request):
     """检查更改的个人信息"""
-    if request.method == "POST":
+    login_status = request.session.get('login_status', 0)
+    if request.method == "POST" and login_status == 1:
         if verification_code_check(request):
             user = User.objects.get(user_id__exact=request.session['user_id'])
             user.user_name = request.POST['user_name']
@@ -266,18 +268,33 @@ def inventory_show_detail_html(request):
         inventory_id = request.GET.get('id')
         try:
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
-            create_user = User.objects.get(user_id__exact=inventory.inventory_create_user).user_name
-            change_user = User.objects.get(user_id__exact=inventory.inventory_recent_change_user).user_name
-            # if whether_mobile(request) is False:
             return render(request, 'PC/inventoryShowDetail.html', {
                 'inventory': inventory,
-                'create_user': create_user,
-                'change_user': change_user,
             })
-            # else:
-            #     return HttpResponse('mobile')
         except Inventory.DoesNotExist:
             return redirect('BPlan:inventory_show_all_html')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_change_detail(request):
+    """改变库存的详细信息"""
+    if request.session.get('login_status', 0):
+        if request.method == 'GET':
+            inventory_id = request.GET.get('id')
+            inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
+            return render(request, 'PC/inventoryDetailChange.html', {
+                'inventory': inventory,
+            })
+        elif request.method == 'POST':
+            inventory_id = request.POST.get('id')
+            inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
+            inventory.inventory_name = request.POST['inventory_name']
+            inventory.inventory_category = request.POST['inventory_category']
+            inventory.inventory_unit = request.POST['inventory_unit']
+            inventory.inventory_details = request.POST['inventory_details']
+            inventory.save()
+            return HttpResponse('success')
     else:
         return redirect('BPlan:index')
 
@@ -301,22 +318,17 @@ def inventory_change_html(request):
         change_type = int(request.GET.get('type', 2))
         if change_type < 0 or change_type > 1:
             return redirect('BPlan:inventory_show_all_html')
-
         inventory_id = request.GET.get('id', 0)
         try:
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
         except Inventory.DoesNotExist:
             return redirect('BPlan:inventory_show_all_html')
-
-        # if whether_mobile(request) is False:
         return render(request, 'PC/inventoryChange.html', {
             'change_type': change_type,
             'inventory_id': inventory.inventory_id,
             'inventory_name': inventory.inventory_name,
             'inventory_num': inventory.inventory_num,
         })
-        # else:
-        #     return HttpResponse('mobile')
     else:
         return redirect('BPlan:index')
 
@@ -381,6 +393,7 @@ def inventory_change_add(request):
             else:
                 return HttpResponse('outToMany')
         inventory.inventory_recent_change_user = request.session['user_id']  # 记录用户更改人的id
+        inventory.inventory_recent_change_user_name = request.session['user_name']
         inventory.save()  # 保存生效
 
         '''这里请加入添加库存记录的函数'''

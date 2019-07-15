@@ -1,23 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>详细信息</title>
-	</head>
-	<body>
-		<table border="2" cellspacing="0" cellpadding="2">
-            <tr><td>库存编号</td><td>{{ inventory.inventory_id }}</td></tr>
-            <tr><td>库存名称</td><td>{{ inventory.inventory_name }}</td></tr>
-            <tr><td>库存类别</td><td>{{ inventory.inventory_category }}</td></tr>
-            <tr><td>数量</td><td>{{ inventory.inventory_num }}</td></tr>
-            <tr><td>单位</td><td>{{ inventory.inventory_num }}</td></tr>
-            <tr><td>详细信息</td><td>{{ inventory.inventory_details }}</td></tr>
-            <tr><td>创建人</td><td>{{ create_user }}</td></tr>
-            <tr><td>创建时间</td><td>{{ inventory.inventory_create_time }}</td></tr>
-            <tr><td>修改人</td><td>{{ change_user }}</td></tr>
-            <tr><td>修改时间</td><td>{{ inventory.inventory_recent_change_time }}</td></tr>
-            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.inventory_id }}&type=0">入库</a></td></tr>
-            <tr><td><a href="{% url 'BPlan:inventory_change_html' %}?id={{ inventory.inventory_id }}&type=1">出库</a></td></tr>
-		</table>
-	</body>
-</html>
+{% extends 'PC/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}
+详细信息 | {{ inventory.inventory_name }}
+{% endblock %}
+{% block body-title %}
+详细信息 | {{ inventory.inventory_name }}
+{% endblock %}
+{% block style %}
+<style>
+.detail-header-item{
+    word-spacing: 1.5em;
+}
+.detail-body-item{
+    display: block;
+}
+.inventory_details{
+    height: 7em;
+    margin-bottom: 1em;
+    overflow-y: auto;
+}
+.detail-footer{
+    width: 90%;
+    min-width: unset;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .detail-footer button{
+        margin: 8px auto;
+    }
+}
+</style>
+{% endblock %}
+{% block detail-header %}
+    <label class="detail-header-item" style="color: lightgray">编号：<i class="iconfont icon-user-id"></i>{{ inventory.inventory_id }}</label><br>
+    <div class="pure-g">
+        <div class="pure-u-1 pure-u-lg-1-2">
+            <label class="detail-header-item">创建：<i class="iconfont icon-login"></i>{{ inventory.inventory_create_user_name }} <i class="iconfont icon-inventory"></i>{{ inventory.inventory_create_time | date:'m-d' }}</label>
+        </div>
+        <div class="pure-u-1 pure-u-lg-1-2">
+            <label class="detail-header-item">修改：<i class="iconfont icon-login"></i>{{ inventory.inventory_recent_change_user_name }} <i class="iconfont icon-inventory"></i>{{ inventory.inventory_recent_change_time | date:'m-d' }}</label>
+        </div>
+    </div>
+{% endblock %}
+{% block detail-left %}
+    <label class="detail-body-item">库存名称</label>
+    <label class="detail-body-item">库存类别</label>
+    <label class="detail-body-item">数量</label>
+    <label class="detail-body-item">单位</label>
+    <label class="detail-body-item inventory_details">详细信息</label>
+    <label class="detail-body-item">创建人</label>
+    <label class="detail-body-item">创建时间</label>
+    <label class="detail-body-item">最近修改人</label>
+    <label class="detail-body-item">最近修改时间</label>
+{% endblock %}
+{% block detail-right %}
+    <label class="detail-body-item">{{ inventory.inventory_name }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_category }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_num }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_unit }}</label>
+    <label class="detail-body-item inventory_details">{{ inventory.inventory_details }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_create_user }}--{{ inventory.inventory_recent_change_user_name }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_create_time }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_recent_change_user }}--{{ inventory.inventory_recent_change_user_name }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_recent_change_time }}</label>
+{% endblock %}
+{% block detail-footer %}
+    <div class="pure-u-1 pure-u-lg-1-3">
+        <div><button id="change"><i class="iconfont icon-change"></i> 修改库存信息</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-lg-1-3">
+        <div><button id="changeIn"><i class="iconfont icon-ruku"></i> 入库</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-lg-1-3">
+        <div><button id="changeOut"><i class="iconfont icon-chuku"></i> 出库</button></div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('#change').click(function () {
+        window.location.href = '{% url "BPlan:change_personal_information_html" %}?page=change'
+    });
+    $('#changeIn').click(function () {
+        window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=0'
+    });
+    $('#changeOut').click(function () {
+        window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=1'
+    })
+})
+</script>
+{% endblock %}
