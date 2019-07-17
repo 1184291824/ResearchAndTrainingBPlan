@@ -56,6 +56,10 @@ form{
     padding: 0 .6em;
     height: 38.8px;
 }
+.pure-form .pure-control-group textarea{
+    width: 50%;
+    min-width: 17em;
+}
 
 .form-button{
     display: block;

@@ -43,32 +43,34 @@ $(document).ready(function () {
     let code = $('#code');
     change_button.click(function () {
         change_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        $.ajax({
-            url: "{% url 'BPlan:change_personal_information_check' %}",
-            type: "POST",
-            data: {
-                'user_name': $('#user_name').val(),
-                'user_gender': $('#user_gender').val(),
-                'user_identity': $('#user_identity').val(),
-                'code': code.val(),
-                "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-            },
-            success: function (result) {
-                if (result === 'codeWrong'){
-                    error.text('验证码错误！');
-                    code.val("");
-                    refreshSrc();
-                    change_button.html('<i class="iconfont icon-change"></i> 确认修改').removeAttr('disabled');
-                    return 0;
+        if (NoEmpty('<i class="iconfont icon-change"></i> 确认修改', error, change_button)) {
+            $.ajax({
+                url: "{% url 'BPlan:change_personal_information' %}",
+                type: "POST",
+                data: {
+                    'user_name': $('#user_name').val(),
+                    'user_gender': $('#user_gender').val(),
+                    'user_identity': $('#user_identity').val(),
+                    'code': code.val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function (result) {
+                    if (result === 'codeWrong'){
+                        error.text('验证码错误！');
+                        code.val("");
+                        refreshSrc();
+                        change_button.html('<i class="iconfont icon-change"></i> 确认修改').removeAttr('disabled');
+                        return 0;
+                    }
+                    if (result === 'success') {
+                        error.text("");
+                        $("form").hide(1000);
+                        $(".body-title").text("修改成功");
+                        return 1;
+                    }
                 }
-                if (result === 'success') {
-                    error.text("");
-                    $("form").hide(1000);
-                    $(".body-title").text("修改成功");
-                    return 1;
-                }
-            }
-        })
+            })
+        }
     })
 })
 </script>

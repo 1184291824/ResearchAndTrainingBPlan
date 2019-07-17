@@ -35,17 +35,7 @@ $(document).ready(function () {
     let button = $('.form-button');
     button.click(function () {
         button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        let check = true;
-        $('input').each(function () {
-            if(!this.value || this.value.trim() == "") {
-                let label = this.previousElementSibling;
-                error.text(label.innerText + "不允许为空");
-                button.html('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}').removeAttr('disabled');
-                check = false;
-                return 0;
-            }
-        });
-        if (check === true) {
+        if (NoEmpty('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}', error, button)) {
             $.ajax({
                 url: "{% url 'BPlan:inventory_change_add' %}",
                 type: "POST",
@@ -70,8 +60,6 @@ $(document).ready(function () {
                 }
             })
         }
-
-
     })
 })
 </script>

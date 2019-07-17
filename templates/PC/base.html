@@ -39,7 +39,7 @@
                 <i class="iconfont icon-kucun"></i> 库存
                 <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 查看全部</a></li>
-                    <li class="header-menu-li"><a href="#" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_search' %}" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_create_html' %}" class="header-menu-a"><i class="iconfont icon-create"></i> 创建库存</a></li>
                 </ul>
             </li>
@@ -65,8 +65,8 @@
                 <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"  id="change-password"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information_html' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
                 </ul>
             </li>
         </ul>
@@ -90,6 +90,19 @@
 <script type="text/javascript">
     function refreshSrc(){  //刷新验证码图片
         $('.code').attr('src', "{% url 'BPlan:getVerificationCode' %}?" + new Date().getTime());
+    }
+    function NoEmpty(ButtonHtml, error, button){  // 检查输入框是否为空
+        let check = true;
+        $('input').each(function () {
+            if(!this.value || this.value.trim() == "") {
+                let label = this.previousElementSibling;
+                error.text(label.innerText + "不允许为空");
+                button.html(ButtonHtml).removeAttr('disabled');
+                check = false;
+                return 0;
+            }
+        });
+        return check;
     }
     $(document).ready(function () {
         $.ajax({

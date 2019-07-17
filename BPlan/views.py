@@ -212,36 +212,26 @@ def change_question_check(request):
         return redirect('BPlan:index')
 
 
-def change_personal_information_html(request):
+def change_personal_information(request):
     """返回个人信息/修改个人信息界面"""
-    login_status = request.session.get('login_status', 0)
-    if login_status == 1:
-        user = User.objects.get(user_id__exact=request.session['user_id'])
-        if request.GET.get('page', 'show') == 'change':
-            page = 'PC/changePersonalInformationChange.html'
-        else:
-            page = 'PC/changePersonalInformationShow.html'
-        # if whether_mobile(request) is False:
-        return render(request, page, {'user': user})
-        # else:
-        #     return HttpResponse('mobile')
-    else:
-        return redirect('BPlan:index')
-
-
-def change_personal_information_check(request):
-    """检查更改的个人信息"""
-    login_status = request.session.get('login_status', 0)
-    if request.method == "POST" and login_status == 1:
-        if verification_code_check(request):
+    if request.session.get('login_status', 0):
+        if request.method == 'GET':
             user = User.objects.get(user_id__exact=request.session['user_id'])
-            user.user_name = request.POST['user_name']
-            user.user_gender = (request.POST['user_gender'] == 'True')
-            user.user_identity = int(request.POST['user_identity'])
-            user.save()
-            return HttpResponse('success')
-        else:
-            return HttpResponse('codeWrong')
+            if request.GET.get('page', 'show') == 'change':
+                page = 'PC/changePersonalInformationChange.html'
+            else:
+                page = 'PC/changePersonalInformationShow.html'
+            return render(request, page, {'user': user})
+        elif request.method == 'POST':
+            if verification_code_check(request):
+                user = User.objects.get(user_id__exact=request.session['user_id'])
+                user.user_name = request.POST['user_name']
+                user.user_gender = (request.POST['user_gender'] == 'True')
+                user.user_identity = int(request.POST['user_identity'])
+                user.save()
+                return HttpResponse('success')
+            else:
+                return HttpResponse('codeWrong')
     else:
         return redirect('BPlan:index')
 
@@ -283,11 +273,11 @@ def inventory_change_detail(request):
         if request.method == 'GET':
             inventory_id = request.GET.get('id')
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
-            return render(request, 'PC/inventoryDetailChange.html', {
+            return render(request, 'PC/inventoryChangeDetail.html', {
                 'inventory': inventory,
             })
         elif request.method == 'POST':
-            inventory_id = request.POST.get('id')
+            inventory_id = request.POST.get('inventory_id')
             inventory = Inventory.objects.get(inventory_id__exact=inventory_id)
             inventory.inventory_name = request.POST['inventory_name']
             inventory.inventory_category = request.POST['inventory_category']
@@ -424,6 +414,36 @@ def inventory_operation_html_inventory(request):
             return render(request, 'PC/inventoryOperationInventory.html', {'inventory_operation': inventory_operation})
         else:
             return redirect('BPlan:inventory_show_all_html')
+    else:
+        return redirect('BPlan:index')
+
+
+def inventory_search(request):
+    """查询库存"""
+    if request.session.get('login_status', 0):
+        if request.method == 'GET':
+            search_type = request.GET.get('search_type', '')
+            search = request.GET.get('search', '')
+            if search_type and search:
+                if search_type == 'inventory_id':
+                    inventory = Inventory.objects.filter(inventory_id__contains=search)
+                elif search_type == 'inventory_name':
+                    inventory = Inventory.objects.filter(inventory_name__contains=search)
+                elif search_type == 'inventory_details':
+                    inventory = Inventory.objects.filter(inventory_details__contains=search)
+                elif search_type == 'inventory_create_user_name':
+                    inventory = Inventory.objects.filter(inventory_create_user_name__contains=search)
+                elif search_type == 'inventory_recent_change_user_name':
+                    inventory = Inventory.objects.filter(inventory_recent_change_user_name__contains=search)
+                if inventory.exists() is False:
+                    inventory = ''
+            else:
+                inventory = 'noSearch'
+            return render(request, 'PC/inventorySearch.html', {
+                'paginator': inventory,
+                'search_type': search_type,
+                'search': search,
+            })
     else:
         return redirect('BPlan:index')
 

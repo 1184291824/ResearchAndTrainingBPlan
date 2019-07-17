@@ -79,7 +79,7 @@
 <script>
 $(document).ready(function () {
     $('#change').click(function () {
-        window.location.href = '{% url "BPlan:change_personal_information_html" %}?page=change'
+        window.location.href = '{% url "BPlan:inventory_change_detail" %}?id={{ inventory.inventory_id }}'
     });
     $('#changeIn').click(function () {
         window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=0'

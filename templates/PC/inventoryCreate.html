@@ -8,10 +8,6 @@
     text-align: left;
     padding-left: calc(3vw);
 }
-#inventory_details{
-    width: 50%;
-    min-width: 17em;
-}
 @media screen and (max-width: 768px){
     .pure-form .pure-control-group{
         text-align: left;
@@ -64,43 +60,46 @@ $(document).ready(function () {
     let code = $('#code');
     login_button.click(function () {
         login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        $.ajax({
-            url: "{% url 'BPlan:inventory_create_add' %}",
-            type: 'POST',
-            data: {
-                'inventory_id': inventory_id.val(),
-                'inventory_name': $('#inventory_name').val(),
-                'code': code.val(),
-                'inventory_category': $('#inventory_category').val(),
-                'inventory_num': $('#inventory_num').val(),
-                'inventory_unit': $('#inventory_unit').val(),
-                'inventory_details': $('#inventory_details').val(),
-                "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-            },
-            success: function (result) {
-                if (result === 'codeWrong'){
-                    error.text('验证码错误！');
-                    code.val("");
-                    refreshSrc();
-                    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');
-                    return 0;
-                }
-                if (result === 'idExist') {
-                    error.text('您输入的库存id已经存在');
-                    inventory_id.val("");
-                    code.val("");
-                    refreshSrc();
-                    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');
-                    return 0;
-                }
-                if (result === 'success') {
-                    error.text("");
-                    $("form").hide(1000);
-                    $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 注册成功");
-                    return 1;
-                }
-            },
-        })
+        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){
+            $.ajax({
+                url: "{% url 'BPlan:inventory_create_add' %}",
+                type: 'POST',
+                data: {
+                    'inventory_id': inventory_id.val(),
+                    'inventory_name': $('#inventory_name').val(),
+                    'code': code.val(),
+                    'inventory_category': $('#inventory_category').val(),
+                    'inventory_num': $('#inventory_num').val(),
+                    'inventory_unit': $('#inventory_unit').val(),
+                    'inventory_details': $('#inventory_details').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function (result) {
+                    if (result === 'codeWrong'){
+                        error.text('验证码错误！');
+                        code.val("");
+                        refreshSrc();
+                        login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');
+                        return 0;
+                    }
+                    if (result === 'idExist') {
+                        error.text('您输入的库存id已经存在');
+                        inventory_id.val("");
+                        code.val("");
+                        refreshSrc();
+                        login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');
+                        return 0;
+                    }
+                    if (result === 'success') {
+                        error.text("");
+                        $("form").hide(1000);
+                        $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 注册成功");
+                        return 1;
+                    }
+                },
+            })
+        }
+
     })
 })
 </script>
