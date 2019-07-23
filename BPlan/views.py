@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.db.models import Q
 from .models import *
 from django.contrib.auth import logout
 from django.core.paginator import Paginator
 from django.utils import timezone
+import datetime
 from .request import *
 from .VerificationCode import verification_code_check
 
@@ -11,7 +13,20 @@ from .VerificationCode import verification_code_check
 
 
 def test(request):
-    return render(request, 'PC/changePersonalInformationShow.html')
+    today = datetime.date.today()
+    base_record = LoginRecord.objects.filter(
+        login_user__user_id__exact='9161040G0000'
+    )
+    ask_record_display = []
+    time_label = []
+    for i in range(0, 10):
+        date_num = today - datetime.timedelta(days=i)
+        ask_record_display.append(base_record.filter(login_date=date_num).count())
+        time_label.append(date_num)
+    return render(request, 'PC/baseChart.html', {
+        'ask_record_display': ask_record_display,
+        'time_label': time_label,
+    })
 
 
 def whether_login(request):
@@ -478,6 +493,28 @@ def login_record_html(request):
         })
     else:
         return redirect('BPlan:index')
+
+
+def login_record_ask_html(request):
+    today = datetime.date.today()
+    base_record = LoginRecord.objects.filter(
+        login_user__user_id__exact='9161040G0000'
+    )
+    ask_record_display = []
+    time_label = []
+    if whether_mobile(request):
+        day_range = 5  # 日期的显示范围
+    else:
+        day_range = 10
+    for i in range(0, day_range):
+        date_num = today - datetime.timedelta(days=i)
+        ask_record_display.append(base_record.filter(login_date=date_num).count())
+        time_label.append(date_num)
+    return render(request, 'PC/askRecord.html', {
+        'ask_record_display': ask_record_display,
+        'time_label': time_label,
+        'wholeCount': base_record.count(),
+    })
 
 
 

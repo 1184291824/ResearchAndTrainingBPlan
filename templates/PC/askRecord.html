@@ -1,0 +1,64 @@
+{% extends 'PC/baseChart.html' %}
+{% block title %}
+日访问量统计
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block body-title %}
+日访问量统计
+{% endblock %}
+{% block chart-title %}
+'日访问量统计(总访问次数：{{ wholeCount }})'
+{% endblock %}
+{% block chart-canvas %}
+    <canvas id="Chart" width="400" height="200"></canvas>
+{% endblock %}
+{% block script-more %}
+<script>
+$(document).ready(function () {
+    let ctx = document.getElementById('Chart').getContext('2d'); // 获取chart
+    if (window.screen.width < 768) { // 当屏幕缩小到768px以下时，改变chart的纵横比
+        $('#Chart').attr({
+            'height': '250vw',
+            'width': '',
+        })
+    }
+    let str = [
+        {% for foo in time_label %}
+            '{{ foo.month }}月{{ foo.day }}日',
+        {% endfor %}
+    ]; //横轴内容
+    let data = [
+        {% for foo in ask_record_display %}{{ foo }}, {% endfor %}
+    ]; //数据
+    str.reverse(); //将数组反过来
+    data.reverse();
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line', // 线性图表
+
+        // The data for our dataset
+        data: {
+            labels: str,
+            datasets: [{
+                label: '日访问量',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: '#36a2eb',
+                pointBorderColor: 'rgba(54, 162, 235, 0.2)',
+                pointBorderWidth: '5',
+                pointRadius: '4',
+                pointBackgroundColor: '#36a2eb',
+                pointHoverRadius: '6',
+                pointHoverBorderColor: 'rgba(54, 162, 235, 0.2)',
+                pointHoverBorderWidth: '7',
+                {#data: [0, 10, 5, 2, 20, ],#}
+                data:data,
+            }],
+        },
+        options: options,
+    });
+});
+
+</script>
+{% endblock %}

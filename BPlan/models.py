@@ -210,6 +210,7 @@ class LoginRecord(models.Model):
     login_system = models.CharField(max_length=30, default='未知的系统', verbose_name='操作系统')
     login_device = models.CharField(max_length=30, default='未知的设备', verbose_name='设备')
     # login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
+    login_date = models.DateField(auto_now_add=True, verbose_name='登录日期')
     login_time = models.DateTimeField(auto_now_add=True, verbose_name='登录时间')
 
     @classmethod
