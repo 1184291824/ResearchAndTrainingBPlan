@@ -65,14 +65,17 @@
     <label class="detail-body-item">{{ inventory.inventory_recent_change_time }}</label>
 {% endblock %}
 {% block detail-footer %}
-    <div class="pure-u-1 pure-u-lg-1-3">
-        <div><button id="change"><i class="iconfont icon-change"></i> 修改库存信息</button></div>
-    </div>
-    <div class="pure-u-1 pure-u-lg-1-3">
+    <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="changeIn"><i class="iconfont icon-ruku"></i> 入库</button></div>
     </div>
-    <div class="pure-u-1 pure-u-lg-1-3">
+    <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="changeOut"><i class="iconfont icon-chuku"></i> 出库</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="change"><i class="iconfont icon-change"></i> 修改库存信息</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="inventoryOperation"><i class="iconfont icon-churukujilu"></i> 库存记录</button></div>
     </div>
 {% endblock %}
 {% block script %}
@@ -86,6 +89,9 @@ $(document).ready(function () {
     });
     $('#changeOut').click(function () {
         window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=1'
+    });
+    $('#inventoryOperation').click(function () {
+        window.location.href = '{% url "BPlan:inventory_operation_html" %}?id={{ inventory.inventory_id }}&type=inventory'
     })
 })
 </script>

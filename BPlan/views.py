@@ -352,10 +352,14 @@ def inventory_create_add(request):
         # request.session['inventory_operation_category'] = 2
 
         '''这里请加入添加库存记录的函数'''
+        inventory_operation_user_agent = get_agent(request)  # 获取登录的设备信息
         InventoryOperation.add_inventory_operation(
             inventory_operation_user=inventory.inventory_create_user,
             inventory_operation_user_name=request.session.get('user_name'),
             inventory_operation_user_ip=get_ip(request),
+            inventory_operation_user_browser=inventory_operation_user_agent['browser'],
+            inventory_operation_user_system=inventory_operation_user_agent['system'],
+            inventory_operation_user_device=inventory_operation_user_agent['device'],
             inventory_operation_category=2,
             inventory_operation_num=inventory.inventory_num,
             inventory_num=inventory.inventory_num,
@@ -387,33 +391,21 @@ def inventory_change_add(request):
         inventory.save()  # 保存生效
 
         '''这里请加入添加库存记录的函数'''
+        inventory_operation_user_agent = get_agent(request)  # 获取登录的设备信息
         InventoryOperation.add_inventory_operation(
             inventory_operation_user=inventory.inventory_recent_change_user,
             inventory_operation_user_name=request.session.get('user_name'),
             inventory_operation_user_ip=get_ip(request),
+            inventory_operation_user_browser=inventory_operation_user_agent['browser'],
+            inventory_operation_user_system=inventory_operation_user_agent['system'],
+            inventory_operation_user_device=inventory_operation_user_agent['device'],
             inventory_operation_category=inventory_operation_category,
             inventory_operation_num=inventory_operation_num,
             inventory_num=inventory.inventory_num,
-            inventory_operation_object=inventory
+            inventory_operation_object=inventory,
         ).save()
 
         return HttpResponse('success')
-    else:
-        return redirect('BPlan:index')
-
-
-def inventory_operation_html_inventory(request):
-    """显示某个库存的操作记录"""
-    login_status = request.session.get('login_status', 0)
-    if login_status == 1:
-        inventory_id = request.GET.get('id')
-        inventory_operation = InventoryOperation.objects.\
-            filter(inventory_operation_object__inventory_id__exact=inventory_id).\
-            order_by('-inventory_operation_create_time')
-        if inventory_operation:
-            return render(request, 'PC/inventoryOperationInventory.html', {'inventory_operation': inventory_operation})
-        else:
-            return redirect('BPlan:inventory_show_all_html')
     else:
         return redirect('BPlan:index')
 
@@ -448,33 +440,59 @@ def inventory_search(request):
         return redirect('BPlan:index')
 
 
-def inventory_operation_html_user(request):
-    """显示某个人的操作记录"""
+def inventory_operation_html(request):
+    """显示操作记录"""
     login_status = request.session.get('login_status', 0)
-    if login_status == 1:
-        user_id = request.session.get('user_id')
-        inventory_operation = InventoryOperation.objects.\
-            filter(inventory_operation_user=user_id).\
-            order_by('-inventory_operation_create_time')
-        return render(request, 'PC/inventoryOperationUser.html', {'inventory_operation': inventory_operation})
-    else:
-        return redirect('BPlan:index')
-
-
-def inventory_operation_check_user(request):
-    """检查这个人是否有操作记录"""
-    login_status = request.session.get('login_status', 0)
-    if login_status == 1:
-        user_id = request.session.get('user_id')
-        inventory_operation = InventoryOperation.objects.\
-            filter(inventory_operation_user=user_id).\
-            order_by('-inventory_operation_create_time')
-        if inventory_operation:
-            return HttpResponse('success')
+    if login_status == 1 and request.method == 'GET':
+        if request.GET.get('type', 0) == 'inventory':
+            inventory_id = request.GET.get('id')
+            inventory_operation = InventoryOperation.objects.filter(
+                inventory_operation_object__inventory_id__exact=inventory_id
+            ).order_by('-inventory_operation_create_time')
+        elif request.GET.get('type', 0) == 'user':
+            user_id = request.session.get('user_id')
+            inventory_operation = InventoryOperation.objects.filter(
+                inventory_operation_user=user_id
+            ).order_by('-inventory_operation_create_time')
         else:
-            return HttpResponse('DoesNotExist')
+            return render(request, 'PC/inventoryOperationSearch.html')
+        if inventory_operation:
+            return render(request, 'PC/inventoryOperationShow.html', {'paginator': inventory_operation})
+        else:
+            return render(request, 'PC/inventoryOperationShow.html', {
+                'paginator': ''
+            })
     else:
         return redirect('BPlan:index')
+
+
+# def inventory_operation_html_user(request):
+#     """显示某个人的操作记录"""
+#     login_status = request.session.get('login_status', 0)
+#     if login_status == 1:
+#         user_id = request.session.get('user_id')
+#         inventory_operation = InventoryOperation.objects.\
+#             filter(inventory_operation_user=user_id).\
+#             order_by('-inventory_operation_create_time')
+#         return render(request, 'PC/inventoryOperationUser.html', {'inventory_operation': inventory_operation})
+#     else:
+#         return redirect('BPlan:index')
+#
+#
+# def inventory_operation_check_user(request):
+#     """检查这个人是否有操作记录"""
+#     login_status = request.session.get('login_status', 0)
+#     if login_status == 1:
+#         user_id = request.session.get('user_id')
+#         inventory_operation = InventoryOperation.objects.\
+#             filter(inventory_operation_user=user_id).\
+#             order_by('-inventory_operation_create_time')
+#         if inventory_operation:
+#             return HttpResponse('success')
+#         else:
+#             return HttpResponse('DoesNotExist')
+#     else:
+#         return redirect('BPlan:index')
 
 
 

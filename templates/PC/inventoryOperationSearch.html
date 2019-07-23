@@ -1,0 +1,30 @@
+{% extends 'PC/baseForm.html' %}
+{% block title %}
+查询库存操作记录
+{% endblock %}
+{% block body-title %}
+查询库存操作记录
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block form %}
+    <div class="pure-control-group">
+        <label for="id">库存ID</label>
+        <input type="search" name="id" id="id" value="" placeholder="请输入库存的ID" maxlength="12" required />
+    </div>
+{% endblock %}
+{% block button-text %}
+<i class="iconfont icon-search"></i> 查询
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('button').click(function () {
+        if (NoEmpty('<i class="iconfont icon-search"></i> 查询', $('#error'), $('.form-button'))) {
+            window.location.href = "{% url 'BPlan:inventory_operation_html' %}?type=inventory&id="+$('#id').val()
+        }
+    })
+})
+</script>
+{% endblock %}

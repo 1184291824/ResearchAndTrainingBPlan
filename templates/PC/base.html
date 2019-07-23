@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_688w7olbo3r.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_m02e2nyph6.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -40,6 +40,7 @@
                 <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 查看全部</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_search' %}" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 查询库存操作记录</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_create_html' %}" class="header-menu-a"><i class="iconfont icon-create"></i> 创建库存</a></li>
                 </ul>
             </li>
@@ -67,6 +68,7 @@
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}?type=user" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 我的操作记录</a></li>
                 </ul>
             </li>
         </ul>

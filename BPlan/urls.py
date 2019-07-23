@@ -30,9 +30,9 @@ urlpatterns = [
     path('inventory/change/add/', views.inventory_change_add, name='inventory_change_add'),
     path('inventory/change/detail/', views.inventory_change_detail, name='inventory_change_detail'),
     path('inventory/search/', views.inventory_search, name='inventory_search'),
-    path('inventory/operation/inventory/', views.inventory_operation_html_inventory, name='inventory_operation_html_inventory'),
-    path('inventory/operation/user/', views.inventory_operation_html_user, name='inventory_operation_html_user'),
-    path('inventory/operation/user/check/', views.inventory_operation_check_user, name='inventory_operation_check_user'),
+    path('inventory/operation/', views.inventory_operation_html, name='inventory_operation_html'),
+    # path('inventory/operation/user/', views.inventory_operation_html_user, name='inventory_operation_html_user'),
+    # path('inventory/operation/user/check/', views.inventory_operation_check_user, name='inventory_operation_check_user'),
     path('verificationCode/get/', VerificationCode.verification_code, name='getVerificationCode'),
 
 
