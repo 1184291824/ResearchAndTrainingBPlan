@@ -27,8 +27,7 @@
 操作 | 数量 | 余量
 {% endblock %}
 {% block show-body %}
-    {% if paginator == 'noSearch' %}
-    {% elif paginator == '' %}
+    {% if paginator == '' %}
         <div class="show-body-card">
             <div class="show-body-card-header"></div>
             <div class="show-body-card-body" style="text-align: center">抱歉，未找到相关的操作记录</div>
@@ -42,7 +41,7 @@
                 <div class="inventory-id"><i class="iconfont icon-user-id"></i> {{ operation.inventory_operation_object.inventory_id }}&nbsp;&nbsp;<i class="iconfont icon-login"></i> {{ operation.inventory_operation_user_name }}&nbsp;&nbsp;<i class="iconfont icon-inventory"></i> {{ operation.inventory_operation_create_time.month }}月{{ operation.inventory_operation_create_time.day }}日</div>
             </div>
             <div class="show-body-card-body">
-                操作者ID：{{ operation.inventory_operation_user }}&nbsp;&nbsp;操作IP：{{ operation.inventory_operation_user_ip }}&nbsp;&nbsp;浏览器：{{ operation.inventory_operation_user_browser }}&nbsp;&nbsp;操作系统：{{ operation.inventory_operation_user_system }}&nbsp;&nbsp;设备：{{ operation.inventory_operation_user_device }}
+                操作者ID：{{ operation.inventory_operation_user }}&nbsp;&nbsp;操作详细时间：{{ operation.inventory_operation_create_time | time:"f"}}&nbsp;&nbsp;操作IP：{{ operation.inventory_operation_user_ip }}&nbsp;&nbsp;浏览器：{{ operation.inventory_operation_user_browser }}&nbsp;&nbsp;操作系统：{{ operation.inventory_operation_user_system }}&nbsp;&nbsp;设备：{{ operation.inventory_operation_user_device }}
             </div>
             <div class="show-body-card-footer">
                 <label>{{ operation.get_inventory_operation_category_display }}</label>

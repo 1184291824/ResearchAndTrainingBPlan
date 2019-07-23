@@ -466,33 +466,18 @@ def inventory_operation_html(request):
         return redirect('BPlan:index')
 
 
-# def inventory_operation_html_user(request):
-#     """显示某个人的操作记录"""
-#     login_status = request.session.get('login_status', 0)
-#     if login_status == 1:
-#         user_id = request.session.get('user_id')
-#         inventory_operation = InventoryOperation.objects.\
-#             filter(inventory_operation_user=user_id).\
-#             order_by('-inventory_operation_create_time')
-#         return render(request, 'PC/inventoryOperationUser.html', {'inventory_operation': inventory_operation})
-#     else:
-#         return redirect('BPlan:index')
-#
-#
-# def inventory_operation_check_user(request):
-#     """检查这个人是否有操作记录"""
-#     login_status = request.session.get('login_status', 0)
-#     if login_status == 1:
-#         user_id = request.session.get('user_id')
-#         inventory_operation = InventoryOperation.objects.\
-#             filter(inventory_operation_user=user_id).\
-#             order_by('-inventory_operation_create_time')
-#         if inventory_operation:
-#             return HttpResponse('success')
-#         else:
-#             return HttpResponse('DoesNotExist')
-#     else:
-#         return redirect('BPlan:index')
+def login_record_html(request):
+    if request.session.get('login_status', 0):
+        user_id = request.session['user_id']
+        log_list = LoginRecord.objects.filter(login_user__user_id__exact=user_id)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(log_list, 10)
+        log_display = paginator.get_page(page)
+        return render(request, 'PC/loginRecordShow.html', {
+            'paginator': log_display
+        })
+    else:
+        return redirect('BPlan:index')
 
 
 

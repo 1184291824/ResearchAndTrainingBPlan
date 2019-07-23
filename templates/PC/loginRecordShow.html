@@ -1,0 +1,51 @@
+{% extends 'PC/baseShow.html' %}
+{% block title %}
+我的访问记录
+{% endblock %}
+{% block style %}
+<style>
+.show-body-card-footer{
+    text-align: center;
+}
+.show-body-card-header{
+    width: 180px;
+}
+.show-body-card-body{
+    width: calc(100% - 228px - 180px - 8px);
+}
+@media screen and (max-width: 768px){
+    .show-body-card-body,
+    .show-body-card-header{
+        width: auto;
+    }
+}
+</style>
+{% endblock %}
+{% block body-title %}
+我的访问记录
+{% endblock %}
+{% block show-title-1 %}用户信息{% endblock %}
+{% block show-title-2 %}用户代理信息{% endblock %}
+{% block show-title-3 %}登录详细时间{% endblock %}
+{% block show-body %}
+    {% if paginator == '' %}
+        <div class="show-body-card">
+            <div class="show-body-card-header"></div>
+            <div class="show-body-card-body" style="text-align: center">抱歉，未找到相关的操作记录</div>
+            <div class="show-body-card-footer"></div>
+        </div>
+    {% else %}
+    {% for log in paginator %}
+        <div class="show-body-card">
+            <div class="show-body-card-header">
+                <div class="inventory-name"><i class="iconfont icon-login"></i> {{ log.login_user.user_name }}</div>
+                <div class="inventory-id"><i class="iconfont icon-user-id"></i> {{ log.login_user.user_id }}</div>
+            </div>
+            <div class="show-body-card-body">
+                登录IP：{{ log.login_ip }}&nbsp;&nbsp;浏览器：{{ log.login_browser }}&nbsp;&nbsp;操作系统：{{ log.login_system }}&nbsp;&nbsp;设备：{{ log.login_device }}
+            </div>
+            <div class="show-body-card-footer">{{ log.login_time }}</div>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

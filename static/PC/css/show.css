@@ -12,6 +12,10 @@
     color: #1f8dd6;
     line-height: 2em;
 }
+#first-page,
+#last-page{
+    width: 5em;
+}
 
 .show-header,
 .show-body-card{
@@ -113,5 +117,11 @@
     }
     .show-footer a{
         width: 5em;
+    }
+    #first-page,
+    #last-page{
+        display: block;
+        width: calc(15em + 10px);
+        margin: 4px auto;
     }
 }
