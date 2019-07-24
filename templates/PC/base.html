@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_lbsbjda27na.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_8dssz1q2tkg.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -48,7 +48,7 @@
                 <hr class="header-line">
                 <i class="iconfont icon-tongji"></i> 数据
                 <ul class="header-menu-ul">
-                    <li class="header-menu-li"><a href="#" class="header-menu-a">每日出入库</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_chart_html' %}" class="header-menu-a"><i class="iconfont icon-Statistics"></i> 每日出入库</a></li>
                     <li class="header-menu-li"><a href="#" class="header-menu-a">库存统计</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:login_record_ask_html' %}" class="header-menu-a"><i class="iconfont icon-ask-record"></i> 网站访问量统计</a></li>
                 </ul>

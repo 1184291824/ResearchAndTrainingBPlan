@@ -13,20 +13,8 @@ from .VerificationCode import verification_code_check
 
 
 def test(request):
-    today = datetime.date.today()
-    base_record = LoginRecord.objects.filter(
-        login_user__user_id__exact='9161040G0000'
-    )
-    ask_record_display = []
-    time_label = []
-    for i in range(0, 10):
-        date_num = today - datetime.timedelta(days=i)
-        ask_record_display.append(base_record.filter(login_date=date_num).count())
-        time_label.append(date_num)
-    return render(request, 'PC/baseChart.html', {
-        'ask_record_display': ask_record_display,
-        'time_label': time_label,
-    })
+    inventory_id = request.GET.get('id')
+    return HttpResponse(inventory_id)
 
 
 def whether_login(request):
@@ -233,10 +221,19 @@ def change_personal_information(request):
         if request.method == 'GET':
             user = User.objects.get(user_id__exact=request.session['user_id'])
             if request.GET.get('page', 'show') == 'change':
-                page = 'PC/changePersonalInformationChange.html'
+                return render(request, 'PC/changePersonalInformationChange.html', {'user': user})
             else:
-                page = 'PC/changePersonalInformationShow.html'
-            return render(request, page, {'user': user})
+                inventory_base = InventoryOperation.objects.filter(inventory_operation_user__exact=user.user_id)
+                inventory_in_num = inventory_base.filter(inventory_operation_category=0).count()
+                inventory_out_num = inventory_base.filter(inventory_operation_category=1).count()
+                inventory_create_num = inventory_base.filter(inventory_operation_category=2).count()
+                return render(request, 'PC/changePersonalInformationShow.html', {
+                    'user': user,
+                    'inventory_in_num': inventory_in_num,
+                    'inventory_out_num': inventory_out_num,
+                    'inventory_create_num': inventory_create_num,
+                })
+
         elif request.method == 'POST':
             if verification_code_check(request):
                 user = User.objects.get(user_id__exact=request.session['user_id'])
@@ -482,11 +479,12 @@ def inventory_operation_html(request):
 
 
 def login_record_html(request):
+    """返回登录记录的界面"""
     if request.session.get('login_status', 0):
         user_id = request.session['user_id']
         log_list = LoginRecord.objects.filter(login_user__user_id__exact=user_id)
         page = request.GET.get('page', 1)
-        paginator = Paginator(log_list, 10)
+        paginator = Paginator(log_list, 10)  # 分页，每页10项
         log_display = paginator.get_page(page)
         return render(request, 'PC/loginRecordShow.html', {
             'paginator': log_display
@@ -496,25 +494,71 @@ def login_record_html(request):
 
 
 def login_record_ask_html(request):
+    """返回网站访问量统计界面"""
     today = datetime.date.today()
     base_record = LoginRecord.objects.filter(
         login_user__user_id__exact='9161040G0000'
-    )
-    ask_record_display = []
-    time_label = []
+    )  # 访问量查询集
+
+    '''获取每日访问量'''
+    ask_record_display = []  # 每日访问量的数组
+    time_label = []  # 存放日期的数组
     if whether_mobile(request):
-        day_range = 5  # 日期的显示范围
+        day_range = 5  # 日期的显示范围，如果是移动设备，仅显示5天
     else:
         day_range = 10
     for i in range(0, day_range):
         date_num = today - datetime.timedelta(days=i)
         ask_record_display.append(base_record.filter(login_date=date_num).count())
         time_label.append(date_num)
+
+    '''获取访问系统占比'''
+    windows_num = base_record.filter(login_system__icontains='windows').count()
+    ios_num = base_record.filter(login_system__icontains='iOS').count()
+    android_num = base_record.filter(login_system__icontains='Android').count()
     return render(request, 'PC/askRecord.html', {
-        'ask_record_display': ask_record_display,
-        'time_label': time_label,
-        'wholeCount': base_record.count(),
+        'ask_record_display': ask_record_display,  # 每日的访问记录
+        'time_label': time_label,  # 横轴，日期
+        'wholeCount': base_record.count(),  # 总访问量
+        'system_num': [android_num, windows_num, ios_num],
     })
 
 
+def inventory_operation_chart_html(request):
+    """返回每日出入库界面， 显示库存操作的统计数据"""
+    if request.session.get('login_status', 0):
+        inventory_id = request.GET.get('id')
+        if inventory_id:  # 如果有限定是某个库存的操作记录统计，则先过滤一下
+            inventory_operation_base = InventoryOperation.objects.filter(inventory_operation_object__inventory_id=inventory_id)
+        else:
+            inventory_operation_base = InventoryOperation.objects.all()
 
+        '''获取每日出入库量'''
+        today = datetime.date.today()  # 获取今天的日期
+        in_num = []  # 每日入库的数组
+        out_num = []  # 每日出库的数组
+        create_num = []  # 每日创建库的数组
+        time_label = []  # 存放日期的数组
+        if whether_mobile(request):
+            day_range = 5  # 日期的显示范围，如果是移动设备，仅显示5天
+        else:
+            day_range = 10
+        for i in range(0, day_range):
+            date_num = today - datetime.timedelta(days=i)
+            in_num.append(inventory_operation_base.filter(
+                inventory_operation_category=0
+            ).filter(inventory_operation_create_date=date_num).count())
+            out_num.append(inventory_operation_base.filter(
+                inventory_operation_category=1
+            ).filter(inventory_operation_create_date=date_num).count())
+            create_num.append(inventory_operation_base.filter(
+                inventory_operation_category=2
+            ).filter(inventory_operation_create_date=date_num).count())
+            time_label.append(date_num)
+
+        return render(request, 'PC/inventoryOperationChart.html', {
+            'time_label': time_label,
+            'in_num': in_num,
+            'out_num': out_num,
+            'create_num': create_num,
+        })

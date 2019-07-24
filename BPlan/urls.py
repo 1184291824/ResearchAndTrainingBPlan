@@ -33,6 +33,7 @@ urlpatterns = [
     path('inventory/change/detail/', views.inventory_change_detail, name='inventory_change_detail'),
     path('inventory/search/', views.inventory_search, name='inventory_search'),
     path('inventory/operation/', views.inventory_operation_html, name='inventory_operation_html'),
+    path('inventory/operation/chart/', views.inventory_operation_chart_html, name='inventory_operation_chart_html'),
 
     path('verificationCode/get/', VerificationCode.verification_code, name='getVerificationCode'),
 

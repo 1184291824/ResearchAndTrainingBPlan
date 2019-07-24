@@ -141,13 +141,9 @@ class InventoryOperation(models.Model):
         (1, '出库'),
         (2, '创建'),
     )
-    # INVENTORY_OPERATION_REVIEW_OPINION_CHOICE = (
-    #     (0, '未审核'),
-    #     (1, '同意'),
-    #     (2, '不同意'),
-    # )
 
     '''属性'''
+    inventory_operation_create_date = models.DateField(auto_now_add=True, verbose_name='操作时间')
     inventory_operation_create_time = models.DateTimeField(auto_now_add=True, verbose_name='操作时间')
     inventory_operation_user = models.CharField(max_length=12, verbose_name='操作者id')
     inventory_operation_user_name = models.CharField(max_length=20, verbose_name='操作者姓名')

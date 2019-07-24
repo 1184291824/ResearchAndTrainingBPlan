@@ -2,16 +2,23 @@
 {% block link %}
 <style>
 canvas{
-    background-color: white;
+    margin: 2em auto;
 }
 .chart{
     width: 80%;
     height: auto;
     margin: 20px auto;
+    text-align: center;
+    background-color: white;
+    padding: 20px 0;
 }
 @media screen and (max-width: 768px){
     .chart{
         width: 90%;
+        padding: 0;
+    }
+    canvas{
+        margin-top: 0;
     }
 }
 </style>
@@ -38,13 +45,13 @@ var options = {
             bottom: 10,
         }
     },
-    legend: {
+    legend: { // 图例
         labels: {
             fontColor: 'gray',
             fontSize: 16,
         }
     },
-    scales: {
+    scales: { // 坐标线
         yAxes: [{
             ticks: {
                 beginAtZero: true,
@@ -54,9 +61,20 @@ var options = {
     },
     title: { // 图表标题
         display: true,
-        text: {% block chart-title %}{% endblock %},
+        text: '',
         fontSize: 18, // 字号18px
     }
+};
+var normal_datasets = {
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: '#36a2eb',
+    pointBorderColor: 'rgba(54, 162, 235, 0.2)',
+    pointBorderWidth: '5',
+    pointRadius: '4',
+    pointBackgroundColor: '#36a2eb',
+    pointHoverRadius: '6',
+    pointHoverBorderColor: 'rgba(54, 162, 235, 0.2)',
+    pointHoverBorderWidth: '7',
 };
 </script>
 {% block script-more %}
