@@ -85,7 +85,7 @@
         margin: 8px auto;
     }
     .show-body-card-header{
-        border-bottom: #80808063 solid 1px;
+        border-bottom: rgba(128, 128, 128, 0.4) solid 1px;
         float: none;
         width: auto;
         height: 48px;
@@ -101,14 +101,14 @@
         height: 4em;
     }
     .show-body-card-footer{
-        border-top: #80808063 solid 1px;
+        border-top: rgba(128, 128, 128, 0.4) solid 1px;
         float: none;
         width: auto;
         height: 33px;
         line-height: 33px;
     }
     .show-body-card-footer-a{
-        border-left: #80808063 solid 1px;
+        border-left: rgba(128, 128, 128, 0.4) solid 1px;
         float: none;
         width: 30%;
     }
