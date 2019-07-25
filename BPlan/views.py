@@ -516,11 +516,25 @@ def login_record_ask_html(request):
     windows_num = base_record.filter(login_system__icontains='windows').count()
     ios_num = base_record.filter(login_system__icontains='iOS').count()
     android_num = base_record.filter(login_system__icontains='Android').count()
+
+    '''获取访问的地理位置占比'''
+    location_num = [
+        base_record.filter(login_location__contains='上海').count(),
+        base_record.filter(login_location__contains='江苏').count(),
+        base_record.filter(login_location__contains='浙江').count(),
+        base_record.filter(login_location__contains='广东').count(),
+        base_record.filter(login_location__contains='河北').count(),
+        base_record.filter(login_location__contains='陕西').count(),
+        base_record.filter(login_location__contains='未知').count(),
+    ]
+    other_location_num = base_record.count() - sum(location_num)
+    location_num.append(other_location_num)
     return render(request, 'PC/askRecord.html', {
         'ask_record_display': ask_record_display,  # 每日的访问记录
         'time_label': time_label,  # 横轴，日期
         'wholeCount': base_record.count(),  # 总访问量
-        'system_num': [android_num, windows_num, ios_num],
+        'system_num': [android_num, windows_num, ios_num],  # 访问系统分类
+        'location_num': location_num,  # 访问地址分类
     })
 
 
