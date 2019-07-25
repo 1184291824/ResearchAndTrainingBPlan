@@ -27,24 +27,19 @@ def get_agent(request):
     }
 
 
-# def get_location(ip):
-#     """返回位置信息"""
-#     url = 'http://ip.taobao.com/service/getIpInfo.php?ip='+ip
-#     error_flag = True
-#     while error_flag:  # 循环，直到请求成功
-#         try:
-#             ul_response = urlopen(url, timeout=1000)
-#             error_flag = False
-#         except urllib.request.HTTPError:
-#             error_flag = True
-#     location = json.loads(ul_response.read().decode('utf-8'))
-#     country = location['data']['country']  # 国家
-#     area = location['data']['area']  # 地区
-#     region = location['data']['region']  # 省份
-#     city = location['data']['city']  # 城市
-#     isp = location['data']['isp']  # 运营商
-#     ip_location = country+area+region+city+isp
-#     return ip_location
+def get_location(ip):
+    """返回位置信息"""
+    url = 'http://ip-api.com/json/'+ip+'?fields=16409&lang=zh-CN'
+    # ip地址查询的api，仅返回查询状态、国家、省、市，语言为汉语
+    ul_response = urlopen(url, timeout=1000)
+    location = json.loads(ul_response.read().decode('utf-8'))
+    if location['status'] == 'fail':
+        return '未知地址'
+    country = location['country']  # 国家
+    region = location['regionName']  # 省份
+    city = location['city']  # 城市
+    ip_location = country+region+city
+    return ip_location
 
 
 def get_ip(request):

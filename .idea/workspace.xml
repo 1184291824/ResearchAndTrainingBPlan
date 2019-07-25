@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="94bd24e8-e2ea-46d1-b8a9-697fbd9aceff" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/VerificationCode.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/VerificationCode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryCreate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/request.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/request.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/更新日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/更新日志.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13296">
-              <caret line="562" column="37" selection-start-line="562" selection-start-column="37" selection-end-line="562" selection-end-column="37" />
+            <state relative-caret-position="453">
+              <caret line="563" column="10" lean-forward="true" selection-start-line="563" selection-start-column="10" selection-end-line="563" selection-end-column="10" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -63,9 +63,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6">
+              <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
+            <state relative-caret-position="816">
               <caret line="35" column="116" selection-start-line="35" selection-start-column="116" selection-end-line="35" selection-end-column="116" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -74,21 +83,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowDetail.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/PC/css/show.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1492">
-              <caret line="94" column="6" lean-forward="true" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="6" />
+            <state relative-caret-position="2640">
+              <caret line="110" column="56" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/更新日志.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="120">
-                <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+                <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               </first_editor>
               <second_editor />
             </state>
@@ -98,8 +107,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/request.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-start-column="16" selection-end-column="16" />
+            <state relative-caret-position="234">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,8 +119,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BPlan/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="145" column="94" selection-start-line="145" selection-start-column="94" selection-end-line="145" selection-end-column="94" />
+            <state relative-caret-position="532">
+              <caret line="228" column="9" lean-forward="true" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -133,6 +145,7 @@
       <find>color</find>
       <find>pure-u-lg-1-4</find>
       <find>pure-u-lg-1-3</find>
+      <find>location</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -155,7 +168,6 @@
         <option value="$PROJECT_DIR$/static/PC/js/login.js" />
         <option value="$PROJECT_DIR$/static/PC/css/login.css" />
         <option value="$PROJECT_DIR$/templates/PC/changeQuestion.html" />
-        <option value="$PROJECT_DIR$/BPlan/request.py" />
         <option value="$PROJECT_DIR$/templates/PC/index.html" />
         <option value="$PROJECT_DIR$/static/PC/css/index.css" />
         <option value="$PROJECT_DIR$/templates/PC/register.html" />
@@ -176,16 +188,12 @@
         <option value="$PROJECT_DIR$/templates/PC/changePersonalInformationChange.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventorySearch.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryOperationInventory.html" />
-        <option value="$PROJECT_DIR$/BPlan/admin.py" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryOperationSearch.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryOperationShow.html" />
         <option value="$PROJECT_DIR$/templates/PC/baseShow.html" />
-        <option value="$PROJECT_DIR$/static/PC/css/show.css" />
         <option value="$PROJECT_DIR$/templates/PC/loginRecordShow.html" />
         <option value="$PROJECT_DIR$/templates/PC/changePersonalInformationShow.html" />
         <option value="$PROJECT_DIR$/templates/PC/askRecord.html" />
-        <option value="$PROJECT_DIR$/BPlan/models.py" />
-        <option value="$PROJECT_DIR$/BPlan/views.py" />
         <option value="$PROJECT_DIR$/BPlan/urls.py" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryOperationChart.html" />
         <option value="$PROJECT_DIR$/templates/PC/baseChart.html" />
@@ -194,13 +202,19 @@
         <option value="$PROJECT_DIR$/BPlan/VerificationCode.py" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryCreate.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" />
+        <option value="$PROJECT_DIR$/static/PC/css/show.css" />
+        <option value="$PROJECT_DIR$/BPlan/models.py" />
+        <option value="$PROJECT_DIR$/BPlan/admin.py" />
+        <option value="$PROJECT_DIR$/BPlan/views.py" />
+        <option value="$PROJECT_DIR$/BPlan/request.py" />
         <option value="$PROJECT_DIR$/更新日志.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
-    <option name="width" value="975" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-78" />
+    <option name="y" value="463" />
+    <option name="width" value="1598" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -211,6 +225,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,7 +276,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -408,12 +422,13 @@
       <workItem from="1563843803772" duration="9474000" />
       <workItem from="1563868130943" duration="19044000" />
       <workItem from="1563931909803" duration="9722000" />
-      <workItem from="1563967337750" duration="5657000" />
+      <workItem from="1563967337750" duration="5970000" />
+      <workItem from="1564024924349" duration="2410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372143000" />
+    <option name="totallyTimeSpent" value="374866000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,10 +440,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26675603" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27010724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -683,30 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowAll.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="96" column="42" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/PC/css/show.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="80" selection-start-line="80" selection-end-line="80" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/PC/loginRecordShow.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -765,30 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13296">
-          <caret line="562" column="37" selection-start-line="562" selection-start-column="37" selection-end-line="562" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="145" column="94" selection-start-line="145" selection-start-column="94" selection-end-line="145" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/VerificationCode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -796,13 +763,6 @@
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -822,10 +782,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
+        <state relative-caret-position="816">
           <caret line="35" column="116" selection-start-line="35" selection-start-column="116" selection-end-line="35" selection-end-column="116" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2256">
+          <caret line="94" column="6" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowAll.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/PC/css/show.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2640">
+          <caret line="110" column="56" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="123" column="25" lean-forward="true" selection-start-line="123" selection-start-column="25" selection-end-line="123" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="563" column="10" lean-forward="true" selection-start-line="563" selection-start-column="10" selection-end-line="563" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="228" column="9" lean-forward="true" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -834,16 +859,9 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="120">
-            <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1492">
-          <caret line="94" column="6" lean-forward="true" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="6" />
         </state>
       </provider>
     </entry>

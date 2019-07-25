@@ -37,14 +37,14 @@ def index(request):
         user = User.objects.get(user_name__exact='访客记录')
         login_agent = get_agent(request)  # 获取登录的设备信息
         ip = get_ip(request)  # 获取登录的ip
-        # location = get_location(ip)  # 通过IP查询地理位置
+        location = get_location(ip)  # 通过IP查询地理位置
         login_record = LoginRecord.add_login_record(  # 增加一条登录记录
             user,
             login_ip=ip,
             login_browser=login_agent['browser'],
             login_system=login_agent['system'],
             login_device=login_agent['device'],
-            # login_location=location,
+            login_location=location,
         )
         login_record.save()  # 保存登录记录
     request.session['ask_status'] = 1
@@ -79,14 +79,14 @@ def login_check(request):
                     request.session['user_name'] = user.user_name
                     login_agent = get_agent(request)  # 获取登录的设备信息
                     ip = get_ip(request)  # 获取登录的ip
-                    # location = get_location(ip)  # 通过IP查询地理位置
+                    location = get_location(ip)  # 通过IP查询地理位置
                     login_record = LoginRecord.add_login_record(  # 增加一条登录记录
                         user,
                         login_ip=ip,
                         login_browser=login_agent['browser'],
                         login_system=login_agent['system'],
                         login_device=login_agent['device'],
-                        # login_location=location,
+                        login_location=location,
                     )
                     login_record.save()  # 保存登录记录
                     return HttpResponse("successLogin")  # 返回登录成功
@@ -562,3 +562,5 @@ def inventory_operation_chart_html(request):
             'out_num': out_num,
             'create_num': create_num,
         })
+    else:
+        return redirect('BPlan:index')
