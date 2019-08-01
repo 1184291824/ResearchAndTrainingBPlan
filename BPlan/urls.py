@@ -39,6 +39,5 @@ urlpatterns = [
 
     # WXApi URL:
     path('wx/login/', WXApi.wx_login_check, name='wx_login_check'),
-
-
+    path('wx/logout/', WXApi.wx_logout, name='wx_logout'),
 ]
