@@ -1,9 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.db.models import Q
+# from django.db.models import Q
 from .models import *
 from django.contrib.auth import logout
 from django.core.paginator import Paginator
-from django.utils import timezone
 import datetime
 from .request import *
 from .VerificationCode import verification_code_check

@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, VerificationCode
+from . import views, VerificationCode, WXApi
 
 app_name = "BPlan"
 
@@ -36,6 +36,9 @@ urlpatterns = [
     path('inventory/operation/chart/', views.inventory_operation_chart_html, name='inventory_operation_chart_html'),
 
     path('verificationCode/get/', VerificationCode.verification_code, name='getVerificationCode'),
+
+    # WXApi URL:
+    path('wx/login/', WXApi.wx_login_check, name='wx_login_check'),
 
 
 ]
