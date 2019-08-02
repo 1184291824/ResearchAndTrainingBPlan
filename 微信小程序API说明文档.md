@@ -1,4 +1,4 @@
-# 本网站微信小程序的API说明文档
+# 本网站微信小程序的API说明文档（所有入口已被关闭）
 
 ## 1 验证码图片
 - 网址：/BPlan/verificationCode/get/

@@ -77,7 +77,7 @@ def verification_code(request):
     return HttpResponse(buf.getvalue(), 'image/png')
 
 
-def verification_code_check(request, method):
+def verification_code_check(request, method="POST"):
     """检查输入的验证码是否正确"""
     if method == "POST":
         code = request.POST.get('code', '1')

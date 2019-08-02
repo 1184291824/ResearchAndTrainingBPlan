@@ -40,7 +40,7 @@ def wx_login_check(request):
             except User.DoesNotExist:
                 result['information'] = 'idDoesNotExist'  # 用户不存在
         else:
-            result['information'] = 'codeWrong'  # 验证码错误
+            result['information'] = 'codeWrong, your code is'+request.POST['code']+',but the right code is'+request.session['Code']  # 验证码错误
     else:
         result['status'] = 'fail'  # 访问出错，返回fail
     return JsonResponse(result)
