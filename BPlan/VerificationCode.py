@@ -77,12 +77,13 @@ def verification_code(request):
     return HttpResponse(buf.getvalue(), 'image/png')
 
 
-def verification_code_check(request):
+def verification_code_check(request, method):
     """检查输入的验证码是否正确"""
-    code = request.POST.get('code', '1')
+    if method == "POST":
+        code = request.POST.get('code', '1')
+    else:
+        code = request.GET.get('code', '1')
     right_code = request.session.get('Code', '0')
-    # print(code + ' ' + right_code)
-
     if code.upper() == right_code.upper():  # 大小写不计，所以都改成大写
         return True
     else:

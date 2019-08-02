@@ -22,14 +22,14 @@ def wx_login_check(request):
         'status': '',  # 访问状态('success' or 'fail')
         'information': '',  # 返回的信息
     }
-    if request.session.get('login_status', 0) == 0 and request.method == 'GET' and request.GET['wx_AppId'] == wx_AppId:
-        # 看是否已经登录，访问的方式是否为GET，微信的AppId是否正确
+    if request.session.get('login_status', 0) == 0 and request.method == 'POST' and request.POST['wx_AppId'] == wx_AppId:
+        # 看是否已经登录，访问的方式是否为POST，微信的AppId是否正确
         result['status'] = 'success'  # 返回成功状态
-        if verification_code_check(request) is True:  # 检查验证码是否正确
-            user_id = request.GET['user_id']  # 获得用户账号
+        if verification_code_check(request, "POST") is True:  # 检查验证码是否正确
+            user_id = request.POST['user_id']  # 获得用户账号
             try:
                 user = User.objects.get(user_id__exact=user_id)  # 从数据库中找这个用户，如果不错在报DoesNotExist的错误
-                user_password = request.GET['user_password']
+                user_password = request.POST['user_password']
                 if user.user_password == user_password:  # 检查用户的密码是否正确
                     result['information'] = 'successLogin'  # 密码正确，返回成功登录
                     request.session['login_status'] = 1  # 往session里存放登录成功的信息
