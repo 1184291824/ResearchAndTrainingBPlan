@@ -22,7 +22,7 @@ def wx_login_check(request):
         'status': '',  # 访问状态('success' or 'fail')
         'information': '',  # 返回的信息
     }
-    if request.session.get('login_status', 0) == 0 and request.method == 'POST' and request.POST['wx_AppId'] == wx_AppId:
+    if request.session.get('login_status', 0) == 0 and request.method == 'POST' and request.POST.get('wx_AppId') == wx_AppId:
         # 看是否已经登录，访问的方式是否为POST，微信的AppId是否正确
         result['status'] = 'success'  # 返回成功状态
         if verification_code_check(request, "POST") is True:  # 检查验证码是否正确
