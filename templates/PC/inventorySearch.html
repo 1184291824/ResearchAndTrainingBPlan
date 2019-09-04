@@ -36,44 +36,47 @@
 {% block body-title %}
 <form class="pure-form" method="get" action="{% url 'BPlan:inventory_search' %}">
     <select id="search_type" name="search_type" style="display: inline-block">
+        <option value="all">综合查询</option>
         <option value="inventory_id">ID</option>
         <option value="inventory_name" selected>名称</option>
-        <option value="inventory_details">详细</option>
+        <option value="inventory_value">值</option>
+        <option value="inventory_package">封装</option>
+        <option value="inventory_mark">备注</option>
         <option value="inventory_create_user_name">创建人</option>
         <option value="inventory_recent_change_user_name">修改人</option>
     </select>
-    <input type="search" class="pure-input-rounded" name="search" id="search" placeholder="请输入关键词查询" required maxlength="20" style="display: inline-block; margin: 0" value="{{ search }}">
+    <input type="search" class="" name="search" id="search" placeholder="请输入关键词查询" required maxlength="20" style="display: inline-block; margin: 0" value="{{ search }}">
     <button type="submit" class="pure-button">查询</button>
 </form>
 {% endblock %}
-{% block show-title-1 %}基本信息{% endblock %}
-{% block show-title-2 %}详细信息{% endblock %}
-{% block show-title-3 %}操作{% endblock %}
 {% block show-body %}
     {% if paginator == 'noSearch' %}
     {% elif paginator == '' %}
-        <div class="show-body-card">
-            <div class="show-body-card-header"></div>
-            <div class="show-body-card-body" style="text-align: center">抱歉，您所搜索的信息为空</div>
-            <div class="show-body-card-footer"></div>
-        </div>
+        <p class="not-found">>>抱歉，未找到相关库存信息<<</p>
     {% else %}
+    <div class="pure-g">
     {% for inventory in paginator %}
-        <div class="show-body-card">
-            <div class="show-body-card-header">
-                <div class="inventory-name"><i class="iconfont icon-kucun"></i> {{ inventory.inventory_name }}</div>
-                <div class="inventory-id"><i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp;<i class="iconfont icon-login"></i> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<i class="iconfont icon-inventory"></i> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>
-            </div>
-            <div class="show-body-card-body">
-                {{ inventory.inventory_details | slice:'50' }}
-            </div>
-            <div class="show-body-card-footer">
-                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
-                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
-                <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="show-body-card">
+                <div class="show-body-card-header">
+                    <div class="inventory-name"><i class="iconfont icon-kucun"></i> {{ inventory.inventory_name }}</div>
+                    <div class="inventory-id"><i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp;<i class="iconfont icon-login"></i> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<i class="iconfont icon-inventory"></i> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>
+                </div>
+                <div class="show-body-card-body">
+                    库存类别：{{ inventory.get_inventory_category_display }}<br>
+                    值：{{ inventory.inventory_value }}<br>
+                    封装：{{ inventory.inventory_package }}<br>
+                    备注：{{ inventory.inventory_mark }}<br>
+                </div>
+                <div class="show-body-card-footer">
+                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
+                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
+                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
+                </div>
             </div>
         </div>
     {% endfor %}
+    </div>
     {% endif %}
 {% endblock %}
 {% block script %}

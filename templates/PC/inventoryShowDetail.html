@@ -47,7 +47,10 @@
     <label class="detail-body-item">库存类别</label>
     <label class="detail-body-item">数量</label>
     <label class="detail-body-item">单位</label>
-    <label class="detail-body-item inventory_details">详细信息</label>
+{#    <label class="detail-body-item inventory_details">详细信息</label>#}
+    <label class="detail-body-item">{{ inventory.get_inventory_category_display }}值</label>
+    <label class="detail-body-item">封装</label>
+    <label class="detail-body-item">备注</label>
     <label class="detail-body-item">创建人</label>
     <label class="detail-body-item">创建时间</label>
     <label class="detail-body-item">最近修改人</label>
@@ -55,10 +58,19 @@
 {% endblock %}
 {% block detail-right %}
     <label class="detail-body-item">{{ inventory.inventory_name }}</label>
-    <label class="detail-body-item">{{ inventory.inventory_category }}</label>
+    <label class="detail-body-item">{{ inventory.get_inventory_category_display }}</label>
     <label class="detail-body-item">{{ inventory.inventory_num }}</label>
     <label class="detail-body-item">{{ inventory.inventory_unit }}</label>
-    <label class="detail-body-item inventory_details">{{ inventory.inventory_details }}</label>
+{#    <label class="detail-body-item inventory_details">{{ inventory.inventory_details }}</label>#}
+    <label class="detail-body-item">
+        {{ inventory.inventory_value }}
+        {% if inventory.inventory_category == 0 %}Ω
+        {% elif inventory.inventory_category == 1 %}pF
+        {% elif inventory.inventory_category == 2 %}mH
+        {% endif %}
+    </label>
+    <label class="detail-body-item">{{ inventory.inventory_package }}</label>
+    <label class="detail-body-item">{{ inventory.inventory_mark }}</label>
     <label class="detail-body-item">{{ inventory.inventory_recent_change_user_name }}</label>
     <label class="detail-body-item">{{ inventory.inventory_create_time }}</label>
     <label class="detail-body-item">{{ inventory.inventory_recent_change_user_name }}</label>

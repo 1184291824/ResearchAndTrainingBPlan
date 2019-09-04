@@ -3,44 +3,10 @@
 {% block link %}
 <link rel="stylesheet" href="{% static 'PC/css/show.css' %}">
 <style>
-#first-page,
-#last-page{
-    width: 5em;
-}
-@media screen and (max-width: 768px) {
-    #first-page,
-    #last-page{
-        display: block;
-        width: calc(15em + 10px);
-        margin: 4px auto;
-    }
-}
 </style>
 {% block style %}{% endblock %}
 {% endblock %}
 {% block body %}
     <div class="body-title">{% block body-title %}{% endblock %}</div>
-    <div class="show-header">
-        <div class="show-body-card-header">{% block show-title-1 %}{% endblock %}</div>
-        <div class="show-body-card-body">{% block show-title-2 %}{% endblock %}</div>
-        <div class="show-body-card-footer">{% block show-title-3 %}{% endblock %}</div>
-    </div>
-    {% block show-body %}{% endblock %}
-    <div class="show-footer">
-        <a id="first-page" href="./?page=1">首页</a>
-        <a      {% if paginator.has_previous %}
-           href="./?page={{ paginator.previous_page_number }}"
-                {% else %}
-           style="color: gray;"
-                {% endif %}
-        >上一页</a>
-        <a>{{ paginator.number }}/{{ paginator.paginator.num_pages }}</a>
-        <a      {% if paginator.has_next %}
-           href="./?page={{ paginator.next_page_number }}"
-                {% else %}
-           style="color: gray;"
-                {% endif %}
-        >下一页</a>
-        <a id="last-page" href="./?page={{ paginator.paginator.num_pages }}">尾页</a>
-    </div>
+    <div class="show-body">{% block show-body %}{% endblock %}</div>
 {% endblock %}

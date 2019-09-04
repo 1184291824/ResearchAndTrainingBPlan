@@ -85,12 +85,27 @@ class User(models.Model):
 
 class Inventory(models.Model):
     """库存"""
+    """选项"""
+    INVENTORY_CATEGORY_CHOICE = (  # 库存类别选项
+        (0, '电阻'),
+        (1, '电容'),
+        (2, '电感'),
+    )
+
     inventory_id = models.CharField(max_length=12, verbose_name='编号')
     inventory_name = models.CharField(max_length=20, verbose_name='名称')
-    inventory_category = models.CharField(max_length=12, verbose_name='类别')
+    # inventory_category = models.CharField(max_length=12, verbose_name='类别')
+    inventory_category = models.PositiveSmallIntegerField(
+        default=0,
+        choices=INVENTORY_CATEGORY_CHOICE,
+        verbose_name='库存类别'
+    )
     inventory_num = models.PositiveIntegerField(verbose_name='数量')
     inventory_unit = models.CharField(max_length=12, default='个', verbose_name='单位')
-    inventory_details = models.TextField(max_length=300, default='无', verbose_name='详细信息')
+    # inventory_details = models.TextField(max_length=300, default='无', verbose_name='详细信息')
+    inventory_value = models.IntegerField(default=0, verbose_name='库存的特性值')
+    inventory_package = models.CharField(default='', max_length=20, verbose_name='封装')
+    inventory_mark = models.CharField(default='无', max_length=20, verbose_name='备注')
     inventory_create_user = models.CharField(max_length=12, verbose_name='创建人id')
     inventory_create_user_name = models.CharField(max_length=20, verbose_name='创建人姓名')
     inventory_create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
@@ -106,7 +121,10 @@ class Inventory(models.Model):
             inventory_category,
             inventory_num,
             inventory_unit,
-            inventory_details,
+            # inventory_details,
+            inventory_value,
+            inventory_package,
+            inventory_mark,
             inventory_create_user,
             inventory_create_user_name,
     ):
@@ -116,7 +134,10 @@ class Inventory(models.Model):
             inventory_category=inventory_category,
             inventory_num=inventory_num,
             inventory_unit=inventory_unit,
-            inventory_details=inventory_details,
+            # inventory_details=inventory_details,
+            inventory_value=inventory_value,
+            inventory_package=inventory_package,
+            inventory_mark=inventory_mark,
             inventory_create_user=inventory_create_user,
             inventory_create_user_name=inventory_create_user_name,
             inventory_recent_change_user=inventory_create_user,

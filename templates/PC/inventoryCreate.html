@@ -3,18 +3,7 @@
 {% block title %}创建新的库存项目{% endblock %}
 {% block body-title %}创建新的库存项目{% endblock %}
 {% block style %}
-<style>
-.pure-form .pure-control-group{
-    text-align: left;
-    padding-left: calc(3vw);
-}
-@media screen and (max-width: 768px){
-    .pure-form .pure-control-group{
-        text-align: left;
-        padding-left: 0;
-    }
-}
-</style>
+
 {% endblock %}
 {% block form %}
 <div class="pure-control-group">
@@ -27,7 +16,11 @@
 </div>
 <div class="pure-control-group">
     <label for="inventory_category">库存类别</label>
-    <input type="text" id="inventory_category" name="inventory_category" value="" placeholder="如：电阻" required maxlength="12"/>
+    <select name="inventory_category" id="inventory_category" required>
+        <option value="0">电阻</option>
+        <option value="1">电容</option>
+        <option value="2">电感</option>
+    </select>
 </div>
 <div class="pure-control-group">
     <label for="inventory_num">库存数量</label>
@@ -38,8 +31,16 @@
     <input type="text" id="inventory_unit" name="inventory_unit" value="个" placeholder="如：个" maxlength="12" required/>
 </div>
 <div class="pure-control-group">
-    <label for="inventory_details">详细信息</label>
-    <textarea rows="5" cols="20" maxlength="300" id="inventory_details" name="inventory_details" placeholder="请输入详细信息" required>无</textarea>
+    <label for="inventory_value" id="inventory_value_title">电阻值(Ω)</label>
+    <input type="number" id="inventory_value" name="inventory_value" value="0" max="32768" min="0" required/>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_package">封装</label>
+    <input type="text" id="inventory_package" name="inventory_package" value="" maxlength="20" required/>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_mark">备注</label>
+    <input type="text" id="inventory_mark" name="inventory_mark" value="" maxlength="20" required/>
 </div>
 <div class="pure-control-group">
     <label for="code">验证码</label>
@@ -58,6 +59,18 @@ $(document).ready(function () {
     let inventory_id = $('#inventory_id');
     let login_button = $('.form-button');
     let code = $('#code');
+    $('#inventory_category').change(function () {
+       console.log($(this).val());
+       if($(this).val()==='0'){
+           $('#inventory_value_title').text('电阻值(Ω)')
+       }
+       else if($(this).val()==='1'){
+           $('#inventory_value_title').text('电容值(pF)')
+       }
+       else {
+           $('#inventory_value_title').text('电感值(mH)')
+       }
+    });
     login_button.click(function () {
         login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
         if (NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){
@@ -71,7 +84,9 @@ $(document).ready(function () {
                     'inventory_category': $('#inventory_category').val(),
                     'inventory_num': $('#inventory_num').val(),
                     'inventory_unit': $('#inventory_unit').val(),
-                    'inventory_details': $('#inventory_details').val(),
+                    'inventory_value': $('#inventory_value').val(),
+                    'inventory_package': $('#inventory_package').val(),
+                    'inventory_mark': $('#inventory_mark').val(),
                     "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
                 },
                 success: function (result) {

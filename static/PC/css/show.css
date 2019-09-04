@@ -1,75 +1,68 @@
-.show-footer{
+.body-title{
+    margin-bottom: 20px;
+}
+.show-body{
     width: 100%;
-    text-align: center;
-    margin: 2em auto;
-}
-.show-footer a{
-    display: inline-block;
-    width: 10em;
-    height: 2em;
+    /*background-color: #f0f0f0;*/
     background-color: white;
-    text-decoration: none;
-    color: #1f8dd6;
-    line-height: 2em;
+    min-height: 600px;
 }
-#first-page,
-#last-page{
-    width: 5em;
-}
-
-.show-header,
+/*.show-header,*/
 .show-body-card{
-    width: 90%;
-    margin: 1px auto;
-    height: 55px;
+    width: 300px;
+    margin: 20px auto;
+    height: 200px;
+    /*padding: 10px;*/
     background-color: white;
+    border-radius: 10px;
     transition: box-shadow 0.5s;
     -webkit-transition: box-shadow 0.5s;
 }
-.show-header{
-    text-align: center;
-    line-height: 55px;
-    color: gray;
-    font-weight: bolder;
-    margin-bottom: 1em;
-}
 .show-body-card:hover{
-    box-shadow: lightgray 0 0 20px 1px;
+    box-shadow: grey 0 0 20px 1px;
 }
 .show-body-card-header{
-    float: left;
-    width: 240px;
-    margin: 2px;
+    /*float: left;*/
+    width: 100%;
+    /*margin: 2px;*/
     height: 52px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #1398d6;
 }
 .show-body-card-body{
-    float: left;
-    width: calc(100% - 228px - 240px - 8px);
     color: gray;
     font-size: 0.9em;
-    margin: 2px;
-    text-indent: 2em;
-    height: 52px;
-    overflow: hidden;
+    margin-left: 2em;
+    margin-right: 2px;
+    height: calc(100% - 52px - 40px);
+    width: auto;
+    line-height: 1.7em;
+    /*font-weight: bold;*/
 }
 .show-body-card-footer{
-    width: 228px;
-    float: right;
-    height: 52px;
-    line-height: 52px;
+    /*width: 228px;*/
+    /*float: right;*/
+    height: 40px;
+    line-height: 40px;
+    background-color: #eaeaea;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .inventory-name{
-    color: var(--bkcolor);
+    /*color: var(--header-bkcolor);*/
+    color: white;
     font-size: 1.5em;
     font-weight: lighter;
     padding-left: 16px;
 }
 .inventory-id{
-    color: gray;
+    color: white;
     font-size: 0.9em;
     padding-left: 16px;
 }
 .show-body-card-footer-a{
+    /*无法加入hover功能，因为其父类已经具备hover*/
     display: inline-block;
     line-height: 33px;
     width: 31%;
@@ -78,50 +71,24 @@
     font-size: 1em;
     text-decoration: none;
 }
+.not-found{
+    text-align: center;
+    font-size: 2em;
+    color: grey;
+    line-height: 4em;
+}
 @media screen and (max-width: 768px){
     .show-body-card{
-        max-width: 500px;
-        height: 145px;
         margin: 8px auto;
-    }
-    .show-body-card-header{
-        border-bottom: rgba(128, 128, 128, 0.4) solid 1px;
-        float: none;
-        width: auto;
-        height: 48px;
+        width: 90%;
+        box-shadow: lightgray 0 0 20px 1px;
     }
     .inventory-name{
         font-size: 1.2em;
+        line-height: 1.5em;
         font-weight: normal;
     }
-    .show-body-card-body{
-        float: none;
-        width: auto;
-        overflow: hidden;
-        height: 4em;
-    }
     .show-body-card-footer{
-        border-top: rgba(128, 128, 128, 0.4) solid 1px;
-        float: none;
-        width: auto;
-        height: 33px;
-        line-height: 33px;
-    }
-    .show-body-card-footer-a{
-        border-left: rgba(128, 128, 128, 0.4) solid 1px;
-        float: none;
-        width: 30%;
-    }
-    .show-header{
-        display: none;
-    }
-    .show-footer a{
-        width: 5em;
-    }
-    #first-page,
-    #last-page{
-        display: block;
-        width: calc(15em + 10px);
-        margin: 4px auto;
+        background-color: #dedede;
     }
 }

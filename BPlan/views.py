@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-# from django.db.models import Q
+from django.db.models import Q
 from .models import *
 from django.contrib.auth import logout
 from django.core.paginator import Paginator
@@ -251,12 +251,12 @@ def inventory_show_all_html(request):
     """返回所有的库存的摘要信息"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
-        inventory_list = Inventory.objects.all()
-        page = request.GET.get('page', 1)
-        paginator = Paginator(inventory_list, 6)
-        inventory_display = paginator.get_page(page)
+        inventory_list = Inventory.objects.all().order_by('-inventory_recent_change_time')  # 按最近修改时间的倒序排序
+        # page = request.GET.get('page', 1)
+        # paginator = Paginator(inventory_list, 6)
+        # inventory_display = paginator.get_page(page)
         return render(request, 'PC/inventoryShowAll.html', {
-            'paginator': inventory_display,
+            'paginator': inventory_list,
         })
     else:
         return redirect('BPlan:index')
@@ -293,7 +293,10 @@ def inventory_change_detail(request):
             inventory.inventory_name = request.POST['inventory_name']
             inventory.inventory_category = request.POST['inventory_category']
             inventory.inventory_unit = request.POST['inventory_unit']
-            inventory.inventory_details = request.POST['inventory_details']
+            # inventory.inventory_details = request.POST['inventory_details']
+            inventory.inventory_value = int(request.POST['inventory_value'])
+            inventory.inventory_package = request.POST['inventory_package']
+            inventory.inventory_mark = request.POST['inventory_mark']
             inventory.save()
             return HttpResponse('success')
     else:
@@ -347,7 +350,10 @@ def inventory_create_add(request):
         inventory_category = request.POST['inventory_category']
         inventory_num = int(request.POST['inventory_num'])
         inventory_unit = request.POST['inventory_unit']
-        inventory_details = request.POST['inventory_details']
+        # inventory_details = request.POST['inventory_details']
+        inventory_value = int(request.POST['inventory_value'])
+        inventory_package = request.POST['inventory_package']
+        inventory_mark = request.POST['inventory_mark']
         inventory_create_user = request.session['user_id']  # 获取创建人的id
         inventory = Inventory.add_inventory(  # 增加库存
             inventory_id=inventory_id,
@@ -355,7 +361,10 @@ def inventory_create_add(request):
             inventory_category=inventory_category,
             inventory_num=inventory_num,
             inventory_unit=inventory_unit,
-            inventory_details=inventory_details,
+            # inventory_details=inventory_details,
+            inventory_value=inventory_value,
+            inventory_package=inventory_package,
+            inventory_mark=inventory_mark,
             inventory_create_user=inventory_create_user,
             inventory_create_user_name=request.session['user_name'],
         )
@@ -428,17 +437,49 @@ def inventory_search(request):
             search_type = request.GET.get('search_type', '')
             search = request.GET.get('search', '')
             if search_type and search:
-                if search_type == 'inventory_id':
+                if search_type == 'all':
+                    inventory = []  # 搜索结果的数组
+                    search_split = search.split()  # 把字符串拆分
+                    for search_word in search_split:
+                        if search_word in ['电阻', '电容', '电感']:  # 按分类搜索
+                            search_word_index = ['电阻', '电容', '电感'].index(search_word)
+                            inventory_item = Inventory.objects.filter(inventory_category__exact=search_word_index)
+                            inventory.extend(inventory_item)  # 将搜索结果加入数组
+
+                        try:  # 按value搜索
+                            inventory_item = Inventory.objects.filter(inventory_value=search_word)
+                            inventory.extend(inventory_item)
+                        except ValueError:
+                            continue
+
+                        inventory_item = Inventory.objects.filter(
+                            Q(inventory_id__contains=search_word)
+                            | Q(inventory_name__contains=search_word)
+                            # | Q(inventory_value__exact=search_word)
+                            | Q(inventory_package__contains=search_word)
+                            | Q(inventory_create_user_name__contains=search_word)
+                            | Q(inventory_recent_change_user_name__contains=search_word)
+                            | Q(inventory_mark__contains=search_word)
+                        )
+                        inventory.extend(inventory_item)
+                    inventory = list(set(inventory))  # 去掉重复的搜索结果
+                elif search_type == 'inventory_id':
                     inventory = Inventory.objects.filter(inventory_id__contains=search)
                 elif search_type == 'inventory_name':
                     inventory = Inventory.objects.filter(inventory_name__contains=search)
-                elif search_type == 'inventory_details':
-                    inventory = Inventory.objects.filter(inventory_details__contains=search)
+                elif search_type == 'inventory_value':
+                    inventory = Inventory.objects.filter(inventory_value=search)
+                elif search_type == 'inventory_package':
+                    inventory = Inventory.objects.filter(inventory_package__contains=search)
+                elif search_type == 'inventory_mark':
+                    inventory = Inventory.objects.filter(inventory_mark__contains=search)
                 elif search_type == 'inventory_create_user_name':
                     inventory = Inventory.objects.filter(inventory_create_user_name__contains=search)
                 elif search_type == 'inventory_recent_change_user_name':
                     inventory = Inventory.objects.filter(inventory_recent_change_user_name__contains=search)
-                if inventory.exists() is False:
+                # elif inventory.exists() is False:
+                #     inventory = ''
+                if len(inventory) == 0:
                     inventory = ''
             else:
                 inventory = 'noSearch'
@@ -455,13 +496,19 @@ def inventory_operation_html(request):
     """显示操作记录"""
     login_status = request.session.get('login_status', 0)
     if login_status == 1 and request.method == 'GET':
+        user_id = request.session.get('user_id')
         if request.GET.get('type', 0) == 'inventory':
+            user = User.objects.get(user_id__exact=user_id)
+            if user.user_identity == 0:
+                return render(request, 'PC/inventoryOperationShow.html', {
+                    'paginator': 'Forbidden'
+                })
             inventory_id = request.GET.get('id')
             inventory_operation = InventoryOperation.objects.filter(
                 inventory_operation_object__inventory_id__exact=inventory_id
             ).order_by('-inventory_operation_create_time')
         elif request.GET.get('type', 0) == 'user':
-            user_id = request.session.get('user_id')
+            # user_id = request.session.get('user_id')
             inventory_operation = InventoryOperation.objects.filter(
                 inventory_operation_user=user_id
             ).order_by('-inventory_operation_create_time')
@@ -481,12 +528,12 @@ def login_record_html(request):
     """返回登录记录的界面"""
     if request.session.get('login_status', 0):
         user_id = request.session['user_id']
-        log_list = LoginRecord.objects.filter(login_user__user_id__exact=user_id)
-        page = request.GET.get('page', 1)
-        paginator = Paginator(log_list, 10)  # 分页，每页10项
-        log_display = paginator.get_page(page)
+        log_list = LoginRecord.objects.filter(login_user__user_id__exact=user_id).order_by("-login_time")  # 按登录时间的倒序排列
+        # page = request.GET.get('page', 1)
+        # paginator = Paginator(log_list, 10)  # 分页，每页10项
+        # log_display = paginator.get_page(page)
         return render(request, 'PC/loginRecordShow.html', {
-            'paginator': log_display
+            'paginator': log_list[0:12]  # 仅显示最近的12条登录记录
         })
     else:
         return redirect('BPlan:index')
