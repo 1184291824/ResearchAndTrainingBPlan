@@ -1,0 +1,36 @@
+{% extends 'PC/base/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}个人信息{% endblock %}
+{% block body-title %}
+个人信息
+{% endblock %}
+{% block detail-contain %}
+    <h1>我的ID</h1>
+    <li>{{ user.user_id}}</li>
+    <h1>姓名</h1>
+    <li>{{ user.user_name }}</li>
+    <h1>性别</h1>
+    <li>{{ user.get_user_gender_display }}</li>
+    <h1>身份</h1>
+    <li>{{ user.get_user_identity_display }}</li>
+    <h1>注册时间</h1>
+    <li>{{ user.user_create_time }}</li>
+    <h1>库存操作</h1>
+    <li>创建 {{ inventory_create_num }}</li>
+    <li>入库 {{ inventory_in_num }}</li>
+    <li>出库 {{ inventory_out_num }}</li>
+{% endblock %}
+{% block detail-footer %}
+<div class="pure-u-1">
+<button id="change"><i class="iconfont icon-change"></i> 修改我的信息</button>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('#change').click(function () {
+        window.location.href = '{% url "BPlan:change_personal_information" %}?page=change'
+    })
+})
+</script>
+{% endblock %}

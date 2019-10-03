@@ -1,0 +1,98 @@
+{% extends 'PC/base/baseForm.html' %}
+{% block title %}
+更改库存信息
+{% endblock %}
+{% block body-title %}
+更改库存信息
+{% endblock %}
+{% block style %}
+<style>
+.pure-form-aligned .pure-control-group label{
+    width: 6em;
+}
+</style>
+{% endblock %}
+{% block form %}
+{#    <div class="pure-control-group">#}
+{#        <label for="inventory_id">库存id</label>#}
+{#        <input type="text" id="inventory_id" name="inventory_id" value="{{ inventory.inventory_id }}" placeholder="请输入库存名称" readonly maxlength="20"/>#}
+{#    </div>#}
+    <div class="pure-control-group">
+        <label for="inventory_name">库存名称</label>
+        <input type="text" id="inventory_name" name="inventory_name" value="{{ inventory.inventory_name }}" placeholder="请输入库存名称" required maxlength="20"/>
+    </div>
+    <div class="pure-control-group">
+        <label for="inventory_group">库存分组</label>
+        <select name="inventory_group" id="inventory_group" required>
+            {% for group in group_list %}
+                <option value="{{ group.auto_id }}" {% if inventory.inventory_group == group %} selected {% endif %}>{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="pure-control-group">
+        <label for="inventory_unit">单位</label>
+        <input type="text" id="inventory_unit" name="inventory_unit" value="{{ inventory.inventory_unit }}" maxlength="12" required/>
+    </div>
+    <div class="pure-control-group">
+        <label for="inventory_price" id="inventory_price_title">单价（元）</label>
+        <input type="number" id="inventory_price" name="inventory_price" value="{{ inventory.inventory_price }}" step="0.001" required/>
+    </div>
+{#    <div class="pure-control-group">#}
+{#        <label for="inventory_package">封装</label>#}
+{#        <input type="text" id="inventory_package" name="inventory_package" value="{{ inventory.inventory_package }}" maxlength="20" required/>#}
+{#    </div>#}
+    <div class="pure-control-group">
+        <label for="inventory_mark">备注</label>
+        <input type="text" id="inventory_mark" name="inventory_mark" value="{{inventory.inventory_mark}}" maxlength="300" required/>
+    </div>
+{% endblock %}
+{% block button-text %}
+<i class="iconfont icon-wancheng"></i> 提交
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    let error = $('.error');
+    {#let inventory_id = $('#inventory_id');#}
+    let login_button = $('.form-button');
+    /*$('#inventory_category').change(function () {
+       console.log($(this).val());
+       if($(this).val()==='0'){
+           $('#inventory_value_title').text('电阻值(Ω)')
+       }
+       else if($(this).val()==='1'){
+           $('#inventory_value_title').text('电容值(pF)')
+       }
+       else {
+           $('#inventory_value_title').text('电感值(mH)')
+       }
+    });*/
+    login_button.click(function () {
+        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
+        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 提交', error, login_button)) {
+            $.ajax({
+                url: "{% url 'BPlan:inventory_change_detail' %}",
+                type: 'POST',
+                data: {
+                    'inventory_id': {{ inventory.inventory_id }},
+                    'inventory_name': $('#inventory_name').val(),
+                    'inventory_group': $('#inventory_group').val(),
+                    'inventory_unit': $('#inventory_unit').val(),
+                    'inventory_price': $('#inventory_price').val(),
+                    {#'inventory_package': $('#inventory_package').val(),#}
+                    'inventory_mark': $('#inventory_mark').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function () {
+                    error.text("");
+                    $("form").hide(1000);
+                    $(".body-title").html("修改成功！");
+                    return 1;
+                },
+            })
+        }
+
+    })
+})
+</script>
+{% endblock %}

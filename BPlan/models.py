@@ -1,19 +1,19 @@
 from django.db import models
 
 
-class Group(models.Model):
-    """组"""
-    group_id = models.CharField(verbose_name='组编号', max_length=12)
-    group_name = models.CharField(verbose_name='组名称', max_length=12)
-    group_create_time = models.DateTimeField(auto_now_add=True, verbose_name='组创建时间')
-
-    def __str__(self):
-        return self.group_name
-
-    class Meta:
-        db_table = "Groups"
-        ordering = ['id']  # 以id为标准升序
-        verbose_name_plural = '分组'
+# class Group(models.Model):
+#     """组"""
+#     group_id = models.CharField(verbose_name='组编号', max_length=12)
+#     group_name = models.CharField(verbose_name='组名称', max_length=12)
+#     group_create_time = models.DateTimeField(auto_now_add=True, verbose_name='组创建时间')
+#
+#     def __str__(self):
+#         return self.group_name
+#
+#     class Meta:
+#         db_table = "Groups"
+#         ordering = ['id']  # 以id为标准升序
+#         verbose_name_plural = '分组'
 
 
 class User(models.Model):
@@ -46,7 +46,7 @@ class User(models.Model):
     '''基础信息'''
     user_id = models.CharField(verbose_name='用户id', max_length=12)
     user_password = models.CharField(max_length=20, verbose_name='密码')
-    user_group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='所属组')
+    # user_group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='所属组')
 
     '''需要完善的信息'''
     user_name = models.CharField(max_length=12, default='保密', verbose_name='姓名')
@@ -69,9 +69,9 @@ class User(models.Model):
     user_create_time = models.DateTimeField(auto_now_add=True, verbose_name='用户注册时间')
 
     @classmethod
-    def add_user(cls, user_id, user_password, user_group):
+    def add_user(cls, user_id, user_password):
         """用于增加一个用户"""
-        user = cls(user_id=user_id, user_password=user_password, user_group=user_group)
+        user = cls(user_id=user_id, user_password=user_password)
         return user
 
     def __str__(self):
@@ -83,29 +83,68 @@ class User(models.Model):
         verbose_name_plural = '用户'
 
 
+class Customer(models.Model):
+    """客户信息"""
+    user_id = models.CharField(max_length=12, verbose_name='业务填写人id')
+    name = models.CharField(max_length=50, verbose_name='客户名称')
+    contact = models.CharField(max_length=20, verbose_name='联系人')
+    tel = models.CharField(max_length=20, verbose_name='联系方式')
+    project_name = models.CharField(max_length=50, verbose_name='项目名称')
+    project_date = models.DateField(verbose_name='项目签订时间')
+    project_amount = models.CharField(max_length=20, verbose_name='项目金额')
+    payment_method = models.CharField(max_length=20, verbose_name='付款方式')
+    mark = models.TextField(max_length=1000, verbose_name='项目技术要求或主要条款', default='无')
+
+    def __str__(self):
+        return self.project_name
+
+    class Meta:
+        db_table = 'Customer'
+        ordering = ['id']
+        verbose_name_plural = '客户信息'
+
+
+class InventoryGroup(models.Model):
+    """库存的组"""
+    auto_id = models.BigAutoField(primary_key=True, verbose_name='组编号')
+    name = models.CharField(max_length=20, verbose_name='组名称')
+    # attributes_name = models.CharField(max_length=50, verbose_name='属性的字段名称')  # 以“,”分割
+    # attributes_num = models.PositiveSmallIntegerField(verbose_name='属性数量')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = "InventoryGroup"
+        ordering = ['auto_id']  # 以id为标准升序
+        verbose_name_plural = '库存的组'
+
+
 class Inventory(models.Model):
     """库存"""
-    """选项"""
-    INVENTORY_CATEGORY_CHOICE = (  # 库存类别选项
-        (0, '电阻'),
-        (1, '电容'),
-        (2, '电感'),
-    )
+    # """选项"""
+    # INVENTORY_CATEGORY_CHOICE = (  # 库存类别选项
+    #     (0, '电阻'),
+    #     (1, '电容'),
+    #     (2, '电感'),
+    # )
 
-    inventory_id = models.CharField(max_length=12, verbose_name='编号')
+    inventory_id = models.BigAutoField(max_length=12, verbose_name='编号', primary_key=True)
     inventory_name = models.CharField(max_length=20, verbose_name='名称')
     # inventory_category = models.CharField(max_length=12, verbose_name='类别')
-    inventory_category = models.PositiveSmallIntegerField(
-        default=0,
-        choices=INVENTORY_CATEGORY_CHOICE,
-        verbose_name='库存类别'
-    )
+    # inventory_category = models.PositiveSmallIntegerField(
+    #     default=0,
+    #     choices=INVENTORY_CATEGORY_CHOICE,
+    #     verbose_name='库存类别'
+    # )
+    inventory_group = models.ForeignKey(InventoryGroup, on_delete=models.CASCADE, verbose_name='分组')
     inventory_num = models.PositiveIntegerField(verbose_name='数量')
     inventory_unit = models.CharField(max_length=12, default='个', verbose_name='单位')
+    inventory_price = models.FloatField(verbose_name='单价')
     # inventory_details = models.TextField(max_length=300, default='无', verbose_name='详细信息')
-    inventory_value = models.IntegerField(default=0, verbose_name='库存的特性值')
-    inventory_package = models.CharField(default='', max_length=20, verbose_name='封装')
-    inventory_mark = models.CharField(default='无', max_length=20, verbose_name='备注')
+    # inventory_value = models.IntegerField(default=0, verbose_name='库存的特性值')
+    # inventory_package = models.CharField(default='', max_length=20, verbose_name='封装')
+    inventory_mark = models.CharField(default='无', max_length=300, verbose_name='备注')
     inventory_create_user = models.CharField(max_length=12, verbose_name='创建人id')
     inventory_create_user_name = models.CharField(max_length=20, verbose_name='创建人姓名')
     inventory_create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
@@ -116,27 +155,29 @@ class Inventory(models.Model):
     @classmethod
     def add_inventory(
             cls,
-            inventory_id,
+            # inventory_id,
             inventory_name,
-            inventory_category,
+            inventory_group,
             inventory_num,
             inventory_unit,
             # inventory_details,
-            inventory_value,
-            inventory_package,
+            # inventory_value,
+            # inventory_package,
+            inventory_price,
             inventory_mark,
             inventory_create_user,
             inventory_create_user_name,
     ):
         inventory = cls(
-            inventory_id=inventory_id,
+            # inventory_id=inventory_id,
             inventory_name=inventory_name,
-            inventory_category=inventory_category,
+            inventory_group=inventory_group,
             inventory_num=inventory_num,
             inventory_unit=inventory_unit,
             # inventory_details=inventory_details,
-            inventory_value=inventory_value,
-            inventory_package=inventory_package,
+            # inventory_value=inventory_value,
+            # inventory_package=inventory_package,
+            inventory_price=inventory_price,
             inventory_mark=inventory_mark,
             inventory_create_user=inventory_create_user,
             inventory_create_user_name=inventory_create_user_name,
@@ -150,7 +191,7 @@ class Inventory(models.Model):
 
     class Meta:
         db_table = "Inventory"
-        ordering = ['id']  # 以id为标准升序
+        ordering = ['inventory_id']  # 以id为标准升序
         verbose_name_plural = '库存'
 
 
@@ -226,7 +267,7 @@ class LoginRecord(models.Model):
     login_browser = models.CharField(max_length=30, default='未知的浏览器', verbose_name='浏览器')
     login_system = models.CharField(max_length=30, default='未知的系统', verbose_name='操作系统')
     login_device = models.CharField(max_length=30, default='未知的设备', verbose_name='设备')
-    login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
+    # login_location = models.CharField(max_length=30, default='未知位置', verbose_name='位置')
     login_date = models.DateField(auto_now_add=True, verbose_name='登录日期')
     login_time = models.DateTimeField(auto_now_add=True, verbose_name='登录时间')
 
@@ -238,7 +279,7 @@ class LoginRecord(models.Model):
             login_browser,
             login_system,
             login_device,
-            login_location,
+            # login_location,
     ):
         login_record = cls(
             login_user=login_user,
@@ -246,7 +287,7 @@ class LoginRecord(models.Model):
             login_browser=login_browser,
             login_system=login_system,
             login_device=login_device,
-            login_location=login_location,
+            # login_location=login_location,
         )
         return login_record
 
@@ -257,3 +298,18 @@ class LoginRecord(models.Model):
         db_table = "LoginRecord"
         ordering = ['-login_time']  # 以id为标准升序
         verbose_name_plural = '访问记录'
+
+
+class CustomerTracking(models.Model):
+    """客户跟踪状态"""
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='客户')
+    track_date = models.DateField(verbose_name='跟踪时间记录')
+    track_state = models.CharField(max_length=50, verbose_name='项目跟踪状态')
+
+    def __str__(self):
+        return self.customer.name
+
+    class Meta:
+        db_table = "CustomerTracking"
+        ordering = ['id']  # 以id为标准升序
+        verbose_name_plural = '客户跟踪状态'

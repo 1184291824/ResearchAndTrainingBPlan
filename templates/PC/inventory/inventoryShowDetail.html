@@ -1,0 +1,74 @@
+{% extends 'PC/base/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}
+库存详细信息
+{% endblock %}
+{% block body-title %}
+库存详细信息
+{% endblock %}
+{% block style %}
+<style>
+.detail-footer{
+    width: 90%;
+    min-width: unset;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .detail-footer button{
+        margin: 8px auto;
+    }
+}
+</style>
+{% endblock %}
+{% block detail-contain %}
+    <h1>库存名称</h1>
+    <li>{{ inventory.inventory_name }}</li>
+    <h1>库存分组</h1>
+    <li>{{ inventory.inventory_group }}</li>
+    <h1>数量</h1>
+    <li>{{ inventory.inventory_num }}{{ inventory.inventory_unit }}</li>
+    <h1>单价</h1>
+    <li>{{ inventory.inventory_price }}元</li>
+    <h1>备注</h1>
+    <li>{{ inventory.inventory_mark }}</li>
+    <h1>创建时间</h1>
+    <li>{{ inventory.inventory_create_time }}</li>
+    <h1>创建人</h1>
+    <li>{{ inventory.inventory_create_user_name }}</li>
+    <h1>最近修改时间</h1>
+    <li>{{ inventory.inventory_recent_change_time }}</li>
+    <h1>最近修改人</h1>
+    <li>{{ inventory.inventory_recent_change_user_name }}</li>
+{% endblock %}
+{% block detail-footer %}
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="changeIn"><i class="iconfont icon-ruku"></i> 入库</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="changeOut"><i class="iconfont icon-chuku"></i> 出库</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="change"><i class="iconfont icon-change"></i> 修改库存信息</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="inventoryOperation"><i class="iconfont icon-churukujilu"></i> 库存记录</button></div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('#change').click(function () {
+        window.location.href = '{% url "BPlan:inventory_change_detail" %}?id={{ inventory.inventory_id }}'
+    });
+    $('#changeIn').click(function () {
+        window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=0'
+    });
+    $('#changeOut').click(function () {
+        window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=1'
+    });
+    $('#inventoryOperation').click(function () {
+        window.location.href = '{% url "BPlan:inventory_operation_html" %}?id={{ inventory.inventory_id }}&type=inventory'
+    })
+})
+</script>
+{% endblock %}

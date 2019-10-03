@@ -1,0 +1,67 @@
+{% extends 'PC/base/baseForm.html' %}
+{% load staticfiles %}
+{% block title %}创建新的库存分组{% endblock %}
+{% block body-title %}创建新的库存分组{% endblock %}
+{% block style %}
+<style>
+.pure-form-aligned .pure-control-group label{
+    width: auto;
+}
+</style>
+{% endblock %}
+{% block form %}
+<div class="pure-control-group">
+    <label for="name">给你的分组起一个名字吧</label>
+    <input type="text" id="name" name="name" value="" required maxlength="20"/>
+</div>
+{% endblock %}
+{% block button-text %}
+<i class="iconfont icon-wancheng"></i> 创建
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    let error = $('.error');
+    let name = $('#name');
+    let login_button = $('.form-button');
+    let flag = true;
+    login_button.click(function () {
+        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
+        if(!name[0].value || name[0].value.trim() == ""){
+                error.text('组名称不得为空');
+                login_button.html('<i class="iconfont icon-wancheng"></i> 创建').removeAttr('disabled');
+                flag = false;
+            }
+            else {
+                flag = true;
+            }
+        if (flag){
+            $.ajax({
+                url: "{% url 'BPlan:inventory_group_create_add' %}",
+                type: 'POST',
+                data: {
+                    'name': name.val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function (result) {
+                    if (result === 'nameExist') {
+                        error.text('您输入分组的名称已经存在了，换一个吧');
+                        name.val("");
+                        login_button.html('<i class="iconfont icon-wancheng"></i> 创建').removeAttr('disabled');
+                        return 0;
+                    }
+                    if (result === 'success') {
+                        error.text("");
+                        $("form").hide(1000);
+                        $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 创建成功");
+                        return 1;
+                    }
+                },
+            })
+        }
+
+    })
+})
+</script>
+{% endblock %}
+

@@ -1,0 +1,117 @@
+{% extends 'PC/base/baseShow.html' %}
+{% block title %}
+查找客户信息
+{% endblock %}
+{% block style %}
+<style>
+.body-title {
+    font-size: 1em;
+    text-align: center;
+    width: 85%;
+    margin: 70px auto;
+    color: black;
+    border-bottom: white solid 2px;
+}
+.pure-form select {
+    padding: 0 .6em;
+    height: 38.8px;
+}
+.show-footer{
+    display: none;
+}
+.search-button{
+    color: white;
+    {#display: block;#}
+    height: 2.3em;
+    width: 6em;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bkcolor);
+    border: solid white 2px;
+    border-radius: 3px;
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s;
+}
+.search-button:hover{
+    color: var(--bkcolor);
+    background-color: white;
+}
+.show-body-card-footer-a{
+    width: 48.5%;
+}
+@media only screen and (max-width: 768px){
+    .body-title{
+        font-size: 1em;
+        padding: 20px 0;
+        letter-spacing: normal;
+        margin: 20px auto;
+        width: 100%;
+    }
+    .search-button{
+        display: none;
+    }
+}
+</style>
+{% endblock %}
+{% block body-title %}
+<form class="pure-form" method="get" action="{% url 'BPlan:customer_search' %}">
+    <select id="search_type" name="search_type" style="display: inline-block">
+        <option value="all">综合查询</option>
+        <option value="name">客户名称</option>
+        <option value="contact">联系人</option>
+        <option value="tel">联系方式</option>
+        <option value="project_name">项目名称</option>
+        <option value="project_amount">项目金额</option>
+        <option value="payment_method">付款方式</option>
+        <option value="mark">主要条款</option>
+        <option value="user">业务填写人</option>
+    </select>
+    <input type="search" class="" name="search" id="search" placeholder="请输入关键词查询" required maxlength="20" style="display: inline-block; margin: 0" value="{{ search }}">
+    <button type="submit" class="search-button">查询客户</button>
+</form>
+{% endblock %}
+{% block show-body %}
+    {% if paginator == 'noSearch' %}
+    {% elif paginator == '' %}
+        <p class="not-found">>>抱歉，未找到相关客户信息<<</p>
+    {% else %}
+    <div class="pure-g">
+    {% for customer in paginator %}
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="show-body-card">
+                <div class="show-body-card-header">
+                    <div class="inventory-name"><label>客户名称</label> {{ customer.name }}</div>
+                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; #}<label>工程名称</label> {{ customer.project_name }}{# <label>项目签订时间</label> {{ customer.project_date.month }}月{{ customer.project_date.day }}日 #}</div>
+                </div>
+                <div class="show-body-card-body">
+                    联系人：{{ customer.contact }}<br>
+                    联系方式：{{ customer.tel }}<br>
+                    项目金额：{{ customer.project_amount }}<br>
+                    付款方式：{{ customer.payment_method }}<br>
+                    项目签订时间：{{ customer.project_date }}<br>
+                </div>
+                <div class="show-body-card-footer">
+{#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>#}
+                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_tracking' %}?id={{ customer.id }}">添加跟踪记录</a>
+                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_show_all_html' %}?id={{ customer.id }}">详细信息</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('option').each(function () {
+        if ($(this).val() === '{{ search_type }}') {
+            $(this).attr('selected', 'selected');
+        }
+        else {
+            $(this).removeAttr('selected');
+        }
+    })
+})
+</script>
+{% endblock %}

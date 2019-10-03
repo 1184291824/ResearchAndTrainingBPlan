@@ -1,0 +1,138 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_xvsfwmqkouo.css">
+    <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
+{% block link %}
+
+{% endblock %}
+</head>
+<body>
+    <div class="body-left">
+    <div class="header">
+        <div class="header-logo">
+            <label>库存管理系统</label>
+        </div>
+        <div class="header-button">
+            <hr class="header-line">
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:login_html' %}"><i class="iconfont icon-login"></i> 登录</a>
+            <a class="header-menu-a header-button-a" href="{% url 'BPlan:register_html' %}"><i class="iconfont icon-register"></i> 注册</a>
+        </div>
+        <div class="header-user">
+            <hr class="header-line">
+            <i class="header-user-name iconfont icon-yuangong" style="font-size: 1.3em"></i>
+            <a class="header-menu-a header-button-a header-button-a-logout" href="{% url 'BPlan:login_logout' %}"><i class="iconfont icon-logout"></i> 退出登录</a>
+        </div>
+        <ul class="header-menu-ul">
+            <li class="header-menu-li">
+                <hr class="header-line">
+                <a href="{% url 'BPlan:index' %}" id="header-menu-1" class="header-menu-a"><i class="iconfont icon-shouye"></i> 主页</a>
+            </li>
+            <li class="header-menu-li">
+                <hr class="header-line">
+                <i class="iconfont icon-kucun"></i> 库存
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 全部库存</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_search' %}" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找库存</a></li>
+{#                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 查询库存操作记录</a></li>#}
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_group_create_html' %}" class="header-menu-a"><i class="iconfont icon-NewGroup"></i> 创建新的库存分组</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_create_html' %}" class="header-menu-a"><i class="iconfont icon-create"></i> 创建新的库存</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-customer"></i> 客户
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:customer_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-form"></i> 全部客户信息</a></li>
+                </ul>
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:customer_search' %}?search_type=user&search=我" class="header-menu-a"><i class="iconfont icon-yuangong"></i> 我创建的</a></li>
+                </ul>
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:customer_search' %}" class="header-menu-a"><i class="iconfont icon-customer-search"></i> 查询客户信息</a></li>
+                </ul>
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:customer_create_html' %}" class="header-menu-a"><i class="iconfont icon-NewCustomer"></i> 创建客户信息</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-tongji"></i> 数据
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_chart_html' %}" class="header-menu-a"><i class="iconfont icon-Statistics"></i> 每日出入库</a></li>
+{#                    <li class="header-menu-li"><a href="#" class="header-menu-a">库存统计</a></li>#}
+{#                    <li class="header-menu-li"><a href="{% url 'BPlan:login_record_ask_html' %}" class="header-menu-a"><i class="iconfont icon-ask-record"></i> 网站访问量统计</a></li>#}
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-yuangong"></i> 我的
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"  id="change-password"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}?type=user" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 我的操作记录</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:login_record_html' %}?page=1" class="header-menu-a"><i class="iconfont icon-cloud-history"></i> 我的访问记录</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="header-picker">
+        <i class="iconfont icon-header-picker"></i>
+    </div>
+    </div>
+    <div class="body-right">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+
+{#    <footer class="footer">#}
+{#        <p>声明：本网站仅作为南京理工大学电光学院科研训练项目《多用户登录的库存管理系统》展示使用</p>#}
+{#        <p>本网站版权归MYZ所有</p>#}
+{#    </footer>#}
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    //function refreshSrc(){  //刷新验证码图片
+       {#$('.code').attr('src', "{% url 'BPlan:getVerificationCode' %}?" + new Date().getTime());#}
+    //}
+    function NoEmpty(ButtonHtml, error, button){  // 检查输入框是否为空
+        let check = true;
+        $('input').each(function () {
+            if(!this.value || this.value.trim() == "") {
+                let label = this.previousElementSibling;
+                error.text(label.innerText + "不允许为空");
+                button.html(ButtonHtml).removeAttr('disabled');
+                check = false;
+                return 0;
+            }
+        });
+        return check;
+    }
+    $(document).ready(function () {
+        $.ajax({
+            url: '{% url 'BPlan:whether_login' %}',
+            success: function(result){
+                if (result['login_status'] === 0) {
+                    $('.header-button').css('display', 'block');
+                } else{
+                    $('.header-user').css('display', 'block');
+                    $('.header-user-name').text(result['user_name']);
+                }
+            }
+        })
+    });
+</script>
+{% block script %}
+
+{% endblock %}
+
+</html>

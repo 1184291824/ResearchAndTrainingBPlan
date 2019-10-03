@@ -1,0 +1,52 @@
+{% extends 'PC/base/baseShow.html' %}
+{% block title %}
+无权限的操作
+{% endblock %}
+{% block style %}
+<style>
+.show-body{
+    padding-top: 100px;
+}
+.show-body-card{
+    height: 200px;
+    width: 460px;
+}
+.show-body-card-header{
+    height: 2.2em;
+}
+.show-body-card-body{
+    margin: 10px 1em;
+    text-indent: 2em;
+    font-size: 1em;
+}
+@media screen and (max-width: 768px){
+    .show-body-card{
+        height: 200px;
+        width: 90%;
+    }
+}
+</style>
+{% endblock %}
+{% block body-title %}
+无权限的操作
+{% endblock %}
+{% block show-body %}
+    <div class="show-body-card">
+        <div class="show-body-card-header">
+            <div class="inventory-name"><i class="iconfont icon-error"></i> 注意</div>
+        </div>
+        <div class="show-body-card-body">
+{#            操作者ID：{{ operation.inventory_operation_user }}<br>#}
+{#            操作详细时间：{{ operation.inventory_operation_create_time}}<br>#}
+{#            操作IP：{{ operation.inventory_operation_user_ip }}<br>#}
+{#            浏览器：{{ operation.inventory_operation_user_browser }}<br>#}
+{#            操作系统：{{ operation.inventory_operation_user_system }}<br>#}
+{#            设备：{{ operation.inventory_operation_user_device }}<br>#}
+            {{ error }}
+        </div>
+{#        <div class="show-body-card-footer">#}
+{#            <label>{{ operation.get_inventory_operation_category_display }}数量：{{ operation.inventory_operation_num }}</label>#}
+{#            <label>剩余数量：{{ operation.inventory_num }}</label>#}
+{#        </div>#}
+    </div>
+{% endblock %}

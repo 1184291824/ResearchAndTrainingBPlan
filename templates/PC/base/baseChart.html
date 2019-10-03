@@ -1,0 +1,83 @@
+{% extends 'PC/base/base.html' %}
+{% block link %}
+<style>
+canvas{
+    margin: 2em auto;
+}
+.chart{
+    width: 80%;
+    height: auto;
+    margin: 20px auto;
+    text-align: center;
+    background-color: white;
+    padding: 20px 0;
+}
+@media screen and (max-width: 768px){
+    .chart{
+        width: 90%;
+        padding: 0;
+    }
+    canvas{
+        margin-top: 0;
+    }
+}
+</style>
+{% block style %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <div class="body-title">{% block body-title %}{% endblock %}</div>
+    <div class="chart">
+    {% block chart-canvas %}
+
+    {% endblock %}
+    </div>
+
+{% endblock %}
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+<script>
+var options = {
+    layout: {
+        padding: {
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10,
+        }
+    },
+    legend: { // 图例
+        labels: {
+            fontColor: 'gray',
+            fontSize: 16,
+        }
+    },
+    scales: { // 坐标线
+        yAxes: [{
+            ticks: {
+                beginAtZero: true,
+                suggestedMax: 10,
+            }
+        }]
+    },
+    title: { // 图表标题
+        display: true,
+        text: '',
+        fontSize: 18, // 字号18px
+    }
+};
+var normal_datasets = {
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: '#36a2eb',
+    pointBorderColor: 'rgba(54, 162, 235, 0.2)',
+    pointBorderWidth: '5',
+    pointRadius: '4',
+    pointBackgroundColor: '#36a2eb',
+    pointHoverRadius: '6',
+    pointHoverBorderColor: 'rgba(54, 162, 235, 0.2)',
+    pointHoverBorderWidth: '7',
+};
+</script>
+{% block script-more %}
+
+{% endblock %}
+{% endblock %}

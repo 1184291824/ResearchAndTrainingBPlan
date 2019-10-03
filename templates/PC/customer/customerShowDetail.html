@@ -1,0 +1,78 @@
+{% extends 'PC/base/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}
+客户详细信息
+{% endblock %}
+{% block body-title %}
+客户详细信息
+{% endblock %}
+{% block style %}
+<style>
+.detail-footer{
+    width: 90%;
+    min-width: unset;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .detail-footer button{
+        margin: 8px auto;
+    }
+}
+</style>
+{% endblock %}
+{% block detail-contain %}
+    <h1>客户名称</h1>
+    <li>{{ customer.name }}</li>
+    <h1>联系人</h1>
+    <li>{{ customer.contact }}</li>
+    <h1>联系方式</h1>
+    <li>{{ customer.tel }}</li>
+    <h1>项目名称</h1>
+    <li>{{ customer.project_name }}</li>
+    <h1>项目签订时间</h1>
+    <li>{{ customer.project_date }}</li>
+    <h1>项目金额</h1>
+    <li>{{ customer.project_amount}}</li>
+    <h1>付款方式</h1>
+    <li>{{ customer.payment_method }}</li>
+    <h1>项目技术要求或主要条款</h1>
+    <li>{{ customer.mark }}</li>
+    <h1>业务填写人</h1>
+    <li>{{ user }}</li>
+    <h1>项目跟踪记录</h1>
+    {% for track in tracking %}
+        <li>{{ track.track_date }} | {{ track.track_state }}</li>
+    {% endfor %}
+{% endblock %}
+{% block detail-footer %}
+{#    <div class="pure-u-1 pure-u-md-1-2">#}
+{#        <div><button id="changeIn"><i class="iconfont icon-ruku"></i> 入库</button></div>#}
+{#    </div>#}
+{#    <div class="pure-u-1 pure-u-md-1-2">#}
+{#        <div><button id="changeOut"><i class="iconfont icon-chuku"></i> 出库</button></div>#}
+{#    </div>#}
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="change"><i class="iconfont icon-change"></i> 修改客户信息</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="customerTracking"><i class="iconfont icon-churukujilu"></i> 添加项目跟踪记录</button></div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div><button id="excel"><i class="iconfont icon-Excel"></i> 导出Excel</button></div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    $('#change').click(function () {
+        window.location.href = '{% url "BPlan:customer_change_detail" %}?id={{ customer.id }}'
+    });
+    $('#customerTracking').click(function () {
+        window.location.href = '{% url "BPlan:customer_tracking" %}?id={{ customer.id }}'
+    });
+    $('#excel').click(function () {
+        window.location.href = '{% url "BPlan:customer_excel" %}?id={{ customer.id }}'
+    })
+})
+</script>
+{% endblock %}

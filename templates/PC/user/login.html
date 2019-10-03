@@ -1,0 +1,89 @@
+{% extends 'PC/base/baseForm.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block style %}
+    <style type="text/css">
+    #forget{
+        display: block;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 1em;
+    }
+    .pure-form-aligned .pure-control-group label{
+        width: auto;
+    }
+    </style>
+{% endblock %}
+{% block body-title %}用户登录{% endblock %}
+{% block form %}
+    <div class="pure-control-group">
+        <label for="user_id">账号</label>
+        <input type="text" name="user_id" id="user_id" value="" placeholder="请输入账号" maxlength="12" required/>
+    </div>
+    <div class="pure-control-group">
+        <label for="user_password">密码</label>
+        <input type="password" name="user_password" id="user_password" placeholder="请输入密码" maxlength="20" required/>
+    </div>
+    <div class="pure-control-group">
+{#        <label for="code">验证码</label>#}
+{#        <input type="text" name="code" id="code" value="" placeholder="验证码" maxlength="4" minlength="4" required style="width: calc(17em - 100px - 5px); display: inline-block"/>#}
+{#        <img class="code" onclick="refreshSrc()"/>#}
+        <a href="{% url 'BPlan:change_password_html' %}" id="forget">忘记密码？</a>
+    </div>
+{% endblock %}
+{% block button-text %}
+<i class="iconfont icon-wancheng"></i> 登录
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+    $(document).ready(function () {
+        let login_button = $('.form-button');
+        {#refreshSrc();#}
+        let user_id = $('#user_id');
+        let user_password = $('#user_password');
+        {#let code = $('#code');#}
+        let error = $('.error');
+        login_button.click(function () {
+            if(NoEmpty('<i class="iconfont icon-wancheng"></i> 登录', error, login_button)){
+                $.ajax({
+                    url: '{% url 'BPlan:login_check' %}',
+                    data: {
+                        'user_id': user_id.val(),
+                        'user_password': user_password.val(),
+                        {#'code': code.val(),#}
+                        "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                    },
+                    type: 'POST',
+                    success: function (result) {
+                        {#if (result === 'codeWrong'){#}
+                        {#    error.text('验证码错误！');#}
+                        {#    code.val("");#}
+                        {#    refreshSrc();#}
+                        {#    return 0;#}
+                        //}
+                        if (result === 'idDoesNotExist') {
+                            error.text('您输入的用户名不存在');
+                            user_id.val("");
+                            {#code.val("");#}
+                            {#refreshSrc();#}
+                            return 0;
+                        }
+                        if (result === 'passwordWrong') {
+                            error.text('用户名或密码错误');
+                            user_password.val("");
+                            {#code.val("");#}
+                            {#refreshSrc();#}
+                            return 0;
+                        }
+                        if (result === 'successLogin') {
+                            window.location.href="{% url 'BPlan:index' %}";
+                            return 1;
+                        }
+                    },
+                })
+            }
+        })
+    })
+    </script>
+{% endblock %}

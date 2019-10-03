@@ -30,7 +30,7 @@
 .display {
     background-color: rgb(244,244,244);
     position: static;
-    margin-top: 650px;
+    margin-top: 250px;
     width: 100%;
     min-width: inherit;
     /*top: 650px;*/
@@ -142,7 +142,7 @@
         font-size: 1em;
     }
     .display{
-        margin-top: 400px;
+        margin-top: 120px;
     }
     .display-function-title{
         font-size: 1.2em;

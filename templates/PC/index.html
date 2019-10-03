@@ -1,4 +1,4 @@
-{% extends 'PC/base.html' %}
+{% extends 'PC/base/base.html' %}
 {% load staticfiles %}
 {% block title %}
 主页
@@ -8,30 +8,30 @@
 {% endblock %}
 {% block body %}
     <div class="body">
-        <div class="body-title"><label>MYZ 库存管理系统</label></div>
-        <div class="body-contain">
-            <table>
-                <tr>
-                    <td>指导老师:</td>
-                    <td>李洪涛</td>
-                </tr>
-                <tr>
-                    <td>小组成员:</td>
-                    <td>马子轩</td>
-                    <td>9161040G0826</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>杨智渊</td>
-                    <td>9161040G1033</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>邹逸妍</td>
-                    <td>916114070228</td>
-                </tr>
-            </table>
-        </div>
+        <div class="body-title"><label>库存管理系统</label></div>
+{#        <div class="body-contain">#}
+{#            <table>#}
+{#                <tr>#}
+{#                    <td>指导老师:</td>#}
+{#                    <td>李洪涛</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>小组成员:</td>#}
+{#                    <td>马子轩</td>#}
+{#                    <td>9161040G0826</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td></td>#}
+{#                    <td>杨智渊</td>#}
+{#                    <td>9161040G1033</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td></td>#}
+{#                    <td>邹逸妍</td>#}
+{#                    <td>916114070228</td>#}
+{#                </tr>#}
+{#            </table>#}
+{#        </div>#}
     </div>
     <div class="body display">
         <div class="display-function">
@@ -151,10 +151,10 @@
         </div>
     </div>
 {% endblock %}
-{% block script %}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#header-menu-1').css('color', '#4ab2f6');  /*设置主页标题颜色为蓝色*/
-        })
-    </script>
-{% endblock %}
+{#{% block script %}#}
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function() {#}
+{#            $('#header-menu-1').css('color', '#4ab2f6');  /*设置主页标题颜色为蓝色*/#}
+{#        })#}
+{#    </script>#}
+{#{% endblock %}#}

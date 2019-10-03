@@ -1,0 +1,17 @@
+{% extends 'PC/base/base.html' %}
+{% load staticfiles %}
+{% block link %}
+    <link href="{% static 'PC/css/detail.css' %}" rel="stylesheet">
+    {% block style %}
+
+    {% endblock %}
+{% endblock %}
+{% block body %}
+<div class="body-title"><label>{% block body-title %}{% endblock %}</label></div>
+    <div class="detail">
+        <div class="detail-contain">{% block detail-contain %}{% endblock %}</div>
+        <div class="detail-footer">
+            <div class="pure-g">{% block detail-footer %}{% endblock %}</div>
+        </div>
+    </div>
+{% endblock %}

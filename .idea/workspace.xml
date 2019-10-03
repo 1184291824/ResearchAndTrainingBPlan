@@ -2,29 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94bd24e8-e2ea-46d1-b8a9-697fbd9aceff" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/templates/PC/user/changePassword.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/PC/user/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0002_auto_20190627_1548.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0003_auto_20190628_1633.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0004_auto_20190711_2021.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0005_auto_20190714_1132.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0006_auto_20190723_1056.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0007_auto_20190723_2040.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0008_inventoryoperation_inventory_operation_create_date.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0009_loginrecord_login_location.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BPlan/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/views_inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/PC/css/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/PC/css/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/PC/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/PC/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/show.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/baseShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/baseShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryChangeDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryChangeDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryCreate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryOperationShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryOperationShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventorySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventorySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryShowAll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/loginRecordShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/loginRecordShow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/askRecord.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/askRecord.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/baseChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/baseDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/baseForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/baseShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseShow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/changePassword.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/changePersonalInformationChange.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/changePersonalInformationChange.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/changePersonalInformationShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/changePersonalInformationShow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/changeQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/changeQuestion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryChange.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryChange.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryChangeDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryChangeDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryCreate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryOperationChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryOperationSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryOperationShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventorySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/loginRecordShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/PC/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/更新日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/更新日志.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,13 +79,16 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ResearchAndTrainingBPlan" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BPlan/views.py">
+        <entry file="file://$PROJECT_DIR$/BPlan/views_inventory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="500" column="59" selection-start-line="500" selection-start-column="59" selection-end-line="500" selection-end-column="59" />
+            <state relative-caret-position="384">
+              <caret line="351" column="54" selection-start-line="351" selection-start-column="54" selection-end-line="351" selection-end-column="54" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -81,10 +97,64 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BPlan/models.py">
+        <entry file="file://$PROJECT_DIR$/BPlan/view_customer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1458">
-              <caret line="105" column="75" selection-start-line="105" selection-start-column="75" selection-end-line="105" selection-end-column="75" />
+            <state relative-caret-position="480">
+              <caret line="285" column="46" lean-forward="true" selection-start-line="285" selection-start-column="46" selection-end-line="285" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venvmzx/Lib/site-packages/xlwt/Worksheet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="1145" column="21" selection-start-line="1145" selection-start-column="21" selection-end-line="1145" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="618">
+              <caret line="44" column="80" lean-forward="true" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerShowDetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1074">
+              <caret line="74" column="6" lean-forward="true" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BPlan/view_common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/PC/base/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -93,10 +163,19 @@
         <entry file="file://$PROJECT_DIR$/更新日志.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="120">
-                <caret line="5" column="15" lean-forward="true" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+              <first_editor relative-caret-position="288">
+                <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BPlan/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="306" column="15" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -108,9 +187,9 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="HTML File" />
-        <option value="Python Script" />
         <option value="package.json" />
+        <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -124,6 +203,7 @@
       <find>pure-u-lg-1-3</find>
       <find>location</find>
       <find>GET</find>
+      <find>user_group</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -135,65 +215,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/PC/showInventoryDetail.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryOperationBase.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryOperationUser.html" />
-        <option value="$APPLICATION_CONFIG_DIR$/pycharm64.exe.vmoptions" />
-        <option value="$PROJECT_DIR$/static/PC/js/login.js" />
-        <option value="$PROJECT_DIR$/static/PC/css/login.css" />
-        <option value="$PROJECT_DIR$/templates/PC/changeQuestion.html" />
-        <option value="$PROJECT_DIR$/templates/PC/index.html" />
-        <option value="$PROJECT_DIR$/static/PC/css/index.css" />
-        <option value="$PROJECT_DIR$/templates/PC/register.html" />
-        <option value="$PROJECT_DIR$/static/PC/css/detail.css" />
-        <option value="$PROJECT_DIR$/templates/PC/login.html" />
-        <option value="$PROJECT_DIR$/templates/PC/changePassword.html" />
-        <option value="$PROJECT_DIR$/参考资料.txt" />
-        <option value="$PROJECT_DIR$/static/PC/css/base.css" />
-        <option value="$PROJECT_DIR$/static/PC/css/baseShow.css" />
-        <option value="$PROJECT_DIR$/templates/PC/baseForm.html" />
-        <option value="$PROJECT_DIR$/templates/PC/baseDetail.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryShowDetailChange.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryDetailChange.html" />
-        <option value="$PROJECT_DIR$/static/PC/css/form.css" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryChange.html" />
-        <option value="$PROJECT_DIR$/templates/PC/changePersonalInformationChange.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryOperationInventory.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryOperationSearch.html" />
-        <option value="$PROJECT_DIR$/templates/PC/changePersonalInformationShow.html" />
-        <option value="$PROJECT_DIR$/templates/PC/inventoryOperationChart.html" />
-        <option value="$PROJECT_DIR$/templates/PC/baseChart.html" />
-        <option value="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" />
-        <option value="$PROJECT_DIR$/templates/PC/askRecord.html" />
-        <option value="$PROJECT_DIR$/BPlan/request.py" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/BPlan/WXApi.py" />
-        <option value="$PROJECT_DIR$/BPlan/VerificationCode.py" />
-        <option value="$PROJECT_DIR$/BPlan/urls.py" />
-        <option value="$PROJECT_DIR$/微信小程序API说明文档.md" />
         <option value="$PROJECT_DIR$/templates/PC/baseShow.html" />
         <option value="$PROJECT_DIR$/templates/PC/loginRecordShow.html" />
-        <option value="$PROJECT_DIR$/BPlan/admin.py" />
-        <option value="$PROJECT_DIR$/BPlan/models.py" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryCreate.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryShowDetail.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryChangeDetail.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryShowAll.html" />
-        <option value="$PROJECT_DIR$/static/PC/css/show.css" />
         <option value="$PROJECT_DIR$/templates/PC/inventorySearch.html" />
         <option value="$PROJECT_DIR$/templates/PC/inventoryOperationShow.html" />
-        <option value="$PROJECT_DIR$/BPlan/views.py" />
+        <option value="$PROJECT_DIR$/static/PC/css/index.css" />
+        <option value="$PROJECT_DIR$/templates/PC/register.html" />
+        <option value="$PROJECT_DIR$/templates/PC/login.html" />
+        <option value="$PROJECT_DIR$/templates/PC/index.html" />
+        <option value="$PROJECT_DIR$/templates/PC/changePassword.html" />
+        <option value="$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py" />
         <option value="$PROJECT_DIR$/templates/PC/base.html" />
+        <option value="$PROJECT_DIR$/templates/PC/user/login.html" />
+        <option value="$PROJECT_DIR$/templates/PC/user/register.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryGroupCreate.html" />
+        <option value="$PROJECT_DIR$/templates/PC/base/baseShow.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryCreate.html" />
+        <option value="$PROJECT_DIR$/static/PC/css/form.css" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerCreate.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" />
+        <option value="$PROJECT_DIR$/BPlan/admin.py" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerSearch.html" />
+        <option value="$PROJECT_DIR$/static/PC/css/detail.css" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryShowDetail.html" />
+        <option value="$PROJECT_DIR$/templates/PC/base/baseDetail.html" />
+        <option value="$PROJECT_DIR$/templates/PC/user/changePersonalInformationShow.html" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerShowAll.html" />
+        <option value="$PROJECT_DIR$/BPlan/views.py" />
+        <option value="$PROJECT_DIR$/templates/PC/user/changePersonalInformationChange.html" />
+        <option value="$PROJECT_DIR$/BPlan/view_user.py" />
+        <option value="$PROJECT_DIR$/templates/PC/user/changeQuestion.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryChangeDetail.html" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerChangeDetail.html" />
+        <option value="$PROJECT_DIR$/templates/PC/base/base.html" />
+        <option value="$PROJECT_DIR$/static/PC/css/show.css" />
+        <option value="$PROJECT_DIR$/BPlan/view_common.py" />
+        <option value="$PROJECT_DIR$/templates/PC/forbidden.html" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryChange.html" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerTracking.html" />
+        <option value="$PROJECT_DIR$/BPlan/views_inventory.py" />
+        <option value="$PROJECT_DIR$/BPlan/models.py" />
+        <option value="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" />
+        <option value="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" />
+        <option value="$PROJECT_DIR$/templates/PC/customer/customerShowDetail.html" />
+        <option value="$PROJECT_DIR$/BPlan/urls.py" />
+        <option value="$PROJECT_DIR$/BPlan/view_customer.py" />
         <option value="$PROJECT_DIR$/更新日志.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-80" />
-    <option name="y" value="460" />
-    <option name="width" value="1600" />
-    <option name="height" value="1050" />
+    <option name="x" value="-1387" />
+    <option name="y" value="151" />
+    <option name="width" value="1152" />
+    <option name="height" value="627" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="添加" />
@@ -220,12 +300,6 @@
               <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
               <item name="BPlan" type="462c0819:PsiDirectoryNode" />
               <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
-              <item name="BPlan" type="462c0819:PsiDirectoryNode" />
-              <item name="views.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
@@ -261,6 +335,34 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="PC" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="PC" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="PC" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="PC" type="462c0819:PsiDirectoryNode" />
+              <item name="inventory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ResearchAndTrainingBPlan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ResearchAndTrainingBPlan" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="PC" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -274,20 +376,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BPlan/view_customer.py" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\project\ResearchAndTrainingBPlan\static\PC\img" />
-      <recent name="E:\python projects\ResearchAndTrainingBPlan\templates\PC" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\project\ResearchAndTrainingBPlan" />
       <recent name="D:\project\ResearchAndTrainingBPlan\static\fonts" />
       <recent name="D:\project\ResearchAndTrainingBPlan\BPlan" />
+      <recent name="D:\project\ResearchAndTrainingBPlan\static\PC\img" />
+      <recent name="E:\python projects\ResearchAndTrainingBPlan\templates\PC" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\ResearchAndTrainingBPlan\templates\PC\user" />
+      <recent name="D:\project\ResearchAndTrainingBPlan\templates\PC\inventory" />
+      <recent name="D:\project\ResearchAndTrainingBPlan\templates\PC\base" />
       <recent name="D:\project\ResearchAndTrainingBPlan\static\PC\img" />
       <recent name="E:\python projects\ResearchAndTrainingBPlan\templates\PC" />
     </key>
@@ -318,7 +423,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BPlan/views.py" />
+      <option name="SCRIPT_NAME" value="D:\project\ResearchAndTrainingBPlan\BPlan\views_inventory.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -421,12 +526,20 @@
       <workItem from="1566710022350" duration="25000" />
       <workItem from="1567238215289" duration="7097000" />
       <workItem from="1567469205219" duration="24246000" />
-      <workItem from="1567555987169" duration="3623000" />
+      <workItem from="1567555987169" duration="4221000" />
+      <workItem from="1567601900710" duration="3269000" />
+      <workItem from="1567767758085" duration="1222000" />
+      <workItem from="1569742307006" duration="5335000" />
+      <workItem from="1569807875381" duration="6589000" />
+      <workItem from="1569990633241" duration="2687000" />
+      <workItem from="1569996848162" duration="10029000" />
+      <workItem from="1570012967117" duration="11816000" />
+      <workItem from="1570065813540" duration="49083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430898000" />
+    <option name="totallyTimeSpent" value="521526000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -438,14 +551,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2935657" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49929675" visible="true" weight="0.19989339" />
+      <window_info id="Structure" order="1" sideWeight="0.5007032" side_tool="true" weight="0.19989339" />
+      <window_info id="Favorites" order="2" sideWeight="0.5007032" side_tool="true" weight="0.19989339" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3282123" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32725322" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -455,15 +568,15 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3282123" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.23743017" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.23743017" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3282123" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.23712446" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.32725322" />
       <window_info anchor="bottom" id="调试" order="13" weight="0.32960895" />
-      <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.49946696" weight="0.3282123" />
+      <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.49946696" weight="0.32725322" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
-      <window_info anchor="right" id="Database" order="4" weight="0.26206434" />
+      <window_info anchor="right" id="Database" order="4" weight="0.26172706" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,12 +626,8 @@
     <SUITE FILE_PATH="coverage/ResearchAndTrainingBPlan$views.coverage" NAME="views Coverage Results" MODIFIED="1563884765729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BPlan" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Python/Lib/site-packages/Django-2.1.3-py3.7.egg/django/contrib/admin/options.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="540" column="4" selection-start-line="540" selection-start-column="4" selection-end-line="540" selection-end-column="4" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/BPlan/migrations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/urls.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -530,336 +639,357 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/changeQuestion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="40" column="65" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/changePassword.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="58" column="67" lean-forward="true" selection-start-line="58" selection-start-column="67" selection-end-line="58" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/PC/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowAllOld.html" />
-    <entry file="file://$PROJECT_DIR$/templates/PC/baseForm.html">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="9" column="49" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="49" />
+          <caret line="144" column="26" lean-forward="true" selection-start-line="144" selection-start-column="26" selection-end-line="144" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/PC/css/base.css">
+    <entry file="file://$PROJECT_DIR$/BPlan/migrations/0003_auto_20191002_1706.py" />
+    <entry file="file://$PROJECT_DIR$/templates/PC/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="168" selection-start-line="168" selection-end-line="198" selection-end-column="1" />
+        <state relative-caret-position="954">
+          <caret line="159" column="18" lean-forward="true" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Python/Lib/site-packages/Django-2.1.3-py3.7.egg/django/db/models/query.py">
+    <entry file="file://D:/Python/Lib/site-packages/Django-2.1.3-py3.7.egg/django/contrib/admin/static/admin/js/vendor/jquery/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="852" column="8" selection-start-line="852" selection-start-column="8" selection-end-line="852" selection-end-column="8" />
+        <state relative-caret-position="302">
+          <caret line="5930" column="4" selection-start-line="5930" selection-start-column="4" selection-end-line="5930" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/PC/css/form.css">
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryGroupCreate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1272">
-          <caret line="53" selection-start-line="53" selection-end-line="57" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryOperationUser.html" />
-    <entry file="file://$PROJECT_DIR$/static/PC/css/detail.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryChange.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/loginrecord">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="6ae26c79-3b33-4877-add0-73869033ddad">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryOperationChart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/baseChart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="504">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ResearchAndTrainingBPlan/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json" />
-    <entry file="file://$PROJECT_DIR$/templates/PC/askRecord.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="101" column="30" selection-start-line="101" selection-start-column="30" selection-end-line="101" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/参考资料.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/微信小程序API说明文档.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="28" selection-start-column="28" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="24">
-            <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/VerificationCode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="79" column="52" lean-forward="true" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="3696">
+          <caret line="154" column="35" selection-start-line="154" selection-start-column="35" selection-end-line="154" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/WXApi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/loginRecordShow.html">
+    <entry file="file://$PROJECT_DIR$/static/PC/css/base.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="576">
+          <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/baseShow.html">
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryCreate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="456">
+          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/baseDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#552#629#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/migrations/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="70" column="12" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/changePersonalInformationShow.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="26" column="80" lean-forward="true" selection-start-line="26" selection-start-column="80" selection-end-line="26" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryCreate.html">
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="88" column="65" lean-forward="true" selection-start-line="86" selection-start-column="20" selection-end-line="88" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/changePersonalInformationChange.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryChangeDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="44" column="41" lean-forward="true" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryShowAll.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="31" column="10" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="31" selection-end-column="10" />
+          <caret line="18" column="40" lean-forward="true" selection-start-line="17" selection-end-line="18" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+        <state relative-caret-position="138">
+          <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventorySearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+    <entry file="das://32c29567-e607-4845-8292-a736a2c4ec20/schema/bplan/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="f002d69a-af75-4f2c-8d57-5c909d98dcdc">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/login.html">
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerSearch.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+        <state relative-caret-position="162">
+          <caret line="94" column="92" lean-forward="true" selection-start-line="94" selection-start-column="92" selection-end-line="94" selection-end-column="92" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/PC/css/show.css">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+        <state relative-caret-position="288">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/register.html">
+    <entry file="file://$PROJECT_DIR$/static/PC/css/detail.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="45" column="21" selection-start-line="41" selection-start-column="12" selection-end-line="45" selection-end-column="21" />
+        <state relative-caret-position="426">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/changePersonalInformationShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryShowDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="25" column="17" lean-forward="true" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/base/baseDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/changeQuestion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1752">
+          <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/view_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="136" column="42" lean-forward="true" selection-start-line="136" selection-start-column="42" selection-end-line="136" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/changePassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/changePersonalInformationChange.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" selection-start-line="7" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerCreate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="48" selection-start-line="48" selection-end-line="48" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/base/baseForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="104" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/PC/css/form.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryChangeDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1320">
+          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerChangeDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="74" column="61" lean-forward="true" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/request.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        <state relative-caret-position="426">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="16" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryOperationSearch.html">
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
+        <state relative-caret-position="-1128">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/base/baseShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/PC/css/show.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1734">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/forbidden.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/base/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/view_common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerTracking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryChange.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="26" column="106" selection-start-line="26" selection-start-column="106" selection-end-line="26" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryOperationSearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
           <caret line="24" column="113" selection-start-line="24" selection-start-column="113" selection-end-line="24" selection-end-column="113" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/inventoryOperationShow.html">
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerShowAll.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        <state relative-caret-position="264">
+          <caret line="21" column="67" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="37" column="77" lean-forward="true" selection-start-line="37" selection-start-column="77" selection-end-line="37" selection-end-column="77" />
+          <folding>
+            <element signature="e#1122#1128#0#HTML" expanded="true" />
+            <element signature="e#1128#1134#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/user/loginRecordShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BPlan/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="105" column="75" selection-start-line="105" selection-start-column="75" selection-end-line="105" selection-end-column="75" />
+        <state relative-caret-position="522">
+          <caret line="306" column="15" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PC/base.html">
+    <entry file="file://$PROJECT_DIR$/BPlan/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="44" column="80" lean-forward="true" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PC/customer/customerShowDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1074">
+          <caret line="74" column="6" lean-forward="true" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venvmzx/Lib/site-packages/xlwt/Worksheet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="1145" column="21" selection-start-line="1145" selection-start-column="21" selection-end-line="1145" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/views_inventory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="351" column="54" selection-start-line="351" selection-start-column="54" selection-end-line="351" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BPlan/view_customer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="51" column="98" lean-forward="true" selection-start-line="51" selection-start-column="98" selection-end-line="51" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BPlan/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="500" column="59" selection-start-line="500" selection-start-column="59" selection-end-line="500" selection-end-column="59" />
+          <caret line="285" column="46" lean-forward="true" selection-start-line="285" selection-start-column="46" selection-end-line="285" selection-end-column="46" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
@@ -869,8 +999,8 @@
     <entry file="file://$PROJECT_DIR$/更新日志.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="120">
-            <caret line="5" column="15" lean-forward="true" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <first_editor relative-caret-position="288">
+            <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           </first_editor>
           <second_editor />
         </state>

@@ -1,0 +1,13 @@
+{% extends 'PC/base/base.html' %}
+{% load staticfiles %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'PC/css/show.css' %}">
+<style>
+</style>
+{% block style %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <div class="body-title">{% block body-title %}{% endblock %}</div>
+    {% block group-choice %}{% endblock %}
+    <div class="show-body">{% block show-body %}{% endblock %}</div>
+{% endblock %}

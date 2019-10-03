@@ -1,0 +1,119 @@
+{% extends 'PC/base/baseForm.html' %}
+{% load staticfiles %}
+{% block title %}创建新的库存项目{% endblock %}
+{% block body-title %}创建新的库存项目{% endblock %}
+{% block style %}
+<style>
+    .pure-form-aligned .pure-control-group label{
+        width: 5em;
+    }
+</style>
+{% endblock %}
+{% block form %}
+<div class="pure-control-group">
+    <label for="inventory_group">库存组</label>
+    <select name="inventory_group" id="inventory_group" required>
+        {% for group in group_list %}
+        <option value="{{ group.auto_id }}">{{ group.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_name">库存名称</label>
+    <input type="text" id="inventory_name" name="inventory_name" value="" placeholder="请输入库存名称" required maxlength="20"/>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_num">库存数量</label>
+    <input type="number" id="inventory_num" name="inventory_num" value="" placeholder="请输入库存数量" max="32768" min="0" required />
+</div>
+<div class="pure-control-group">
+    <label for="inventory_unit">单位</label>
+    <input type="text" id="inventory_unit" name="inventory_unit" value="" placeholder="如：个" maxlength="12" required/>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_price">单价(元)</label>
+    <input type="number" id="inventory_price" name="inventory_price" value="" placeholder="请输入库存单价" step="0.001" required/>
+</div>
+<div class="pure-control-group">
+    <label for="inventory_mark">备注</label>
+    <input type="text" id="inventory_mark" name="inventory_mark" value="" placeholder="请输入备注（300字以内）" maxlength="300" required/>
+</div>
+{#<div class="pure-control-group">#}
+{#    <label for="code">验证码</label>#}
+{#    <input type="text" name="code" id="code" value="" placeholder="验证码" maxlength="4" minlength="4" required style="width: calc(17em - 100px - 5px)"/>#}
+{#    <img class="code" onclick="refreshSrc()"/>#}
+{#</div>#}
+{% endblock %}
+{% block button-text %}
+<i class="iconfont icon-wancheng"></i> 创建
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function () {
+    {#refreshSrc();#}
+    let error = $('.error');
+    {#let inventory_id = $('#inventory_id');#}
+    let login_button = $('.form-button');
+    {#let code = $('#code');#}
+    {#$('#inventory_category').change(function () {#}
+       {#console.log($(this).val());#}
+    {#   if($(this).val()==='0'){#}
+    {#       $('#inventory_value_title').text('电阻值(Ω)')#}
+    {#   }#}
+    {#   else if($(this).val()==='1'){#}
+    {#       $('#inventory_value_title').text('电容值(pF)')#}
+    {#   }#}
+    {#   else {#}
+    {#       $('#inventory_value_title').text('电感值(mH)')#}
+    {#   }#}
+    //});
+    login_button.click(function () {
+        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
+        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){
+            $.ajax({
+                url: "{% url 'BPlan:inventory_create_add' %}",
+                type: 'POST',
+                data: {
+                    {#'inventory_id': inventory_id.val(),#}
+                    'inventory_name': $('#inventory_name').val(),
+                    {#'code': code.val(),#}
+                    'inventory_group': $('#inventory_group').val(),
+                    'inventory_num': $('#inventory_num').val(),
+                    'inventory_unit': $('#inventory_unit').val(),
+                    {#'inventory_value': $('#inventory_value').val(),#}
+                    {#'inventory_package': $('#inventory_package').val(),#}
+                    'inventory_price': $('#inventory_price').val(),
+                    'inventory_mark': $('#inventory_mark').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function (result) {
+                    {#if (result === 'codeWrong'){#}
+                    {#    error.text('验证码错误！');#}
+                    {#    code.val("");#}
+                    {#    refreshSrc();#}
+                    {#    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');#}
+                    {#    return 0;#}
+                    //}
+                    {#if (result === 'idExist') {#}
+                    {#    error.text('您输入的库存id已经存在');#}
+                    {#    inventory_id.val("");#}
+                    {#    code.val("");#}
+                    {#    refreshSrc();#}
+                    {#    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');#}
+                    {#    return 0;#}
+                    //}
+                    if (result === 'success') {
+                        error.text("");
+                        $("form").hide(1000);
+                        $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 创建成功");
+                        return 1;
+                    }
+                },
+            })
+        }
+
+    })
+})
+</script>
+{% endblock %}
+

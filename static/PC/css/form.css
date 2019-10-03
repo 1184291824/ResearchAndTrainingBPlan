@@ -57,10 +57,11 @@ form{
     height: 38.8px;
 }
 .pure-form .pure-control-group textarea{
-    width: 50%;
-    min-width: 17em;
+    width: 17em;
+    /*min-width: 17em;*/
+    resize: vertical;
+    /*height: 34em;*/
 }
-
 .form-button{
     display: block;
     height: 2.5em;
@@ -92,6 +93,10 @@ form{
     .code{
         height: 38.8px;
         vertical-align: top;
+    }
+    .pure-form .pure-control-group textarea{
+        resize: none;
+        height: 10em;
     }
 }
 @media screen and (max-width: 480px) {
