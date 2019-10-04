@@ -172,3 +172,12 @@ class CustomerTrackingAdmin(admin.ModelAdmin):
     search_fields = ['customer']
     list_per_page = 20
 
+
+@admin.register(MarkdownFile)
+class MarkdownFileAdmin(admin.ModelAdmin):
+    list_display = [
+        'pk',
+        'name',
+        'file',
+    ]
+    search_fields = ['name']

@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
-# from .models import *
+from .models import MarkdownFile
 # import datetime
 from .request import *
-import codecs, markdown
+import codecs
+import markdown
+from ResearchAndTrainingBPlan.settings import PythonAnywhere
 
 
 # Create your views here.
@@ -99,15 +101,18 @@ def markdown_html(request):
     """返回操作手册界面"""
     if request.session.get('login_status', 0):
         # 获取markdown文件名
-        file_name = request.GET.get('file', 'readme')
-        if file_name == 'README':
-            title = '操作手册'
-        else:
-            title = file_name
+        file_name = request.GET.get('file', '操作手册')
+        # if file_name == 'README':
+        #     title = '操作手册'
+        # else:
+        #     title = file_name
 
         # 读取 markdown 文本
-        input_file = codecs.open('md/'+file_name+".md", mode="r", encoding="utf-8")
-        text = input_file.read()
+        # input_file = codecs.open('md/'+file_name+".md", mode="r", encoding="utf-8")
+        input_file = MarkdownFile.objects.get(name=file_name)
+        # print(input_file.file.name)
+        text = input_file.file.read().decode()  # 读取文件并解码
+        # print(text)
 
         # 转为 html 文本
         html = markdown.markdown(text)
@@ -115,7 +120,8 @@ def markdown_html(request):
         # 输出html文本
         return render(request, 'PC/markdown.html', {
             'markdown_html': html,
-            'title': title,
+            'title': file_name,
         })
+        # return HttpResponse(text)
     else:
         return redirect('BPlan:index')

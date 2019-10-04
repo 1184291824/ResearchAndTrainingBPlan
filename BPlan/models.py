@@ -313,3 +313,17 @@ class CustomerTracking(models.Model):
         db_table = "CustomerTracking"
         ordering = ['id']  # 以id为标准升序
         verbose_name_plural = '客户跟踪状态'
+
+
+class MarkdownFile(models.Model):
+    """markdown文件库"""
+    name = models.CharField(max_length=30, verbose_name='文件名')
+    file = models.FileField(verbose_name='文件')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = "MarkdownFile"
+        ordering = ['id']  # 以id为标准升序
+        verbose_name_plural = 'markdown文件库'
