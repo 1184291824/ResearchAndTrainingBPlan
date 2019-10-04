@@ -100,13 +100,13 @@ def markdown_html(request):
     if request.session.get('login_status', 0):
         # 获取markdown文件名
         file_name = request.GET.get('file', 'readme')
-        if file_name == 'readme':
+        if file_name == 'README':
             title = '操作手册'
         else:
             title = file_name
 
         # 读取 markdown 文本
-        input_file = codecs.open(file_name+".md", mode="r", encoding="utf-8")
+        input_file = codecs.open('md/'+file_name+".md", mode="r", encoding="utf-8")
         text = input_file.read()
 
         # 转为 html 文本
