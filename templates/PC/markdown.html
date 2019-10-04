@@ -1,0 +1,89 @@
+{% extends 'PC/base/baseDetail.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block body-title %}
+{{ title }}
+{% endblock %}
+{% block style %}
+<style>
+.detail-contain ul{
+    padding-inline-start: 20px;
+}
+.detail-contain hr{
+    {#border: none;#}
+    {#height: 1px;#}
+    {#background-color: #fff8;#}
+    display: none;
+}
+.detail-contain h3{
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    border-bottom: solid 1.5px #fff8;
+}
+.detail-contain a{
+    display: inline-block;
+    {#height: 2.5em;#}
+    width: fit-content;
+    {#max-width: 400px;#}
+    margin: 0 0.5em;
+    padding: 0 1em;
+    background-color: var(--bkcolor);
+    border: solid white 2px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5em;
+    font-size: 0.8em;
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s;
+}
+.detail-contain a:hover{
+    color: var(--bkcolor);
+    background-color: white;
+}
+.detail-contain code,
+.detail-contain pre{
+    color: #2073aa;
+    background-color: #efefef;
+    display: inline-block;
+    width: fit-content;
+    border-radius: 2px;
+    margin: 0 0.3em;
+    padding: 0 0.3em;
+    line-height: 1.3em;
+    vertical-align: middle;
+    font-size: 0.9em;
+    {#font-weight: bold;#}
+    font-family: consolas;
+}
+.detail-contain pre{
+    font-weight: bold;
+    width: 100%;
+}
+@media screen and (max-width: 768px){
+    .detail-contain ul{
+        padding-inline-start: 10px;
+    }
+}
+</style>
+{% endblock %}
+{% block detail-contain %}
+{{ markdown_html | safe }}
+{% endblock %}
+{#{% block detail-footer %}#}
+{#<div class="pure-u-1">#}
+{#<button id="change"><i class="iconfont icon-change"></i> 修改我的信息</button>#}
+{#</div>#}
+{#{% endblock %}#}
+{#{% block script %}#}
+{#<script>#}
+{#$(document).ready(function () {#}
+{#    $('#change').click(function () {#}
+{#        window.location.href = '{% url "BPlan:change_personal_information" %}?page=change'#}
+{#    })#}
+{# })#}
+{#</script>#}
+{#{% endblock %}#}

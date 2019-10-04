@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_xvsfwmqkouo.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1281820_jae5r1wdpjn.css">
     <link rel="stylesheet" href="{% static 'PC/css/base.css' %}">
 {% block link %}
 
@@ -39,10 +39,12 @@
                 <i class="iconfont icon-kucun"></i> 库存
                 <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-cangchu"></i> 全部库存</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_search' %}?search_type=inventory_create_user_name&search=我" class="header-menu-a"><i class="iconfont icon-yuangong"></i> 我创建的</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_search' %}" class="header-menu-a"><i class="iconfont icon-kucunchaxun"></i> 查找库存</a></li>
 {#                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 查询库存操作记录</a></li>#}
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_group_create_html' %}" class="header-menu-a"><i class="iconfont icon-NewGroup"></i> 创建新的库存分组</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:inventory_create_html' %}" class="header-menu-a"><i class="iconfont icon-create"></i> 创建新的库存</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}?type=user" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 我的操作记录</a></li>
                 </ul>
             </li>
             <li class="header-menu-li header-menu-has-children">
@@ -50,14 +52,8 @@
                 <i class="iconfont icon-customer"></i> 客户
                 <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:customer_show_all_html' %}" class="header-menu-a"><i class="iconfont icon-form"></i> 全部客户信息</a></li>
-                </ul>
-                <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:customer_search' %}?search_type=user&search=我" class="header-menu-a"><i class="iconfont icon-yuangong"></i> 我创建的</a></li>
-                </ul>
-                <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:customer_search' %}" class="header-menu-a"><i class="iconfont icon-customer-search"></i> 查询客户信息</a></li>
-                </ul>
-                <ul class="header-menu-ul">
                     <li class="header-menu-li"><a href="{% url 'BPlan:customer_create_html' %}" class="header-menu-a"><i class="iconfont icon-NewCustomer"></i> 创建客户信息</a></li>
                 </ul>
             </li>
@@ -77,9 +73,19 @@
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_password_html' %}" class="header-menu-a"  id="change-password"><i class="iconfont icon-xiugaimima"></i> 修改密码</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_question_html' %}" class="header-menu-a"><i class="iconfont icon-anquan"></i> 更改密保问题</a></li>
                     <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=show" class="header-menu-a"><i class="iconfont icon-personal-information"></i> 个人信息</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>
-                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}?type=user" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 我的操作记录</a></li>
+{#                    <li class="header-menu-li"><a href="{% url 'BPlan:change_personal_information' %}?page=change" class="header-menu-a"><i class="iconfont icon-change"></i> 修改个人信息</a></li>#}
+{#                    <li class="header-menu-li"><a href="{% url 'BPlan:inventory_operation_html' %}?type=user" class="header-menu-a"><i class="iconfont icon-churukujilu"></i> 我的操作记录</a></li>#}
                     <li class="header-menu-li"><a href="{% url 'BPlan:login_record_html' %}?page=1" class="header-menu-a"><i class="iconfont icon-cloud-history"></i> 我的访问记录</a></li>
+                </ul>
+            </li>
+            <li class="header-menu-li header-menu-has-children">
+                <hr class="header-line">
+                <i class="iconfont icon-site"></i> 站点
+                <ul class="header-menu-ul">
+                    <li class="header-menu-li"><a href="/admin/" class="header-menu-a"  id="change-password" target="_blank"><i class="iconfont icon-admin"></i> 进入后台</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:markdown' %}?file=readme" class="header-menu-a"><i class="iconfont icon-readme"></i> 操作手册</a></li>
+                    <li class="header-menu-li"><a href="{% url 'BPlan:markdown' %}?file=更新日志" class="header-menu-a"><i class="iconfont icon-refreshBook"></i> 更新日志</a></li>
+                    <li class="header-menu-li"><a href="https://github.com/1184291824/ResearchAndTrainingBPlan" class="header-menu-a" target="_blank"><i class="iconfont icon-git"></i> Github</a></li>
                 </ul>
             </li>
         </ul>

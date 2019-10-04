@@ -221,92 +221,100 @@ def customer_search(request):
 
 def customer_excel(request):
     """将用户信息导出excel"""
-    # 获取数据
-    customer_id = request.GET['id']
-    customer = Customer.objects.get(id=customer_id)
-    user = User.objects.get(user_id=customer.user_id)
-    tracking_list = CustomerTracking.objects.filter(customer=customer)
-    foo = 0
-    # 设置HTTPResponse的类型
-    response = HttpResponse(content_type='application/vnd.ms-excel')
-    response['Content-Disposition'] = 'attachment;filename='+customer.name+'.xls'
-    # 创建一个文件对象
-    wb = xlwt.Workbook(encoding='utf8')
-    # 创建一个sheet对象
-    sheet = wb.add_sheet('order-sheet')
+    if request.session.get('login_status', 0):
+        if request.method == 'GET':
+            # 获取数据
+            customer_id = request.GET['id']
+            customer = Customer.objects.get(id=customer_id)
+            user = User.objects.get(user_id=customer.user_id)
+            if customer.user_id != user.user_id and user.user_identity != 1:  # 验证用户身份
+                return render(request, 'PC/forbidden.html', {
+                    'error': '您既不是管理员，该客户信息也不是您创建的。只有创建者或管理员才有权利导出excel'
+                })
+            tracking_list = CustomerTracking.objects.filter(customer=customer)
+            foo = 0
+            # 设置HTTPResponse的类型
+            response = HttpResponse(content_type='application/vnd.ms-excel')
+            response['Content-Disposition'] = 'attachment;filename='+customer.name+'.xls'
+            # 创建一个文件对象
+            wb = xlwt.Workbook(encoding='utf8')
+            # 创建一个sheet对象
+            sheet = wb.add_sheet('order-sheet')
 
-    # 设置文件头的样式,这个不是必须的可以根据自己的需求进行更改
-    style_heading = xlwt.easyxf("""
-            font:
-                name 宋体,
-                height 0xF0;
-            align:
-                wrap off,
-                vert center,
-                horiz center;
-            borders:
-                left THIN,
-                right THIN,
-                top THIN,
-                bottom THIN;
-            """)
+            # 设置文件头的样式,这个不是必须的可以根据自己的需求进行更改
+            style_heading = xlwt.easyxf("""
+                    font:
+                        name 宋体,
+                        height 0xF0;
+                    align:
+                        wrap off,
+                        vert center,
+                        horiz center;
+                    borders:
+                        left THIN,
+                        right THIN,
+                        top THIN,
+                        bottom THIN;
+                    """)
 
-    # 写入数据
-    sheet.write_merge(0, 0, 0, 3, '锐达思普/中安锐达南京分公司客户信息跟踪表', style_heading)
-    sheet.write(1, 3, '业务填写人：'+user.user_name, style_heading)
-    sheet.write(2, 0, '客户名称', style_heading)
-    sheet.write_merge(2, 2, 1, 3, customer.name, style_heading)
-    sheet.write(3, 0, '联系人', style_heading)
-    sheet.write(3, 1, customer.contact, style_heading)
-    sheet.write(3, 2, '联系方式', style_heading)
-    sheet.write(3, 3, customer.tel, style_heading)
-    sheet.write(4, 0, '项目名称', style_heading)
-    sheet.write_merge(4, 4, 1, 3, customer.project_name, style_heading)
-    sheet.write(5, 0, '项目签订时间', style_heading)
-    sheet.write(5, 1, customer.project_date.strftime('%Y-%m-%d'), style_heading)
-    sheet.write(5, 2, '项目金额', style_heading)
-    sheet.write(5, 3, customer.project_amount, style_heading)
-    sheet.write(6, 0, '付款方式', style_heading)
-    sheet.write_merge(6, 6, 1, 3, customer.payment_method, style_heading)
-    sheet.write_merge(7, len(tracking_list)+7, 0, 1, customer.mark, style_heading)
-    sheet.write(7, 2, '跟踪记录时间', style_heading)
-    sheet.write(7, 3, '项目跟踪状态', style_heading)
-    for track in tracking_list:
-        sheet.write(8+foo, 2, track.track_date.strftime('%Y-%m-%d'), style_heading)
-        sheet.write(8+foo, 3, track.track_state, style_heading)
-        foo += 1
+            # 写入数据
+            sheet.write_merge(0, 0, 0, 3, '锐达思普/中安锐达南京分公司客户信息跟踪表', style_heading)
+            sheet.write(1, 3, '业务填写人：'+user.user_name, style_heading)
+            sheet.write(2, 0, '客户名称', style_heading)
+            sheet.write_merge(2, 2, 1, 3, customer.name, style_heading)
+            sheet.write(3, 0, '联系人', style_heading)
+            sheet.write(3, 1, customer.contact, style_heading)
+            sheet.write(3, 2, '联系方式', style_heading)
+            sheet.write(3, 3, customer.tel, style_heading)
+            sheet.write(4, 0, '项目名称', style_heading)
+            sheet.write_merge(4, 4, 1, 3, customer.project_name, style_heading)
+            sheet.write(5, 0, '项目签订时间', style_heading)
+            sheet.write(5, 1, customer.project_date.strftime('%Y-%m-%d'), style_heading)
+            sheet.write(5, 2, '项目金额', style_heading)
+            sheet.write(5, 3, customer.project_amount, style_heading)
+            sheet.write(6, 0, '付款方式', style_heading)
+            sheet.write_merge(6, 6, 1, 3, customer.payment_method, style_heading)
+            sheet.write_merge(7, len(tracking_list)+7, 0, 1, customer.mark, style_heading)
+            sheet.write(7, 2, '跟踪记录时间', style_heading)
+            sheet.write(7, 3, '项目跟踪状态', style_heading)
+            for track in tracking_list:
+                sheet.write(8+foo, 2, track.track_date.strftime('%Y-%m-%d'), style_heading)
+                sheet.write(8+foo, 3, track.track_state, style_heading)
+                foo += 1
 
-    # 调整格式
-    sheet.col(0).width = 5000  # 3333 = 1" (one inch).
-    sheet.col(1).width = 8000  # 3333 = 1" (one inch).
-    sheet.col(2).width = 5000  # 3333 = 1" (one inch).
-    sheet.col(3).width = 8000  # 3333 = 1" (one inch).
-    for i in range(len(tracking_list)+8):
-        sheet.row(i).height_mismatch = True
-        sheet.row(i).height = 600  # 3000对应150
+            # 调整格式
+            sheet.col(0).width = 5000  # 3333 = 1" (one inch).
+            sheet.col(1).width = 8000  # 3333 = 1" (one inch).
+            sheet.col(2).width = 5000  # 3333 = 1" (one inch).
+            sheet.col(3).width = 8000  # 3333 = 1" (one inch).
+            for i in range(len(tracking_list)+8):
+                sheet.row(i).height_mismatch = True
+                sheet.row(i).height = 600  # 3000对应150
 
-    # # 写入数据
-    # data_row = 1
-    # # UserTable.objects.all()这个是查询条件,可以根据自己的实际需求做调整.
-    # for i in UserTable.objects.all():
-    #     # 格式化datetime
-    #     pri_time = i.pri_date.strftime('%Y-%m-%d')
-    #     oper_time = i.operating_time.strftime('%Y-%m-%d')
-    #     sheet.write(data_row, 0, i.loan_id)
-    #     sheet.write(data_row, 1, i.name)
-    #     sheet.write(data_row, 2, i.user_phone)
-    #     sheet.write(data_row, 3, i.user_card)
-    #     sheet.write(data_row, 4, pri_time)
-    #     sheet.write(data_row, 5, i.emp.emp_name)
-    #     sheet.write(data_row, 6, i.statu.statu_name)
-    #     sheet.write(data_row, 7, oper_time)
-    #     data_row = data_row + 1
+            # # 写入数据
+            # data_row = 1
+            # # UserTable.objects.all()这个是查询条件,可以根据自己的实际需求做调整.
+            # for i in UserTable.objects.all():
+            #     # 格式化datetime
+            #     pri_time = i.pri_date.strftime('%Y-%m-%d')
+            #     oper_time = i.operating_time.strftime('%Y-%m-%d')
+            #     sheet.write(data_row, 0, i.loan_id)
+            #     sheet.write(data_row, 1, i.name)
+            #     sheet.write(data_row, 2, i.user_phone)
+            #     sheet.write(data_row, 3, i.user_card)
+            #     sheet.write(data_row, 4, pri_time)
+            #     sheet.write(data_row, 5, i.emp.emp_name)
+            #     sheet.write(data_row, 6, i.statu.statu_name)
+            #     sheet.write(data_row, 7, oper_time)
+            #     data_row = data_row + 1
 
-    # 写出到IO
-    output = BytesIO()
-    wb.save(output)
-    # 重新定位到开始
-    output.seek(0)
-    response.write(output.getvalue())
-    return response
+            # 写出到IO
+            output = BytesIO()
+            wb.save(output)
+            # 重新定位到开始
+            output.seek(0)
+            response.write(output.getvalue())
+            return response
+    else:
+        return redirect('BPlan:index')
 

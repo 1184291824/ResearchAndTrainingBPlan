@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 # from .models import *
 # import datetime
 from .request import *
+import codecs, markdown
 
 
 # Create your views here.
@@ -92,3 +93,29 @@ def index(request):
 #         'system_num': [android_num, windows_num, ios_num],  # 访问系统分类
 #         # 'location_num': location_num,  # 访问地址分类
 #     })
+
+
+def markdown_html(request):
+    """返回操作手册界面"""
+    if request.session.get('login_status', 0):
+        # 获取markdown文件名
+        file_name = request.GET.get('file', 'readme')
+        if file_name == 'readme':
+            title = '操作手册'
+        else:
+            title = file_name
+
+        # 读取 markdown 文本
+        input_file = codecs.open(file_name+".md", mode="r", encoding="utf-8")
+        text = input_file.read()
+
+        # 转为 html 文本
+        html = markdown.markdown(text)
+
+        # 输出html文本
+        return render(request, 'PC/markdown.html', {
+            'markdown_html': html,
+            'title': title,
+        })
+    else:
+        return redirect('BPlan:index')

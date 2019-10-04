@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('BPlan/', include('BPlan.urls', namespace="BPlan")),
+    path('', RedirectView.as_view(url='BPlan/index/')),  # 如果不输入详细网址，直接重定向到主页
 ]

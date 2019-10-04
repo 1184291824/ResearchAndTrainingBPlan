@@ -316,7 +316,10 @@ def inventory_search(request):
                 elif search_type == 'inventory_mark':
                     inventory = Inventory.objects.filter(inventory_mark__contains=search)
                 elif search_type == 'inventory_create_user_name':
-                    inventory = Inventory.objects.filter(inventory_create_user_name__contains=search)
+                    if search == '我':
+                        inventory = Inventory.objects.filter(inventory_create_user=request.session['user_id'])
+                    else:
+                        inventory = Inventory.objects.filter(inventory_create_user_name__contains=search)
                 elif search_type == 'inventory_recent_change_user_name':
                     inventory = Inventory.objects.filter(inventory_recent_change_user_name__contains=search)
                 # elif inventory.exists() is False:

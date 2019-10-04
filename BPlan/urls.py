@@ -5,10 +5,12 @@ app_name = "BPlan"
 
 
 urlpatterns = [
-    path('test/', view_common.test, name="test"),
+    path('test/', view_common.markdown_html, name="test"),
 
     path('index/whetherLogin/', view_common.whether_login, name='whether_login'),
     path('index/', view_common.index, name='index'),
+    path('markdown/', view_common.markdown_html, name='markdown'),
+
     path('login/', view_user.login_html, name='login_html'),
     path('login/loginCheck/', view_user.login_check, name='login_check'),
     path('login/logout/', view_user.login_logout, name='login_logout'),

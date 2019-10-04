@@ -39,7 +39,7 @@
 {#    </div>#}
 {% endblock %}
 {% block button-text %}
-<i class="iconfont icon-change"></i> 确认修改
+<i class="iconfont icon-change"></i> 确认修改(不建议修改姓名)
 {% endblock %}
 {% block script %}
 <script>
@@ -50,7 +50,7 @@ $(document).ready(function () {
     {#let code = $('#code');#}
     change_button.click(function () {
         change_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        if (NoEmpty('<i class="iconfont icon-change"></i> 确认修改', error, change_button)) {
+        if (NoEmpty('<i class="iconfont icon-change"></i> 确认修改(不建议修改姓名)', error, change_button)) {
             $.ajax({
                 url: "{% url 'BPlan:change_personal_information' %}",
                 type: "POST",
