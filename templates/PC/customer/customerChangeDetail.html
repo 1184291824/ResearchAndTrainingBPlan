@@ -20,21 +20,35 @@
 {% block form %}
 <div class="pure-g">
 <div class="pure-u-1 pure-u-xl-1-2">
+    <input type="text" id="id" name="id" value="{{ customer.id }}" hidden>
     <div class="pure-control-group">
         <label for="name">客户名称</label>
         <input type="text" id="name" name="name" value="{{ customer.name }}" required maxlength="50"/>
     </div>
     <div class="pure-control-group">
+        <label for="project_name">项目名称</label>
+        <input type="text" id="project_name" name="project_name" value="{{ customer.project_name }}" maxlength="50" required/>
+    </div>
+    <div class="pure-control-group">
+        <label for="user_id">业务填写人</label>
+        <select id="user_id" name="user_id" required>
+            {% for user in user_list %}
+                <option value="{{ user.user_id }}" {% if customer.user_id == user %} selected {% endif %}>{{ user.user_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="pure-control-group">
         <label for="contact">联系人</label>
         <input type="text" id="contact" name="contact" value="{{ customer.contact }}" maxlength="20" required/>
+{#        <select id="contact" name="contact" required>#}
+{#            {% for user in user_list %}#}
+{#                <option value="{{ user.user_id }}" {% if customer.user_id == user %} selected {% endif %}>{{ user.user_name }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
     </div>
     <div class="pure-control-group">
         <label for="tel">联系方式</label>
         <input type="text" id="tel" name="tel" value="{{ customer.tel }}" maxlength="20" required/>
-    </div>
-    <div class="pure-control-group">
-        <label for="project_name">项目名称</label>
-        <input type="text" id="project_name" name="project_name" value="{{ customer.project_name }}" maxlength="50" required/>
     </div>
     <div class="pure-control-group">
         <label for="project_amount">项目金额</label>
@@ -56,38 +70,38 @@
 {% block button-text %}
 <i class="iconfont icon-wancheng"></i> 提交
 {% endblock %}
-{% block script %}
-<script>
-$(document).ready(function () {
-    let error = $('.error');
-    let login_button = $('.form-button');
-    login_button.click(function () {
-        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 提交', error, login_button)) {
-            $.ajax({
-                url: "{% url 'BPlan:customer_change_detail' %}",
-                type: 'POST',
-                data: {
-                    'id': {{ customer.id }},
-                    'name': $('#name').val(),
-                    'contact': $('#contact').val(),
-                    'tel': $('#tel').val(),
-                    'project_name': $('#project_name').val(),
-                    'project_amount': $('#project_amount').val(),
-                    'payment_method': $('#payment_method').val(),
-                    'mark': $('#mark').val(),
-                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                },
-                success: function () {
-                    error.text("");
-                    $("form").hide(1000);
-                    $(".body-title").html("修改成功！");
-                    return 1;
-                },
-            })
-        }
-
-    })
-})
-</script>
-{% endblock %}
+{#{% block script %}#}
+{#<script>#}
+{#$(document).ready(function () {#}
+{#    let error = $('.error');#}
+{#    let login_button = $('.form-button');#}
+{#    login_button.click(function () {#}
+{#        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字#}
+{#        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 提交', error, login_button)) {#}
+{#            $.ajax({#}
+{#                url: "{% url 'BPlan:customer_change_detail' %}",#}
+{#                type: 'POST',#}
+{#                data: {#}
+{#                    'id': {{ customer.id }},#}
+{#                    'name': $('#name').val(),#}
+{#                    'contact': $('#contact').val(),#}
+{#                    'tel': $('#tel').val(),#}
+{#                    'project_name': $('#project_name').val(),#}
+{#                    'project_amount': $('#project_amount').val(),#}
+{#                    'payment_method': $('#payment_method').val(),#}
+{#                    'mark': $('#mark').val(),#}
+{#                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),#}
+{#                },#}
+{#                success: function () {#}
+{#                    error.text("");#}
+{#                    $("form").hide(1000);#}
+{#                    $(".body-title").html("修改成功！");#}
+{#                    return 1;#}
+{#                },#}
+{#            })#}
+{#        }#}
+{##}
+{#    })#}
+{#})#}
+{#</script>#}
+{#{% endblock %}#}

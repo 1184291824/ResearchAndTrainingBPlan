@@ -1,6 +1,6 @@
 {% extends 'PC/base/baseShow.html' %}
 {% block title %}
-无权限的操作
+{{ title | default:"无权限的操作" }}
 {% endblock %}
 {% block style %}
 <style>
@@ -28,12 +28,12 @@
 </style>
 {% endblock %}
 {% block body-title %}
-无权限的操作
+{{ title | default:"无权限的操作" }}
 {% endblock %}
 {% block show-body %}
     <div class="show-body-card">
         <div class="show-body-card-header">
-            <div class="inventory-name"><i class="iconfont icon-error"></i> 注意</div>
+            <div class="inventory-name"><i class="iconfont icon-error"></i> {{ name | default:"注意" }}</div>
         </div>
         <div class="show-body-card-body">
 {#            操作者ID：{{ operation.inventory_operation_user }}<br>#}

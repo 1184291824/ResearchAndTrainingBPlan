@@ -1,74 +1,82 @@
 {% extends 'PC/base/baseForm.html' %}
 {% load staticfiles %}
 {% block title %}
-    {% if change_type %}
-    出库
-    {% else %}
-    入库
-    {% endif %}
+    {{ change_type_text }}
 {% endblock %}
 {% block style %}
-<style type="text/css">
-.pure-form-aligned .pure-control-group label{
-    width: 4em;
-}
-</style>
+    <style type="text/css">
+        .pure-form-aligned .pure-control-group label {
+            width: 4em;
+        }
+    </style>
 {% endblock %}
 {% block body-title %}
-    {% if change_type %}
-    出库
-    {% else %}
-    入库
-    {% endif %}
+    {#    {% if change_type %}#}
+    {#    出库#}
+    {#    {% else %}#}
+    {#    入库#}
+    {#    {% endif %}#}
+    {{ change_type_text }}
 {% endblock %}
 {% block form %}
     <div class="pure-control-group">
         <label for="inventory_name">库存名称</label>
-        <input type="text" name="inventory_name" id="inventory_name" value="{{ inventory_name }}" readonly/>
+        <input type="text" name="inventory_name" id="inventory_name" value="{{ inventory.inventory_name }}" readonly/>
     </div>
     <div class="pure-control-group">
-        <label for="inventory_operation_num">{% if change_type %}出库{% else %}入库{% endif %}数量</label>
-        <input type="number" name="inventory_operation_num" id="inventory_operation_num" value="" placeholder="{% if change_type %}库存余量{{ inventory_num }}{% endif %}" min="0" max="32768" required />
+        <label for="inventory_operation_num">{{ change_type_text }}数量</label>
+        <input type="number" name="inventory_operation_num" id="inventory_operation_num" value=""
+               placeholder="{% if change_type %}库存余量{{ inventory.inventory_num }}{% endif %}" min="0"
+               max="{% if change_type %}{{ inventory.inventory_num }}{% else %}32768{% endif %}" required/>
     </div>
-    <input type="text" name="inventory_id" id="inventory_id" value="{{ inventory_id }}" readonly hidden/>
-    <input type="number" name="inventory_operation_category" id="inventory_operation_category" value="{{ change_type }}" readonly hidden/>
+    <div class="pure-control-group">
+        <label for="inventory_operation_user">最近领用人</label>
+        <select name="inventory_operation_user" id="inventory_operation_user" required>
+            {% for user_item in user %}
+                <option value="{{ user_item.user_id }}">{{ user_item.user_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input type="text" name="inventory_id" id="inventory_id" value="{{ inventory.inventory_id }}" readonly hidden/>
+    <input type="number" name="inventory_operation_category" id="inventory_operation_category" value="{{ change_type }}"
+           readonly hidden/>
 {% endblock %}
 {% block button-text %}
-{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}
+    {% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}
 {% endblock %}
-{% block script %}
-<script>
-$(document).ready(function () {
-    let error = $('.error');
-    let button = $('.form-button');
-    button.click(function () {
-        button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        if (NoEmpty('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}', error, button)) {
-            $.ajax({
-                url: "{% url 'BPlan:inventory_change_add' %}",
-                type: "POST",
-                data: {
-                    'inventory_id': $('#inventory_id').val(),
-                    'inventory_operation_category': $('#inventory_operation_category').val(),
-                    'inventory_operation_num': $('#inventory_operation_num').val(),
-                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                },
-                success: function (result) {
-                    if (result === 'success') {
-                        error.text("");
-                        $("form").hide(1000);
-                        $(".body-title").text("{% if change_type %}出库{% else %}入库{% endif %}成功");
-                        return 1;
-                    }
-                    if (result === 'outToMany') {
-                        error.text("出库数量超出库存");
-                        button.html('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}').removeAttr('disabled');
-                        return 0;
-                    }
-                }
-            })
-        }
-    })
-})
-</script>
-{% endblock %}
+{#{% block script %}#}
+{#<script>#}
+{#$(document).ready(function () {#}
+{#    let error = $('.error');#}
+{#    let button = $('.form-button');#}
+{#    button.click(function () {#}
+{#        button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字#}
+{#        if (NoEmpty('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}', error, button)) {#}
+{#            $.ajax({#}
+{#                url: "{% url 'BPlan:inventory_change_add' %}",#}
+{#                type: "POST",#}
+{#                data: {#}
+{#                    'inventory_id': $('#inventory_id').val(),#}
+{#                    'inventory_operation_category': $('#inventory_operation_category').val(),#}
+{#                    'inventory_operation_num': $('#inventory_operation_num').val(),#}
+{#                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),#}
+{#                },#}
+{#                success: function (result) {#}
+{#                    if (result === 'success') {#}
+{#                        error.text("");#}
+{#                        $("form").hide(1000);#}
+{#                        $(".body-title").text("{% if change_type %}出库{% else %}入库{% endif %}成功");#}
+{#                        return 1;#}
+{#                    }#}
+{#                    if (result === 'outToMany') {#}
+{#                        error.text("出库数量超出库存");#}
+{#                        button.html('{% if change_type %}<i class="iconfont icon-chuku"></i> 出库{% else %}<i class="iconfont icon-ruku"></i> 入库{% endif %}').removeAttr('disabled');#}
+{#                        return 0;#}
+{#                    }#}
+{#                }#}
+{#            })#}
+{#        }#}
+{#    })#}
+{#})#}
+{#</script>#}
+{#{% endblock %}#}

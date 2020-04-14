@@ -1,10 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import MarkdownFile
+# from .models import MarkdownFile
 # import datetime
-from .request import *
-import codecs
-import markdown
-from ResearchAndTrainingBPlan.settings import PythonAnywhere
+# from .request import *
+# import codecs
+# import markdown
+# from ResearchAndTrainingBPlan.settings import PythonAnywhere
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -16,40 +17,33 @@ def test(request):
     })
 
 
-def whether_login(request):
-    """判断是否处于登录状态"""
-    login_status = request.session.get('login_status', 0)
-    user_id = request.session.get('user_id', 0)
-    user_name = request.session.get('user_name', 0)
-    result = {
-        'login_status': login_status,
-        'user_id': user_id,
-        'user_name': user_name,
-    }
-    return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
+# def whether_login(request):
+#     """判断是否处于登录状态"""
+#     login_status = request.session.get('login_status', 0)
+#     user_id = request.session.get('user_id', 0)
+#     user_name = request.session.get('user_name', 0)
+#     result = {
+#         'login_status': login_status,
+#         'user_id': user_id,
+#         'user_name': user_name,
+#     }
+#     return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
 
 
 def index(request):
     """主页"""
-    # login_status = request.session.get('login_status', 0)
-    # ask_status = request.session.get('ask_status', 0)
-    # if ask_status == 0:
-    #     user = User.objects.get(user_name__exact='访客记录')
-    #     login_agent = get_agent(request)  # 获取登录的设备信息
-    #     ip = get_ip(request)  # 获取登录的ip
-    #     # location = get_location(ip)  # 通过IP查询地理位置
-    #     login_record = LoginRecord.add_login_record(  # 增加一条登录记录
-    #         user,
-    #         login_ip=ip,
-    #         login_browser=login_agent['browser'],
-    #         login_system=login_agent['system'],
-    #         login_device=login_agent['device'],
-    #         # login_location=location,
-    #     )
-    #     login_record.save()  # 保存登录记录
-    # request.session['ask_status'] = 1
-    return render(request, 'PC/index.html')
-    # return HttpResponse('这是主页'+'login_status:'+str(login_status)+'ask_status:'+str(request.session['ask_status']))
+    login_status = request.session.get('login_status', 0)
+    if login_status == 0:
+        return redirect('BPlan:login')
+    else:
+        return render(request, 'PC/index.html')
+
+
+def get_paginator(iterator_object, page_num):
+    """获取分页器及其内容"""
+    paginator = Paginator(iterator_object, 30)
+    page = paginator.get_page(page_num)
+    return paginator, page
 
 
 # def login_record_ask_html(request):
@@ -97,31 +91,31 @@ def index(request):
 #     })
 
 
-def markdown_html(request):
-    """返回操作手册界面"""
-    if request.session.get('login_status', 0):
-        # 获取markdown文件名
-        file_name = request.GET.get('file', '操作手册')
-        # if file_name == 'README':
-        #     title = '操作手册'
-        # else:
-        #     title = file_name
+# def markdown_html(request):
+#     """返回操作手册界面"""
+#     if request.session.get('login_status', 0):
+#         # 获取markdown文件名
+#         file_name = request.GET.get('file', '操作手册')
+#         # if file_name == 'README':
+#         #     title = '操作手册'
+#         # else:
+#         #     title = file_name
+#
+#         # 读取 markdown 文本
+#         # input_file = codecs.open('md/'+file_name+".md", mode="r", encoding="utf-8")
+#         input_file = MarkdownFile.objects.get(name=file_name)
+#         # print(input_file.file.name)
+#         text = input_file.file.read().decode()  # 读取文件并解码
+#         # print(text)
 
-        # 读取 markdown 文本
-        # input_file = codecs.open('md/'+file_name+".md", mode="r", encoding="utf-8")
-        input_file = MarkdownFile.objects.get(name=file_name)
-        # print(input_file.file.name)
-        text = input_file.file.read().decode()  # 读取文件并解码
-        # print(text)
-
-        # 转为 html 文本
-        html = markdown.markdown(text)
-
-        # 输出html文本
-        return render(request, 'PC/markdown.html', {
-            'markdown_html': html,
-            'title': file_name,
-        })
-        # return HttpResponse(text)
-    else:
-        return redirect('BPlan:index')
+    #     # 转为 html 文本
+    #     html = markdown.markdown(text)
+    #
+    #     # 输出html文本
+    #     return render(request, 'PC/markdown.html', {
+    #         'markdown_html': html,
+    #         'title': file_name,
+    #     })
+    #     # return HttpResponse(text)
+    # else:
+    #     return redirect('BPlan:index')

@@ -21,26 +21,38 @@
 </style>
 {% endblock %}
 {% block detail-contain %}
-    <h1>库存名称</h1>
-    <li>{{ inventory.inventory_name }}</li>
-    <h1>库存分组</h1>
-    <li>{{ inventory.inventory_group }}</li>
-    <h1>数量</h1>
-    <li>{{ inventory.inventory_num }}{{ inventory.inventory_unit }}</li>
-    <h1>单价</h1>
-    <li>{{ inventory.inventory_price }}元</li>
-    <h1>备注</h1>
-    <li>{{ inventory.inventory_mark }}</li>
-    <h1>创建时间</h1>
-    <li>{{ inventory.inventory_create_time }}</li>
-    <h1>创建人</h1>
-    <li>{{ inventory.inventory_create_user_name }}</li>
-    <h1>最近修改时间</h1>
-    <li>{{ inventory.inventory_recent_change_time }}</li>
-    <h1>最近修改人</h1>
-    <li>{{ inventory.inventory_recent_change_user_name }}</li>
+{#    <h1>库存分组</h1>#}
+{#    <li>{{ inventory.inventory_group }}</li>#}
+{#    <h1>库存名称</h1>#}
+{#    <li>{{ inventory.inventory_name }}</li>#}
+{#    <h1>数量</h1>#}
+{#    <li>{{ inventory.inventory_num }}{{ inventory.inventory_unit }}</li>#}
+{#    <h1>规格</h1>#}
+{#    <li>{{ inventory.inventory_specification }}</li>#}
+{#    <h1>备注</h1>#}
+{#    <li>{{ inventory.inventory_mark }}</li>#}
+{#    <h1>创建时间</h1>#}
+{#    <li>{{ inventory.inventory_create_time }}</li>#}
+{#    <h1>创建人</h1>#}
+{#    <li>{{ inventory.inventory_create_user }}</li>#}
+{#    <h1>最近修改时间</h1>#}
+{#    <li>{{ inventory.inventory_recent_change_time }}</li>#}
+{#    <h1>最近领用人</h1>#}
+{#    <li>{{ inventory.inventory_recent_change_user }}</li>#}
+    <table>
+        <tr><td>库存分组</td><td>{{ inventory.inventory_group }}</td></tr>
+        <tr><td>库存名称</td><td>{{ inventory.inventory_name }}</td></tr>
+        <tr><td>库存余量</td><td>{{ inventory.inventory_num }}{{ inventory.inventory_unit }}</td></tr>
+        <tr><td>规格</td><td>{{ inventory.inventory_specification }}</td></tr>
+        <tr><td>备注</td><td>{{ inventory.inventory_mark }}</td></tr>
+        <tr><td>创建时间</td><td>{{ inventory.inventory_create_time }}</td></tr>
+        <tr><td>创建人</td><td>{{ inventory.inventory_create_user }}</td></tr>
+        <tr><td>最近修改时间</td><td>{{ inventory.inventory_recent_change_time }}</td></tr>
+        <tr><td>最近领用人</td><td>{{ inventory.inventory_recent_change_user }}</td></tr>
+    </table>
 {% endblock %}
 {% block detail-footer %}
+    {% if request.session.user_identity %}
     <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="changeIn"><i class="iconfont icon-ruku"></i> 入库</button></div>
     </div>
@@ -50,6 +62,7 @@
     <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="change"><i class="iconfont icon-change"></i> 修改库存信息</button></div>
     </div>
+    {% endif %}
     <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="inventoryOperation"><i class="iconfont icon-churukujilu"></i> 库存记录</button></div>
     </div>
@@ -57,6 +70,7 @@
 {% block script %}
 <script>
 $(document).ready(function () {
+    {% if request.session.user_identity %}
     $('#change').click(function () {
         window.location.href = '{% url "BPlan:inventory_change_detail" %}?id={{ inventory.inventory_id }}'
     });
@@ -66,6 +80,7 @@ $(document).ready(function () {
     $('#changeOut').click(function () {
         window.location.href = '{% url "BPlan:inventory_change_html" %}?id={{ inventory.inventory_id }}&type=1'
     });
+    {% endif %}
     $('#inventoryOperation').click(function () {
         window.location.href = '{% url "BPlan:inventory_operation_html" %}?id={{ inventory.inventory_id }}&type=inventory'
     })

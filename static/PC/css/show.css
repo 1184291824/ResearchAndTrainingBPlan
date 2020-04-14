@@ -1,14 +1,16 @@
-.body-title{
+.body-title {
     margin-bottom: 20px;
 }
-.show-body{
+
+.show-body {
     width: 100%;
     /*background-color: #f0f0f0;*/
     background-color: #f7f7f7;
     min-height: 600px;
 }
-/*.show-header,*/
-.show-body-card{
+
+.show-header,
+.show-body-card {
     width: 300px;
     margin: 20px auto;
     height: 230px;
@@ -18,10 +20,12 @@
     transition: box-shadow 0.5s;
     -webkit-transition: box-shadow 0.5s;
 }
-.show-body-card:hover{
+
+.show-body-card:hover {
     box-shadow: grey 0 0 20px 1px;
 }
-.show-body-card-header{
+
+.show-body-card-header {
     /*float: left;*/
     width: 100%;
     /*margin: 2px;*/
@@ -30,7 +34,8 @@
     border-top-right-radius: 10px;
     background-color: #1398d6;
 }
-.show-body-card-body{
+
+.show-body-card-body {
     color: gray;
     font-size: 0.9em;
     margin-left: 2em;
@@ -40,7 +45,8 @@
     line-height: 1.7em;
     /*font-weight: bold;*/
 }
-.show-body-card-footer{
+
+.show-body-card-footer {
     /*width: 228px;*/
     /*float: right;*/
     height: 40px;
@@ -49,7 +55,8 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-.inventory-name{
+
+.inventory-name {
     /*color: var(--header-bkcolor);*/
     color: white;
     font-size: 1.3em;
@@ -60,13 +67,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.inventory-id{
+
+.inventory-id {
     color: white;
     font-size: 0.9em;
     padding-left: 16px;
     padding-top: 5px;
 }
-.show-body-card-header label{
+
+.show-body-card-header label {
     border: solid 1px white;
     border-radius: 4px;
     display: inline-block;
@@ -77,7 +86,8 @@
     /*color: var(--bkcolor);*/
     /*background-color: white;*/
 }
-.show-body-card-footer-a{
+
+.show-body-card-footer-a {
     /*无法加入hover功能，因为其父类已经具备hover*/
     display: inline-block;
     line-height: 33px;
@@ -87,24 +97,194 @@
     font-size: 1em;
     text-decoration: none;
 }
-.not-found{
+
+.not-found {
     text-align: center;
     font-size: 2em;
     color: grey;
     line-height: 4em;
 }
-@media screen and (max-width: 768px){
-    .show-body-card{
+
+/* 选择不同分组的功能 */
+.group-choice {
+    display: block;
+    font-size: 20px;
+    height: 2.5em;
+    width: 90%;
+    max-width: 400px;
+    margin: 1em auto 0 auto;
+    padding: 0;
+    background-color: var(--bkcolor);
+    border: solid white 2px;
+    border-radius: 5px;
+    color: white;
+    line-height: 2.5em;
+    text-decoration: none;
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s;
+}
+
+.group-choice:hover {
+    color: var(--bkcolor);
+    background-color: white;
+}
+
+#groups {
+    height: 0;
+    overflow-y: hidden;
+    border: none;
+    margin: 20px auto;
+    padding: 0;
+    z-index: -1;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+}
+
+.groups-switch {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    margin: 0;
+    left: calc(50% - 20px);
+    top: -10px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.groups-switch div {
+    background-color: #1f8dd6;
+    width: 20px;
+    height: 3px;
+    position: relative;
+    transition: transform 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    -webkit-transition: -webkit-transform 0.5s;
+    -o-transition: -o-transform 0.5s;
+}
+
+.groups-switch-1 {
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+    top: 19px;
+    left: 4px;
+}
+
+.groups-switch-2 {
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg); /* Internet Explorer */
+    -moz-transform: rotate(-45deg); /* Firefox */
+    -webkit-transform: rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform: rotate(-45deg); /* Opera */
+    top: 16px;
+    left: 16px;
+}
+
+.groups-switch-change-1 {
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg); /* Internet Explorer */
+    -moz-transform: rotate(-45deg); /* Firefox */
+    -webkit-transform: rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform: rotate(-45deg); /* Opera */
+}
+
+.groups-switch-change-2 {
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
+/*表格部分*/
+.table-box{
+    width: 95%;
+    overflow-x: auto;
+    margin: 0 auto;
+}
+.show-table {
+    width: 95%;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 1.2em;
+}
+
+.show-table td,
+.show-table th {
+    border: 1px solid #2d3e50;
+    padding: 5px;
+    min-width: 4em;
+    max-width: 15em;
+    overflow: hidden; /*隐藏*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis; /*超出部分省略号*/
+}
+
+.show-table thead tr {
+    background-color: #96d5ff;
+    margin-bottom: 10px;
+}
+
+.show-table tbody tr:nth-of-type(even) {
+    background-color: #dbdbdb;
+}
+
+/*分页器*/
+.show-paginator{
+    text-align: center;
+}
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 20px;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+/*适配手机屏幕*/
+@media screen and (max-width: 768px) {
+    .show-body-card {
         margin: 8px auto;
         width: 90%;
         box-shadow: lightgray 0 0 20px 1px;
     }
-    .inventory-name{
+
+    .inventory-name {
         font-size: 1.2em;
         /*line-height: 1.5em;*/
         font-weight: normal;
     }
-    .show-body-card-footer{
+
+    .show-body-card-footer {
         background-color: #dedede;
     }
 }

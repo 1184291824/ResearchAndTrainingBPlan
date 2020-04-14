@@ -1,20 +1,37 @@
 {% extends 'PC/base/base.html' %}
 {% load staticfiles %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'PC/css/form.css' %}">
-{% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'PC/css/form.css' %}">
+    <script type="application/javascript">
+        window.onload = function () {
+            let login_button = $('.form-button');
+            {#login_button.click(function () {#}
+            {#    login_button.html(#}
+            {#        '<i class="iconfont icon-jiazai"></i> 请稍后...'#}
+            {#    );#}
+            {#    // 这里有一个待解决的问题，如何禁用button#}
+            {# }) // 改变button中的文字#}
+            let form = $('.form form');  // 获取表单
+            form.submit(function () {
+                login_button.html(
+                    '<i class="iconfont icon-jiazai"></i> 请稍后...'
+                ).attr('disabled', 'disabled');
+            })
+        }
+    </script>
+    {% block style %}{% endblock %}
 {% endblock %}
 {% block body %}
     <div class="body-title"><label>{% block body-title %}{% endblock %}</label></div>
     <div class="form">
         <form class="pure-form pure-form-aligned" method="post" action="#">
             <fieldset>
-            {% csrf_token %}
+                {% csrf_token %}
                 {% block form %}
 
                 {% endblock %}
-                <div class="error"></div>
-                <button class="form-button" type="button">{% block button-text %}{% endblock %}</button>
+                <div class="error">{{ error }}</div>
+                <button class="form-button" type="submit">{% block button-text %}{% endblock %}</button>
             </fieldset>
         </form>
     </div>

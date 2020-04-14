@@ -1,13 +1,32 @@
 {% extends 'PC/base/base.html' %}
 {% load staticfiles %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'PC/css/show.css' %}">
-<style>
-</style>
-{% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'PC/css/show.css' %}">
+    <style>
+    </style>
+    {% block style %}{% endblock %}
 {% endblock %}
 {% block body %}
     <div class="body-title">{% block body-title %}{% endblock %}</div>
     {% block group-choice %}{% endblock %}
-    <div class="show-body">{% block show-body %}{% endblock %}</div>
+    <div class="show-body">
+        {% block show-body %}{% endblock %}
+        {% if paginator.num_pages > 1 %}
+            <div class="show-paginator">
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li><a href="?{% for k,v in request.GET.items %}{% if k != "page" %}{{ k }}={{ v }}&{% endif %}{% endfor %}page=1">«</a></li>
+                        <li><a href="?{% for k,v in request.GET.items %}{% if k != "page" %}{{ k }}={{ v }}&{% endif %}{% endfor %}page={{ page.previous_page_number }}">‹</a></li>
+                    {% endif %}
+                    {% for foo in paginator.page_range %}
+                        <li><a href="?{% for k,v in request.GET.items %}{% if k != "page" %}{{ k }}={{ v }}&{% endif %}{% endfor %}page={{ foo }}">{{ foo }}</a></li>
+                    {% endfor %}
+                    {% if page.has_next %}
+                        <li><a href="?{% for k,v in request.GET.items %}{% if k != "page" %}{{ k }}={{ v }}&{% endif %}{% endfor %}page={{ page.next_page_number }}">›</a></li>
+                        <li><a href="?{% for k,v in request.GET.items %}{% if k != "page" %}{{ k }}={{ v }}&{% endif %}{% endfor %}page={{ paginator.num_pages }}">»</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

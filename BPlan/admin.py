@@ -19,8 +19,8 @@ class UserAdmin(admin.ModelAdmin):
         'user_name',
         'user_gender',
         'user_identity',
-        'user_question',
-        'user_question_answer',
+        # 'user_question',
+        # 'user_question_answer',
         'user_create_time',
     ]
     search_fields = ['user_id', 'user_name']  # 搜索字段
@@ -66,11 +66,11 @@ class InventoryAdmin(admin.ModelAdmin):
         # 'inventory_details',
         # 'inventory_value',
         # 'inventory_package',
-        'inventory_price',
+        'inventory_specification',
         'inventory_mark',
-        'inventory_create_user_name',
+        'inventory_create_user',
         'inventory_create_time',
-        'inventory_recent_change_user_name',
+        'inventory_recent_change_user',
         'inventory_recent_change_time',
     ]
     search_fields = ['inventory_id', 'inventory_name']  # 搜索字段
@@ -89,7 +89,7 @@ class InventoryOperationAdmin(admin.ModelAdmin):
         'inventory_operation_create_time',
         'inventory_operation_object',
         'inventory_operation_user',
-        'inventory_operation_user_name',
+        # 'inventory_operation_user_name',
         'inventory_operation_user_ip',
         'inventory_operation_category',
         'inventory_operation_num',
@@ -173,11 +173,11 @@ class CustomerTrackingAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 
-@admin.register(MarkdownFile)
-class MarkdownFileAdmin(admin.ModelAdmin):
-    list_display = [
-        'pk',
-        'name',
-        'file',
-    ]
-    search_fields = ['name']
+# @admin.register(MarkdownFile)
+# class MarkdownFileAdmin(admin.ModelAdmin):
+#     list_display = [
+#         'pk',
+#         'name',
+#         'file',
+#     ]
+#     search_fields = ['name']

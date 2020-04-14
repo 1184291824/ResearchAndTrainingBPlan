@@ -1,112 +1,155 @@
 {% extends 'PC/base/baseShow.html' %}
 {% block title %}
-查找库存
+    查找库存
 {% endblock %}
 {% block style %}
-<style>
-.body-title {
-    font-size: 1em;
-    text-align: center;
-    width: 85%;
-    margin: 70px auto;
-    color: black;
-    border-bottom: white solid 2px;
-}
-.pure-form select {
-    padding: 0 .6em;
-    height: 38.8px;
-}
-.show-footer{
-    display: none;
-}
-.search-button{
-    color: white;
-    {#display: block;#}
-    height: 2.3em;
-    width: 6em;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bkcolor);
-    border: solid white 2px;
-    border-radius: 3px;
-    transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
-}
-.search-button:hover{
-    color: var(--bkcolor);
-    background-color: white;
-}
-@media only screen and (max-width: 768px){
-    .body-title{
-        font-size: 1em;
-        padding: 20px 0;
-        letter-spacing: normal;
-        margin: 20px auto;
-        width: 100%;
-    }
-    .search-button{
-        display: none;
-    }
-}
-</style>
+    <style>
+        .body-title {
+            font-size: 1em;
+            text-align: center;
+            width: 85%;
+            margin: 70px auto;
+            color: black;
+            border-bottom: white solid 2px;
+        }
+
+        .pure-form select {
+            padding: 0 .6em;
+            height: 38.8px;
+        }
+
+        .show-footer {
+            display: none;
+        }
+
+        .search-button {
+            color: white;
+        {#display: block;#} height: 2.3em;
+            width: 6em;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bkcolor);
+            border: solid white 2px;
+            border-radius: 3px;
+            transition: background-color 0.5s;
+            -webkit-transition: background-color 0.5s;
+        }
+
+        .search-button:hover {
+            color: var(--bkcolor);
+            background-color: white;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .body-title {
+                font-size: 1em;
+                padding: 20px 0;
+                letter-spacing: normal;
+                margin: 20px auto;
+                width: 100%;
+            }
+
+            .search-button {
+                display: none;
+            }
+        }
+    </style>
 {% endblock %}
 {% block body-title %}
-<form class="pure-form" method="get" action="{% url 'BPlan:inventory_search' %}">
-    <select id="search_type" name="search_type" style="display: inline-block">
-        <option value="all">综合查询</option>
-{#        <option value="inventory_id">ID</option>#}
-        <option value="inventory_name">名称</option>
-        <option value="inventory_num">库存数量</option>
-        <option value="inventory_price">单价</option>
-        <option value="inventory_mark">备注</option>
-        <option value="inventory_create_user_name">创建人</option>
-        <option value="inventory_recent_change_user_name">修改人</option>
-    </select>
-    <input type="search" class="" name="search" id="search" placeholder="请输入关键词查询" required maxlength="20" style="display: inline-block; margin: 0" value="{{ search }}">
-    <button type="submit" class="search-button">查询库存</button>
-</form>
+    <form class="pure-form" method="get" action="{% url 'BPlan:inventory_search' %}">
+        <select id="search_type" name="search_type" style="display: inline-block">
+            <option value="all">综合查询</option>
+            {#        <option value="inventory_id">ID</option>#}
+            <option value="inventory_name">名称</option>
+            <option value="inventory_num">库存数量</option>
+            <option value="inventory_specification">规格</option>
+            <option value="inventory_mark">备注</option>
+            <option value="inventory_create_user_name">创建人</option>
+            <option value="inventory_recent_change_user_name">修改人</option>
+        </select>
+        <input type="search" class="" name="search" id="search" placeholder="请输入关键词查询" required maxlength="20"
+               style="display: inline-block; margin: 0" value="{{ search }}">
+        <button type="submit" class="search-button">查询库存</button>
+    </form>
 {% endblock %}
 {% block show-body %}
-    {% if paginator == 'noSearch' %}
-    {% elif paginator == '' %}
+    {% if search_type == '' %}
+    {% elif paginator.count == 0 %}
         <p class="not-found">>>抱歉，未找到相关库存信息<<</p>
     {% else %}
-    <div class="pure-g">
-    {% for inventory in paginator %}
-        <div class="pure-u-1 pure-u-md-1-3">
-            <div class="show-body-card">
-                <div class="show-body-card-header">
-                    <div class="inventory-name"><label>名称</label> {{ inventory.inventory_name }}</div>
-                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; #}<label>创建者</label> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<label>创建日期</label> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>
-                </div>
-                <div class="show-body-card-body">
-                    库存分组：{{ inventory.inventory_group }}<br>
-                    库存数量：{{ inventory.inventory_num }}<br>
-                    单价：{{ inventory.inventory_price }}<br>
-                    备注：{{ inventory.inventory_mark }}<br>
-                </div>
-                <div class="show-body-card-footer">
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
-                </div>
-            </div>
+        <div class="table-box">
+            <table class="show-table">
+                <thead>
+                <tr>
+                    <th>库存ID</th>
+                    <th>库存分组</th>
+                    <th>库存名称</th>
+                    <th>库存数量</th>
+                    <th>单位</th>
+                    <th>规格</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for inventory in page.object_list %}
+                    <tr>
+                        <td>{{ inventory.inventory_id }}</td>
+                        <td>{{ inventory.inventory_group }}</td>
+                        <td>{{ inventory.inventory_name }}</td>
+                        <td>{{ inventory.inventory_num }}</td>
+                        <td>{{ inventory.inventory_unit }}</td>
+                        <td>{{ inventory.inventory_specification }}</td>
+                        <td>{{ inventory.inventory_mark }}</td>
+                        <td>
+                            {% if request.session.user_identity %}
+                            <a href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
+                            <a href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
+                            {% endif %}
+                            <a href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endfor %}
-    </div>
+        {#    <div class="pure-g">#}
+        {#    {% for inventory in paginator %}#}
+        {#        <div class="pure-u-1 pure-u-md-1-3">#}
+        {#            <div class="show-body-card">#}
+        {#                <div class="show-body-card-header">#}
+        {#                    <div class="inventory-name"><label>名称</label> {{ inventory.inventory_name }}</div>#}
+        {#                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; #}
+{#        <label>创建者</label> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<label>创建日期</label>#}
+{#        {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>#}
+        {#                </div>#}
+        {#                <div class="show-body-card-body">#}
+        {#                    库存分组：{{ inventory.inventory_group }}<br>#}
+        {#                    库存数量：{{ inventory.inventory_num }}<br>#}
+        {#                    单价：{{ inventory.inventory_price }}<br>#}
+        {#                    备注：{{ inventory.inventory_mark }}<br>#}
+        {#                </div>#}
+        {#                <div class="show-body-card-footer">#}
+        {#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>#}
+        {#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>#}
+        {#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#    {% endfor %}#}
+        {#    </div>#}
     {% endif %}
 {% endblock %}
 {% block script %}
-<script>
-$(document).ready(function () {
-    $('option').each(function () {
-        if ($(this).val() === '{{ search_type }}') {
-            $(this).attr('selected', 'selected');
-        }
-        else {
-            $(this).removeAttr('selected');
-        }
-    })
-})
-</script>
+    <script>
+        $(document).ready(function () {
+            $('option').each(function () {
+                if ($(this).val() === '{{ search_type }}') {
+                    $(this).attr('selected', 'selected');
+                } else {
+                    $(this).removeAttr('selected');
+                }
+            })
+        })
+    </script>
 {% endblock %}

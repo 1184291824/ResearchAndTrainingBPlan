@@ -6,38 +6,70 @@
 {% block body-title %}
 全部客户信息
 {% endblock %}
-{% block style %}
-<style>
-.show-body-card-footer-a{
-    width: 48.5%;
-}
-</style>
-{% endblock %}
 {% block show-body %}
-    <div class="pure-g">
-    {% for customer in paginator %}
-        <div class="pure-u-1 pure-u-md-1-3">
-            <div class="show-body-card">
-                <div class="show-body-card-header">
-                    <div class="inventory-name"><label>客户名称</label> {{ customer.name }}</div>
-                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; #}<label>工程名称</label> {{ customer.project_name }}{# <label>项目签订时间</label> {{ customer.project_date.month }}月{{ customer.project_date.day }}日 #}</div>
-                </div>
-                <div class="show-body-card-body">
-                    联系人：{{ customer.contact }}<br>
-                    联系方式：{{ customer.tel }}<br>
-                    项目金额：{{ customer.project_amount }}<br>
-                    付款方式：{{ customer.payment_method }}<br>
-                    项目签订时间：{{ customer.project_date }}<br>
-                </div>
-                <div class="show-body-card-footer">
-{#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>#}
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_tracking' %}?id={{ customer.id }}">添加跟踪记录</a>
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_show_detail_html' %}?id={{ customer.id }}">详细信息</a>
-                </div>
-            </div>
+    {% if page.object_list.count != 0 %}
+        <div class="table-box">
+            <table class="show-table">
+                <thead>
+                <tr>
+                    <th>客户名称</th>
+                    <th>项目名称</th>
+                    <th>项目签订时间</th>
+                    <th>业务填写人</th>
+                    <th>联系人</th>
+                    <th>联系方式</th>
+                    <th>项目金额</th>
+                    <th>付款方式</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in page.object_list %}
+                    <tr>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.project_name }}</td>
+                        <td>{{ customer.project_date }}</td>
+                        <td>{{ customer.user_id }}</td>
+                        <td>{{ customer.contact }}</td>
+                        <td>{{ customer.tel }}</td>
+                        <td>{{ customer.project_amount }}</td>
+                        <td>{{ customer.payment_method }}</td>
+                        <td>
+                            {% if request.session.user_identity %}
+                            <a href="{% url 'BPlan:customer_tracking' %}?id={{ customer.id }}">添加跟踪记录</a>
+                            {% endif %}
+                            <a href="{% url 'BPlan:customer_show_detail_html' %}?id={{ customer.id }}">详细信息</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endfor %}
-    </div>
+    {% endif %}
+{#    <div class="pure-g">#}
+{#    {% for customer in paginator %}#}
+{#        <div class="pure-u-1 pure-u-md-1-3">#}
+{#            <div class="show-body-card">#}
+{#                <div class="show-body-card-header">#}
+{#                    <div class="inventory-name"><label>客户名称</label> {{ customer.name }}</div>#}
+{#                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; <label>工程名称</label> {{ customer.project_name }}{# <label>项目签订时间</label> {{ customer.project_date.month }}月{{ customer.project_date.day }}日 </div>#}
+{#                </div>#}
+{#                <div class="show-body-card-body">#}
+{#                    联系人：{{ customer.contact }}<br>#}
+{#                    联系方式：{{ customer.tel }}<br>#}
+{#                    项目金额：{{ customer.project_amount }}<br>#}
+{#                    付款方式：{{ customer.payment_method }}<br>#}
+{#                    项目签订时间：{{ customer.project_date }}<br>#}
+{#                </div>#}
+{#                <div class="show-body-card-footer">#}
+{#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>#}
+{#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_tracking' %}?id={{ customer.id }}">添加跟踪记录</a>#}
+{#                    <a class="show-body-card-footer-a" href="{% url 'BPlan:customer_show_detail_html' %}?id={{ customer.id }}">详细信息</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#    </div>#}
 {% endblock %}
 {#{% block script %}#}
 {#<script>#}

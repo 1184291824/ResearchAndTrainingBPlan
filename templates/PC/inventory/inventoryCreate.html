@@ -31,8 +31,8 @@
     <input type="text" id="inventory_unit" name="inventory_unit" value="" placeholder="如：个" maxlength="12" required/>
 </div>
 <div class="pure-control-group">
-    <label for="inventory_price">单价(元)</label>
-    <input type="number" id="inventory_price" name="inventory_price" value="" placeholder="请输入库存单价" step="0.001" required/>
+    <label for="inventory_specification">规格</label>
+    <input type="text" id="inventory_specification" name="inventory_specification" value="" placeholder="请输入库存规格" maxlength="50" required/>
 </div>
 <div class="pure-control-group">
     <label for="inventory_mark">备注</label>
@@ -47,13 +47,13 @@
 {% block button-text %}
 <i class="iconfont icon-wancheng"></i> 创建
 {% endblock %}
-{% block script %}
-<script>
-$(document).ready(function () {
+{#{% block script %}#}
+{#<script>#}
+{#$(document).ready(function () {#}
     {#refreshSrc();#}
-    let error = $('.error');
+{#    let error = $('.error');#}
     {#let inventory_id = $('#inventory_id');#}
-    let login_button = $('.form-button');
+{#    let login_button = $('.form-button');#}
     {#let code = $('#code');#}
     {#$('#inventory_category').change(function () {#}
        {#console.log($(this).val());#}
@@ -66,34 +66,34 @@ $(document).ready(function () {
     {#   else {#}
     {#       $('#inventory_value_title').text('电感值(mH)')#}
     {#   }#}
-    //});
-    login_button.click(function () {
-        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){
-            $.ajax({
-                url: "{% url 'BPlan:inventory_create_add' %}",
-                type: 'POST',
-                data: {
+{#    //});#}
+{#    login_button.click(function () {#}
+{#        login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字#}
+{#        if (NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){#}
+{#            $.ajax({#}
+{#                url: "{% url 'BPlan:inventory_create_add' %}",#}
+{#                type: 'POST',#}
+{#                data: {#}
                     {#'inventory_id': inventory_id.val(),#}
-                    'inventory_name': $('#inventory_name').val(),
+{#                    'inventory_name': $('#inventory_name').val(),#}
                     {#'code': code.val(),#}
-                    'inventory_group': $('#inventory_group').val(),
-                    'inventory_num': $('#inventory_num').val(),
-                    'inventory_unit': $('#inventory_unit').val(),
+{#                    'inventory_group': $('#inventory_group').val(),#}
+{#                    'inventory_num': $('#inventory_num').val(),#}
+{#                    'inventory_unit': $('#inventory_unit').val(),#}
                     {#'inventory_value': $('#inventory_value').val(),#}
                     {#'inventory_package': $('#inventory_package').val(),#}
-                    'inventory_price': $('#inventory_price').val(),
-                    'inventory_mark': $('#inventory_mark').val(),
-                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                },
-                success: function (result) {
+{#                    'inventory_price': $('#inventory_price').val(),#}
+{#                    'inventory_mark': $('#inventory_mark').val(),#}
+{#                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),#}
+{#                },#}
+{#                success: function (result) {#}
                     {#if (result === 'codeWrong'){#}
                     {#    error.text('验证码错误！');#}
                     {#    code.val("");#}
                     {#    refreshSrc();#}
                     {#    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');#}
                     {#    return 0;#}
-                    //}
+{#                    //}#}
                     {#if (result === 'idExist') {#}
                     {#    error.text('您输入的库存id已经存在');#}
                     {#    inventory_id.val("");#}
@@ -101,19 +101,19 @@ $(document).ready(function () {
                     {#    refreshSrc();#}
                     {#    login_button.html('<i class="iconfont icon-wancheng"></i> 提交').removeAttr('disabled');#}
                     {#    return 0;#}
-                    //}
-                    if (result === 'success') {
-                        error.text("");
-                        $("form").hide(1000);
-                        $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 创建成功");
-                        return 1;
-                    }
-                },
-            })
-        }
-
-    })
-})
-</script>
-{% endblock %}
+{#                    //}#}
+{#                    if (result === 'success') {#}
+{#                        error.text("");#}
+{#                        $("form").hide(1000);#}
+{#                        $(".body-title").html("<i class=\"iconfont icon-wancheng\"></i> 创建成功");#}
+{#                        return 1;#}
+{#                    }#}
+{#                },#}
+{#            })#}
+{#        }#}
+{##}
+{#    })#}
+{#})#}
+{#</script>#}
+{#{% endblock %}#}
 

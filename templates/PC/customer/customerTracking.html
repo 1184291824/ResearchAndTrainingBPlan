@@ -10,6 +10,7 @@
 {% endblock %}
 {% block body-title %}添加项目跟踪记录{% endblock %}
 {% block form %}
+    <input type="text" id="id" name="id" required readonly value="{{ id }}" hidden/>
     <div class="pure-control-group">
         <label for="customer">客户</label>
         <input type="text" name="customer" id="customer" value="{{ name }}" readonly/>
@@ -26,33 +27,33 @@
 {% block button-text %}
 <i class="iconfont icon-wancheng"></i> 创建
 {% endblock %}
-{% block script %}
-    <script type="text/javascript">
-    $(document).ready(function () {
-        let error = $('.error');
-        let login_button = $('.form-button');
-        login_button.click(function () {
-            login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字
-            if(NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){
-                $.ajax({
-                    url: '{% url 'BPlan:customer_tracking' %}',
-                    data: {
-                        'id': {{ id }},
-                        'track_date': $('#track_date').val(),
-                        'track_state': $('#track_state').val(),
-                        "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                    },
-                    type: 'POST',
-                    success: function (result) {
-                        if (result === 'success') {
-                            $("form").hide(1000);
-                            $(".body-title").text("创建成功");
-                            return 1;
-                        }
-                    },
-                })
-            }
-        })
-    })
-    </script>
-{% endblock %}
+{#{% block script %}#}
+{#    <script type="text/javascript">#}
+{#    $(document).ready(function () {#}
+{#        let error = $('.error');#}
+{#        let login_button = $('.form-button');#}
+{#        login_button.click(function () {#}
+{#            login_button.html('<i class="iconfont icon-jiazai"></i> 请稍后...').attr('disabled', 'disabled');  // 改变button中的文字#}
+{#            if(NoEmpty('<i class="iconfont icon-wancheng"></i> 创建', error, login_button)){#}
+{#                $.ajax({#}
+{#                    url: '{% url 'BPlan:customer_tracking' %}',#}
+{#                    data: {#}
+{#                        'id': {{ id }},#}
+{#                        'track_date': $('#track_date').val(),#}
+{#                        'track_state': $('#track_state').val(),#}
+{#                        "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),#}
+{#                    },#}
+{#                    type: 'POST',#}
+{#                    success: function (result) {#}
+{#                        if (result === 'success') {#}
+{#                            $("form").hide(1000);#}
+{#                            $(".body-title").text("创建成功");#}
+{#                            return 1;#}
+{#                        }#}
+{#                    },#}
+{#                })#}
+{#            }#}
+{#        })#}
+{#    })#}
+{#    </script>#}
+{#{% endblock %}#}

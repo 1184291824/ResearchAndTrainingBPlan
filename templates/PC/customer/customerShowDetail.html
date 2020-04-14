@@ -21,28 +21,47 @@
 </style>
 {% endblock %}
 {% block detail-contain %}
-    <h1>客户名称</h1>
-    <li>{{ customer.name }}</li>
-    <h1>联系人</h1>
-    <li>{{ customer.contact }}</li>
-    <h1>联系方式</h1>
-    <li>{{ customer.tel }}</li>
-    <h1>项目名称</h1>
-    <li>{{ customer.project_name }}</li>
-    <h1>项目签订时间</h1>
-    <li>{{ customer.project_date }}</li>
-    <h1>项目金额</h1>
-    <li>{{ customer.project_amount}}</li>
-    <h1>付款方式</h1>
-    <li>{{ customer.payment_method }}</li>
-    <h1>项目技术要求或主要条款</h1>
-    <li>{{ customer.mark }}</li>
-    <h1>业务填写人</h1>
-    <li>{{ user }}</li>
-    <h1>项目跟踪记录</h1>
-    {% for track in tracking %}
-        <li>{{ track.track_date }} | {{ track.track_state }}</li>
-    {% endfor %}
+{#    <h1>客户名称</h1>#}
+{#    <li>{{ customer.name }}</li>#}
+{#    <h1>联系人</h1>#}
+{#    <li>{{ customer.contact }}</li>#}
+{#    <h1>联系方式</h1>#}
+{#    <li>{{ customer.tel }}</li>#}
+{#    <h1>项目名称</h1>#}
+{#    <li>{{ customer.project_name }}</li>#}
+{#    <h1>项目签订时间</h1>#}
+{#    <li>{{ customer.project_date }}</li>#}
+{#    <h1>项目金额</h1>#}
+{#    <li>{{ customer.project_amount}}</li>#}
+{#    <h1>付款方式</h1>#}
+{#    <li>{{ customer.payment_method }}</li>#}
+{#    <h1>项目技术要求或主要条款</h1>#}
+{#    <li>{{ customer.mark }}</li>#}
+{#    <h1>业务填写人</h1>#}
+{#    <li>{{ user }}</li>#}
+{#    <h1>项目跟踪记录</h1>#}
+{#    {% for track in tracking %}#}
+{#        <li>{{ track.track_date }} | {{ track.track_state }}</li>#}
+{#    {% endfor %}#}
+    <table>
+        <tr><td>客户名称</td><td colspan="2">{{ customer.name }}</td></tr>
+        <tr><td>项目名称</td><td colspan="2">{{ customer.project_name }}</td></tr>
+        <tr><td>项目签订时间</td><td colspan="2">{{ customer.project_date }}</td></tr>
+        <tr><td>业务填写人</td><td colspan="2">{{ customer.user_id }}</td></tr>
+        <tr><td>联系人</td><td colspan="2">{{ customer.contact }}</td></tr>
+        <tr><td>联系方式</td><td colspan="2">{{ customer.tel }}</td></tr>
+        <tr><td>项目金额</td><td colspan="2">{{ customer.project_amount }}</td></tr>
+        <tr><td>付款方式</td><td colspan="2">{{ customer.payment_method }}</td></tr>
+        <tr><td>项目技术要求<br>或主要条款</td><td colspan="2">{{ customer.mark }}</td></tr>
+        {% for tracking_item in tracking %}
+            {% if forloop.counter == 1 %}
+                <tr><td rowspan="{{ tracking.count }}">项目跟踪记录</td><td>{{ tracking_item.track_date }}</td><td>{{ tracking_item.track_state }}</td></tr>
+            {% else %}
+                <tr><td class="special-td">{{ tracking_item.track_date }}</td><td class="special-td">{{ tracking_item.track_state }}</td></tr>
+            {% endif %}
+        {% endfor %}
+{#        <tr><td>项目跟踪记录</td><td>{{ inventory.inventory_recent_change_time }}</td></tr>#}
+    </table>
 {% endblock %}
 {% block detail-footer %}
 {#    <div class="pure-u-1 pure-u-md-1-2">#}
@@ -51,12 +70,18 @@
 {#    <div class="pure-u-1 pure-u-md-1-2">#}
 {#        <div><button id="changeOut"><i class="iconfont icon-chuku"></i> 出库</button></div>#}
 {#    </div>#}
-    <div class="pure-u-1 pure-u-md-1-2">
-        <div><button id="change"><i class="iconfont icon-change"></i> 修改客户信息</button></div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-        <div><button id="customerTracking"><i class="iconfont icon-churukujilu"></i> 添加项目跟踪记录</button></div>
-    </div>
+    {% if request.session.user_identity %}
+        <div class="pure-u-1 pure-u-md-1-2">
+            <div>
+                <button id="change"><i class="iconfont icon-change"></i> 修改客户信息</button>
+            </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2">
+            <div>
+                <button id="customerTracking"><i class="iconfont icon-churukujilu"></i> 添加项目跟踪记录</button>
+            </div>
+        </div>
+    {% endif %}
     <div class="pure-u-1 pure-u-md-1-2">
         <div><button id="excel"><i class="iconfont icon-Excel"></i> 导出Excel</button></div>
     </div>
@@ -64,12 +89,14 @@
 {% block script %}
 <script>
 $(document).ready(function () {
+    {% if request.session.user_identity %}
     $('#change').click(function () {
         window.location.href = '{% url "BPlan:customer_change_detail" %}?id={{ customer.id }}'
     });
     $('#customerTracking').click(function () {
         window.location.href = '{% url "BPlan:customer_tracking" %}?id={{ customer.id }}'
     });
+    {% endif %}
     $('#excel').click(function () {
         window.location.href = '{% url "BPlan:customer_excel" %}?id={{ customer.id }}'
     })

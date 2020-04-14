@@ -1,168 +1,122 @@
 {% extends 'PC/base/baseShow.html' %}
 {% load staticfiles %}
 {% block title %}
-全部库存
+    全部库存
 {% endblock %}
 {% block body-title %}
-全部库存
-{% endblock %}
-{% block style %}
-<style>
-.group-choice{
-    display: block;
-    font-size: 20px;
-    height: 2.5em;
-    width: 90%;
-    max-width: 400px;
-    margin: 1em auto 0 auto;
-    padding: 0;
-    background-color: var(--bkcolor);
-    border: solid white 2px;
-    border-radius: 5px;
-    color: white;
-    line-height: 2.5em;
-    text-decoration: none;
-    transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
-}
-.group-choice:hover{
-    color: var(--bkcolor);
-    background-color: white;
-}
-#groups{
-    {#display: none;#}
-    height: 0;
-    overflow-y: hidden;
-    border: none;
-    margin: 20px auto;
-    padding: 0;
-    z-index: -1;
-    transition: height 0.5s;
-    -webkit-transition: height 0.5s;
-}
-.groups-switch{
-    height: 40px;
-    width: 40px;
-    position: relative;
-    margin: 0;
-    left: calc(50% - 20px);
-    top: -10px;
-    border-radius: 20px;
-    background-color: white;
-    {#border: solid black 1px;#}
-}
-.groups-switch div{
-    background-color: #1f8dd6;
-    width: 20px;
-    height: 3px;
-    position: relative;
-    transition: transform 0.5s;
-    -moz-transition: -moz-transform 0.5s;
-    -webkit-transition: -webkit-transform 0.5s;
-    -o-transition: -o-transform 0.5s;
-}
-.groups-switch-1{
-    transform:rotate(45deg);
-    -ms-transform:rotate(45deg); /* Internet Explorer */
-    -moz-transform:rotate(45deg); /* Firefox */
-    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(45deg); /* Opera */
-    top: 19px;
-    left: 4px;
-}
-.groups-switch-2{
-    transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg); /* Internet Explorer */
-    -moz-transform:rotate(-45deg); /* Firefox */
-    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(-45deg); /* Opera */
-    top: 16px;
-    left: 16px;
-}
-.groups-switch-change-1{
-    transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg); /* Internet Explorer */
-    -moz-transform:rotate(-45deg); /* Firefox */
-    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(-45deg); /* Opera */
-}
-.groups-switch-change-2{
-    transform:rotate(45deg);
-    -ms-transform:rotate(45deg); /* Internet Explorer */
-    -moz-transform:rotate(45deg); /* Firefox */
-    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(45deg); /* Opera */
-}
-</style>
+    全部库存
 {% endblock %}
 {% block group-choice %}
-<div class="pure-g body-title" id="groups">
-<div class="pure-u-1 pure-u-md-1-3">
-<a class="group-choice" href="{% url 'BPlan:inventory_show_all_html' %}">全部</a>
-</div>
-{% for group in group_list %}
-<div class="pure-u-1 pure-u-md-1-3">
-<a class="group-choice" href="{% url 'BPlan:inventory_show_all_html' %}?group={{ group.auto_id }}">{{ group.name }}</a>
-</div>
-{% endfor %}
-</div>
+    <div class="pure-g body-title" id="groups">
+        <div class="pure-u-1 pure-u-md-1-3">
+            <a class="group-choice" href="{% url 'BPlan:inventory_show_all_html' %}">全部</a>
+        </div>
+        {% for group in group_list %}
+            <div class="pure-u-1 pure-u-md-1-3">
+                <a class="group-choice"
+                   href="?group={{ group.auto_id }}">{{ group.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 {% block show-body %}
     <div class="groups-switch">
         <div class="groups-switch-1"></div>
         <div class="groups-switch-2"></div>
     </div>
-    <div class="pure-g">
-    {% for inventory in paginator %}
-        <div class="pure-u-1 pure-u-md-1-3">
-            <div class="show-body-card">
-                <div class="show-body-card-header">
-                    <div class="inventory-name"><label>名称</label> {{ inventory.inventory_name }}</div>
-                    <div class="inventory-id">{# <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; #}<label>创建者</label> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<label>创建日期</label> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日</div>
-                </div>
-                <div class="show-body-card-body">
-                    库存分组：{{ inventory.inventory_group }}<br>
-                    库存数量：{{ inventory.inventory_num }}<br>
-                    单价：{{ inventory.inventory_price }}<br>
-                    备注：{{ inventory.inventory_mark }}<br>
-                </div>
-                <div class="show-body-card-footer">
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
-                    <a class="show-body-card-footer-a" href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
-                </div>
-            </div>
+    {% if page.object_list.count != 0 %}
+        <div class="table-box">
+            <table class="show-table">
+                <thead>
+                <tr>
+                    <th>库存ID</th>
+                    <th>库存分组</th>
+                    <th>库存名称</th>
+                    <th>库存数量</th>
+                    <th>单位</th>
+                    <th>规格</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for inventory in page.object_list %}
+                    <tr>
+                        <td>{{ inventory.inventory_id }}</td>
+                        <td>{{ inventory.inventory_group }}</td>
+                        <td>{{ inventory.inventory_name }}</td>
+                        <td>{{ inventory.inventory_num }}</td>
+                        <td>{{ inventory.inventory_unit }}</td>
+                        <td>{{ inventory.inventory_specification }}</td>
+                        <td>{{ inventory.inventory_mark }}</td>
+                        <td>
+                            {% if request.session.user_identity %}
+                            <a href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>
+                            <a href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>
+                            {% endif %}
+                            <a href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endfor %}
-    </div>
+    {% endif %}
+{#    <p>{{ request.path }}</p>#}
+    {#    <div class="pure-g">#}
+    {#        {% for inventory in paginator %}#}
+    {#            <div class="pure-u-1 pure-u-md-1-3">#}
+    {#                <div class="show-body-card">#}
+    {#                    <div class="show-body-card-header">#}
+    {#                        <div class="inventory-name"><label>名称</label> {{ inventory.inventory_name }}</div>#}
+    {#                        <div class="inventory-id">#}
+    {#                             <i class="iconfont icon-user-id"></i> {{ inventory.inventory_id }}&nbsp;&nbsp; <label>创建者</label> {{ inventory.inventory_create_user_name }}&nbsp;&nbsp;<label>创建日期</label> {{ inventory.inventory_create_time.month }}月{{ inventory.inventory_create_time.day }}日#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                    <div class="show-body-card-body">#}
+    {#                        库存分组：{{ inventory.inventory_group }}<br>#}
+    {#                        库存数量：{{ inventory.inventory_num }}<br>#}
+    {#                        单价：{{ inventory.inventory_price }}<br>#}
+    {#                        备注：{{ inventory.inventory_mark }}<br>#}
+    {#                    </div>#}
+    {#                    <div class="show-body-card-footer">#}
+    {#                        <a class="show-body-card-footer-a"#}
+    {#                           href="{% url 'BPlan:inventory_change_html' %}?type=0&id={{ inventory.inventory_id }}">入库</a>#}
+    {#                        <a class="show-body-card-footer-a"#}
+    {#                           href="{% url 'BPlan:inventory_change_html' %}?type=1&id={{ inventory.inventory_id }}">出库</a>#}
+    {#                        <a class="show-body-card-footer-a"#}
+    {#                           href="{% url 'BPlan:inventory_show_detail_html' %}?id={{ inventory.inventory_id }}">详细信息</a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#    </div>#}
 {% endblock %}
 {% block script %}
-<script>
-$(document).ready(function () {
-    let flag = true;
-    let height;
-    if (window.screen.width>768){
-        height = (parseInt(($('.group-choice').length-1) / 3) + 1) * 74;
-    }
-    else {
-        height = $('.group-choice').length * 74;
-    }
+    <script>
+        $(document).ready(function () {
+            let flag = true;
+            let height;
+            if (window.screen.width > 768) {
+                height = (parseInt(($('.group-choice').length - 1) / 3) + 1) * 74;
+            } else {
+                height = $('.group-choice').length * 74;
+            }
 
-    $('.groups-switch').click(
-        function () {
-            if (flag) {
-                $('#groups').css('height', height+'px');
-                $('.groups-switch-1').addClass('groups-switch-change-1');
-                $('.groups-switch-2').addClass('groups-switch-change-2');
-            }
-            else {
-                $('#groups').css('height', '0');
-                $('.groups-switch-1').removeClass('groups-switch-change-1');
-                $('.groups-switch-2').removeClass('groups-switch-change-2');
-            }
-            flag = !flag;
-        }
-    );
-})
-</script>
+            $('.groups-switch').click(
+                function () {
+                    if (flag) {
+                        $('#groups').css('height', height + 'px');
+                        $('.groups-switch-1').addClass('groups-switch-change-1');
+                        $('.groups-switch-2').addClass('groups-switch-change-2');
+                    } else {
+                        $('#groups').css('height', '0');
+                        $('.groups-switch-1').removeClass('groups-switch-change-1');
+                        $('.groups-switch-2').removeClass('groups-switch-change-2');
+                    }
+                    flag = !flag;
+                }
+            );
+        })
+    </script>
 {% endblock %}

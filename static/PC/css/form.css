@@ -2,40 +2,40 @@
     margin: 0 auto;
 
 }
-form{
-    animation: formIn 1s;
-    -moz-animation: formIn 1s;	/* Firefox */
-    -webkit-animation: formIn 1s;	/* Safari 和 Chrome */
-    -o-animation: formIn 1s;	/* Opera */
-}
-/*form载入动画*/
-@keyframes formIn
-{
-0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-80% {margin-left: 5vw; margin-right: -5vw;}
-100% {margin-left: 0; opacity: 1;margin-right: 0;}
-}
+/*form{*/
+/*    animation: formIn 1s;*/
+/*    -moz-animation: formIn 1s;	!* Firefox *!*/
+/*    -webkit-animation: formIn 1s;	!* Safari 和 Chrome *!*/
+/*    -o-animation: formIn 1s;	!* Opera *!*/
+/*}*/
+/*!*form载入动画*!*/
+/*@keyframes formIn*/
+/*{*/
+/*0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}*/
+/*80% {margin-left: 5vw; margin-right: -5vw;}*/
+/*100% {margin-left: 0; opacity: 1;margin-right: 0;}*/
+/*}*/
 
-@-moz-keyframes formIn /* Firefox */
-{
-0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-80% {margin-left: 5vw; margin-right: -5vw;}
-100% {margin-left: 0; opacity: 1;margin-right: 0;}
-}
+/*@-moz-keyframes formIn !* Firefox *!*/
+/*{*/
+/*0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}*/
+/*80% {margin-left: 5vw; margin-right: -5vw;}*/
+/*100% {margin-left: 0; opacity: 1;margin-right: 0;}*/
+/*}*/
 
-@-webkit-keyframes formIn /* Safari 和 Chrome */
-{
-0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-80% {margin-left: 5vw; margin-right: -5vw;}
-100% {margin-left: 0; opacity: 1;margin-right: 0;}
-}
+/*@-webkit-keyframes formIn !* Safari 和 Chrome *!*/
+/*{*/
+/*0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}*/
+/*80% {margin-left: 5vw; margin-right: -5vw;}*/
+/*100% {margin-left: 0; opacity: 1;margin-right: 0;}*/
+/*}*/
 
-@-o-keyframes formIn /* Opera */
-{
-0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}
-80% {margin-left: 5vw; margin-right: -5vw;}
-100% {margin-left: 0; opacity: 1;margin-right: 0;}
-}
+/*@-o-keyframes formIn !* Opera *!*/
+/*{*/
+/*0% {margin-left: -50vw; opacity: 0;margin-right: 30vw;}*/
+/*80% {margin-left: 5vw; margin-right: -5vw;}*/
+/*100% {margin-left: 0; opacity: 1;margin-right: 0;}*/
+/*}*/
 
 
 .form label{
