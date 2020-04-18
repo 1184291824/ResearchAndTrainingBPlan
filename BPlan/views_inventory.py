@@ -30,6 +30,11 @@ def inventory_show_all_html(request):
         # paginator = Paginator(inventory_list, 20)
         # page = paginator.get_page(page)
         paginator, page = get_paginator(inventory_list, page_num)
+
+        # 将查询到的pk放入session，以便导出
+        inventory_pk_list = list(inventory_list.values_list('pk', flat=True))
+        request.session['excel_list'] = inventory_pk_list
+
         return render(request, 'PC/inventory/inventoryShowAll.html', {
             'paginator': paginator,  # paginator对象
             'page': page,  # page对象
@@ -424,12 +429,14 @@ def inventory_search(request):
         # 如果两个都不是空
         inventory = []  # 搜索结果的数组
         if search_type and search:
+            inventory = Inventory.objects.all()  # 先获取全部的数据，等待查询
             if search_type == 'all':
                 # inventory = []  # 搜索结果的数组
                 search_split = search.split()  # 把字符串拆分，以空字符（空格、换行、制表符）分割
-                for_count = 0  # 循环次数
+                # for_count = 0  # 循环次数
                 for search_word in search_split:
-                    for_count += 1
+                    # print(search_word)
+                    # for_count += 1
                     # if search_word in ['电阻', '电容', '电感']:  # 按分类搜索
                     #     search_word_index = ['电阻', '电容', '电感'].index(search_word)
                     #     inventory_item = Inventory.objects.filter(inventory_category__exact=search_word_index)
@@ -442,40 +449,59 @@ def inventory_search(request):
                     # except ValueError:
                     #     continue
 
-                    inventory_item = Inventory.objects.filter(
-                        # Q(inventory_id__contains=search_word) |
-                        Q(inventory_name__contains=search_word)  # 按库存名称
-                        | Q(inventory_group__name__contains=search_word)  # 按库存分组查询
-                        # | Q(inventory_value__exact=search_word)
-                        # | Q(inventory_package__contains=search_word)
-                        # | Q(inventory_create_user_name__contains=search_word)
-                        | Q(inventory_create_user__user_name__contains=search_word)  # 按创建人名称
-                        # | Q(inventory_recent_change_user_name__contains=search_word)
-                        | Q(inventory_recent_change_user__user_name__contains=search_word)  # 按最近领用人名称
-                        | Q(inventory_specification__contains=search_word)  # 按规格查询
-                        | Q(inventory_mark__contains=search_word)  # 按备注
-                    )
-                    if len(inventory_item):
-                        if for_count > 1:  # 如果输入的关键词大于1，则查询他们的交集
-                            inventory = list(set(inventory).intersection(set(inventory_item)))
-                        else:
-                            inventory.extend(inventory_item)
-
-                    try:  # 搜索数字
-                        inventory_item = Inventory.objects.filter(
-                            Q(inventory_num=int(float(search_word))) |
-                            Q(inventory_price=float(search_word))
+                    # inventory_item = Inventory.objects.filter(
+                    try:
+                        inventory = inventory.filter(  # 执行查询，这将在前一查询集的基础上进行筛选，缩小查询集
+                            # Q(inventory_id__contains=search_word) |
+                            Q(inventory_name__contains=search_word)  # 按库存名称
+                            | Q(inventory_group__name__contains=search_word)  # 按库存分组查询
+                            # | Q(inventory_value__exact=search_word)
+                            # | Q(inventory_package__contains=search_word)
+                            # | Q(inventory_create_user_name__contains=search_word)
+                            | Q(inventory_create_user__user_name__contains=search_word)  # 按创建人名称
+                            # | Q(inventory_recent_change_user_name__contains=search_word)
+                            | Q(inventory_recent_change_user__user_name__contains=search_word)  # 按最近领用人名称
+                            | Q(inventory_specification__contains=search_word)  # 按规格查询
+                            | Q(inventory_mark__contains=search_word)  # 按备注
+                            | Q(inventory_num=search_word)  # 数量
                         )
-                        # print(float(search_word))
-                        # print(Inventory.objects.get(inventory_num=80).inventory_price)
-                        if for_count > 1:  # 如果大于1，取交集
-                            inventory = list(set(inventory).intersection(set(inventory_item)))
-                        else:
-                            inventory.extend(inventory_item)  # 如果是1，直接添加进去
                     except ValueError:
-                        continue
+                        inventory = inventory.filter(  # 执行查询，这将在前一查询集的基础上进行筛选，缩小查询集
+                            # Q(inventory_id__contains=search_word) |
+                            Q(inventory_name__contains=search_word)  # 按库存名称
+                            | Q(inventory_group__name__contains=search_word)  # 按库存分组查询
+                            # | Q(inventory_value__exact=search_word)
+                            # | Q(inventory_package__contains=search_word)
+                            # | Q(inventory_create_user_name__contains=search_word)
+                            | Q(inventory_create_user__user_name__contains=search_word)  # 按创建人名称
+                            # | Q(inventory_recent_change_user_name__contains=search_word)
+                            | Q(inventory_recent_change_user__user_name__contains=search_word)  # 按最近领用人名称
+                            | Q(inventory_specification__contains=search_word)  # 按规格查询
+                            | Q(inventory_mark__contains=search_word)  # 按备注
+                        )
+                    # if len(inventory_item):
+                    #     if for_count > 1:  # 如果输入的关键词大于1，则查询他们的交集
+                    #         inventory = list(set(inventory).intersection(set(inventory_item)))
+                    #     else:
+                    #         inventory.extend(inventory_item)
 
-                inventory = list(set(inventory))  # 去掉重复的搜索结果
+                    # try:  # 搜索数字
+                    #     # inventory_item = Inventory.objects.filter(
+                    #     inventory = inventory.filter(  # 执行查询，这将在前一查询集的基础上进行筛选，缩小查询集
+                    #         # inventory_num=int(float(search_word))
+                    #         inventory_num=search_word
+                    #     )
+                    #     # print(float(search_word))
+                    #     # print(Inventory.objects.get(inventory_num=80).inventory_price)
+                    #     # if for_count > 1:  # 如果大于1，取交集
+                    #     #     inventory = list(set(inventory).intersection(set(inventory_item)))
+                    #     # else:
+                    #     #     inventory.extend(inventory_item)  # 如果是1，直接添加进去
+                    # except ValueError:
+                    #     continue
+
+                # inventory = list(set(inventory))  # 去掉重复的搜索结果
+                inventory = inventory.distinct()  # 去掉重复的搜索结果
             # elif search_type == 'inventory_id':
             #     inventory = Inventory.objects.filter(inventory_id__contains=search)
             elif search_type == 'inventory_name':
@@ -505,11 +531,15 @@ def inventory_search(request):
         #         inventory = ''
         # else:
         #     inventory = 'noSearch'
+            # 将查询到的pk放入session，以便导出
+            inventory_pk_list = list(inventory.values_list('pk', flat=True))
+            request.session['excel_list'] = inventory_pk_list
         # 分页
         page_num = request.GET.get('page', 1)
         # paginator = Paginator(inventory, 20)
         # page = paginator.get_page(page)
         paginator, page = get_paginator(inventory, page_num)
+
         return render(request, 'PC/inventory/inventorySearch.html', {
             'paginator': paginator,
             'page': page,
@@ -555,8 +585,15 @@ def inventory_operation_html(request):
         #     return render(request, 'PC/inventory/inventoryOperationShow.html', {
         #         'paginator': ''
         #     })
+
+        # 分页显示
         page_num = request.GET.get('page', 1)
         paginator, page = get_paginator(inventory_operation, page_num)
+
+        # 将查询到的pk放入session，以便导出
+        inventory_operation_pk_list = list(inventory_operation.values_list('pk', flat=True))
+        request.session['excel_list'] = inventory_operation_pk_list
+
         return render(request, 'PC/inventory/inventoryOperationShow.html', {
             'paginator': paginator,
             'page': page,

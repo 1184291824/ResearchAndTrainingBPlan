@@ -131,6 +131,9 @@
                     $(this).removeAttr('selected');
                 }
             })
+            $('#excel').click(function () {
+                window.location.href = '{% url "BPlan:excel_customer" %}';
+            });
         })
     </script>
 {% endblock %}

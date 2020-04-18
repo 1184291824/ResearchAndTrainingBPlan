@@ -19,8 +19,15 @@ def customer_show_all_html(request):
     login_status = request.session.get('login_status', 0)
     if login_status == 1:
         customer_list = Customer.objects.all().order_by('-id')  # 按最近修改时间的倒序排序
+
+        # 分页
         page_num = request.GET.get('page', 1)
         paginator, page = get_paginator(customer_list, page_num)
+
+        # 将查询到的pk放入session，以便导出
+        customer_pk_list = list(customer_list.values_list('pk', flat=True))
+        request.session['excel_list'] = customer_pk_list
+
         return render(request, 'PC/customer/customerShowAll.html', {
             'paginator': paginator,
             'page': page
@@ -225,13 +232,14 @@ def customer_search(request):
 
             # 判断查询信息是否为空
             if search_type and search:
+                customer = Customer.objects.all()
                 # 综合查询
                 if search_type == 'all':
                     search_split = search.split()  # 把字符串拆分，以空字符（空格、换行、制表）
-                    for_count = 0  # 循环次数
+                    # for_count = 0  # 循环次数
                     for search_word in search_split:
-                        for_count += 1
-                        customer_item = Customer.objects.filter(
+                        # for_count += 1
+                        customer = customer.filter(
                             Q(name__contains=search_word)
                             | Q(contact__contains=search_word)
                             | Q(tel=search_word)
@@ -241,13 +249,14 @@ def customer_search(request):
                             | Q(mark__contains=search_word)
                             | Q(user_id__user_name__contains=search_word)
                         )
-                        if len(customer_item):
-                            if for_count > 1:  # 如果输入的关键词大于1，则查询他们的交集
-                                customer = list(set(customer).intersection(set(customer_item)))
-                            else:
-                                customer.extend(customer_item)
+                        # if len(customer_item):
+                        #     if for_count > 1:  # 如果输入的关键词大于1，则查询他们的交集
+                        #         customer = list(set(customer).intersection(set(customer_item)))
+                        #     else:
+                        #         customer.extend(customer_item)
 
-                    customer = list(set(customer))  # 去掉重复的搜索结果
+                    # customer = list(set(customer))  # 去掉重复的搜索结果
+                    customer = customer.distinct()  # 去掉重复的搜索结果
                 # 单独查询
                 elif search_type == 'user':
                     # if search == '我':
@@ -278,8 +287,14 @@ def customer_search(request):
                 #     customer = ''
             # else:
             #     customer = 'noSearch'
+                # 将查询到的pk放入session，以便导出
+                customer_pk_list = list(customer.values_list('pk', flat=True))
+                request.session['excel_list'] = customer_pk_list
+
+            # 分页
             page_num = request.GET.get('page', 1)
             paginator, page = get_paginator(customer, page_num)
+
             return render(request, 'PC/customer/customerSearch.html', {
                 'paginator': paginator,
                 'page': page,

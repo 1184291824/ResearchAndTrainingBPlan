@@ -1,3 +1,5 @@
+@import "./detail.css";
+
 .body-title {
     margin-bottom: 20px;
 }
@@ -269,6 +271,30 @@ ul.pagination li a.active {
 }
 
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+.detail-footer{
+    /*border-bottom: solid white 1px;*/
+    width: 90%;
+    /*min-width: 300px;*/
+    /*margin: 0 auto;*/
+}
+.detail-footer button{
+    /*display: block;*/
+    /*height: 2.5em;*/
+    /*width: 90%;*/
+    /*margin: 1em auto 1em auto;*/
+    /*padding: 0;*/
+    background-color: white;
+    border: solid var(--bkcolor) 1.5px;
+    color: var(--bkcolor);
+    /*border-radius: 5px;*/
+    /*transition: background-color 0.5s;*/
+    /*-webkit-transition: background-color 0.5s;*/
+}
+.detail-footer button:hover{
+    color: white;
+    background-color: var(--bkcolor);
+}
 
 /*适配手机屏幕*/
 @media screen and (max-width: 768px) {

@@ -1,11 +1,11 @@
 from django.urls import path
-from . import view_common, view_user, views_inventory, view_customer, VerificationCode, WXApi
+from . import view_common, view_user, views_inventory, view_customer, view_excel
 
 app_name = "BPlan"
 
 
 urlpatterns = [
-    path('test/', view_user.test, name="test"),
+    path('test/', view_excel.test, name="test"),
 
     # path('index/whetherLogin/', view_common.whether_login, name='whether_login'),
     path('index/', view_common.index, name='index'),
@@ -44,7 +44,12 @@ urlpatterns = [
     # path('customer/create/add/', view_customer.customer_create_add, name='customer_create_add'),
     path('customer/tracking/', view_customer.customer_tracking, name='customer_tracking'),
     path('customer/change/detail/', view_customer.customer_change_detail, name='customer_change_detail'),
-    path('customer/excel/', view_customer.customer_excel, name='customer_excel')
+    path('customer/excel/', view_customer.customer_excel, name='customer_excel'),
+
+    path('excel/inventory/', view_excel.inventory_excel, name='excel_inventory'),
+    path('excel/inventory_operation/', view_excel.inventory_operation_excel, name='excel_inventory_operation'),
+    path('excel/customer/', view_excel.customer_excel, name='excel_customer'),  # 导出全部客户信息
+    path('excel/login_record', view_excel.login_record_excel, name='excel_login_record'),
 
     # path('verificationCode/get/', VerificationCode.verification_code, name='getVerificationCode'),
 

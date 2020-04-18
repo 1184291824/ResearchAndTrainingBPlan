@@ -2,52 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94bd24e8-e2ea-46d1-b8a9-697fbd9aceff" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ResearchAndTrainingBPlan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ResearchAndTrainingBPlan.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32c29567-e607-4845-8292-a736a2c4ec20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/32c29567-e607-4845-8292-a736a2c4ec20.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0002_auto_20191003_1632.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0003_auto_20191003_2148.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/migrations/0004_markdownfile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/view_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/view_common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/view_customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/view_customer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/view_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/view_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BPlan/views_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/views_inventory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README_4cXkx01.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/PC/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/PC/css/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/detail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/PC/css/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/更新日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/更新日志.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/PC/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/show.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/base/baseForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/base/baseShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerChangeDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerChangeDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerCreate.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerSearch.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerShowAll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerShowDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerShowDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerTracking.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerTracking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/forbidden.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/forbidden.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryChange.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryChange.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryChangeDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryChangeDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryCreate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryGroupCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryGroupCreate.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/loginold.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/参考资料.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/微信小程序API说明文档.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/更新日志.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,26 +62,10 @@
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="package.json" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>test</find>
-      <find>&lt;br&gt;</find>
-      <find>min-width</find>
-      <find>color</find>
-      <find>pure-u-lg-1-4</find>
-      <find>pure-u-lg-1-3</find>
-      <find>location</find>
-      <find>GET</find>
-      <find>user_group</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -294,7 +247,12 @@
       <workItem from="1586764763870" duration="5898000" />
       <workItem from="1586784323650" duration="6257000" />
       <workItem from="1586821497333" duration="8544000" />
-      <workItem from="1586839849431" duration="18302000" />
+      <workItem from="1586839849431" duration="19626000" />
+      <workItem from="1586939541665" duration="3862000" />
+      <workItem from="1586953135951" duration="10599000" />
+      <workItem from="1587020072794" duration="49000" />
+      <workItem from="1587038535234" duration="7656000" />
+      <workItem from="1587198629514" duration="5676000" />
     </task>
     <servers />
   </component>
@@ -337,18 +295,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1586787591546">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1587020119924">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586787591546" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1587020119924" />
     <state x="349" y="151" key="IDE.errors.dialog" timestamp="1586529037989">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="349" y="151" key="IDE.errors.dialog/0.0.1536.834@0.0.1536.834" timestamp="1586529037989" />
-    <state x="270" y="59" key="SettingsEditor" timestamp="1586603094179">
+    <state x="270" y="59" key="SettingsEditor" timestamp="1586953159028">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1586603094179" />
+    <state x="270" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1586953159028" />
     <state x="449" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1586335906630">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

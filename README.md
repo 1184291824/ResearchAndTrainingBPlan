@@ -15,8 +15,10 @@
     pip3 install xlwt
     pip3 install user_agents
     pip3 install markdown
+    pip3 install pandas
+    pip3 install openpyxl
     </pre>
-    - 2、装一个MySQL的数据库，流程自行百度。<br>装好后需要创建一个root用户，记住用户名的密码，然后在本程序源文件`ResearchAndTrainingBPlan/settings.py`文件中的37~38行修改，将你的用户名和密码写入。<br>在MySQL中新建一个数据库，可以自己命名，**注意不要有大写字母**。然后将数据库的名字写入`ResearchAndTrainingBPlan/settings.py`文件中的36行。
+    - 2、装一个MySQL的数据库（版本是8.0.12），流程自行百度。<br>装好后需要创建一个root用户，记住用户名的密码，然后在本程序源文件`ResearchAndTrainingBPlan/settings.py`文件中的37~38行修改，将你的用户名和密码写入。<br>在MySQL中新建一个数据库，可以自己命名，**注意不要有大写字母**。然后将数据库的名字写入`ResearchAndTrainingBPlan/settings.py`文件中的36行。
     - 3、需要将源文件修改两个地方，具体操作请见这篇博客[Django项目部署到pythonanywhere及需要注意的问题](https://blog.csdn.net/weixin_43830248/article/details/97154051/) 的6.1.2和6.3小节
     - 4、在根目录文件夹下运行cmd命令行
     - 5、在命令行中输入`python manage.py migrate`，进行数据库文件的迁移

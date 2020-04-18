@@ -85,3 +85,12 @@
 {#    </div>#}
 {#    {% endif %}#}
 {% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $('#excel').click(function () {
+            window.location.href = '{% url "BPlan:excel_inventory_operation" %}'
+        });
+    })
+</script>
+{% endblock %}

@@ -4,13 +4,25 @@ from django.contrib.auth import logout
 from django.core.paginator import Paginator
 # import datetime
 from .request import *
+# import pandas as pd
 # from .VerificationCode import verification_code_check
+from .view_common import get_paginator
 
 
 # Create your views here.
 
 def test(request):
-    return render(request, 'PC/forbidden.html')
+    pass
+    # user = User.objects.all()
+    # list1 = user.values_list('user_id', 'user_name', 'user_gender')
+    # # request.session['excel_list'] = list(list1)
+    # # print(list1)
+    # data = list(list1)
+    # data2 = pd.DataFrame(data)
+    # print(data2)
+    # data2.to_excel('test.xls')
+    # list2 = User._meta.fields
+    # return HttpResponse(list1)
 
 
 def login_html(request):
@@ -253,14 +265,19 @@ def login_record_html(request):
     if request.session.get('login_status', 0):  # 判断登录状态
         user_id = request.session['user_id']  # 获取id
         log_list = LoginRecord.objects.filter(login_user__user_id__exact=user_id).order_by("-login_time")  # 按登录时间的倒序排列
-        page = request.GET.get('page', 1)  # 获取页码
-        paginator = Paginator(log_list, 20)  # 分页，每页20项
-        page = paginator.get_page(page)  # 获取当前页page对象
+        page_num = request.GET.get('page', 1)  # 获取页码
+        paginator, page = get_paginator(log_list, page_num)
+        # paginator = Paginator(log_list, 20)  # 分页，每页20项
+        # page = paginator.get_page(page)  # 获取当前页page对象
+
+        # 将查询到的pk放入session，以便导出
+        log_pk_list = list(log_list.values_list('pk', flat=True))
+        request.session['excel_list'] = log_pk_list
+
         return render(request, 'PC/user/loginRecordShow.html', {
             # 'paginator': log_list[0:12]  # 仅显示最近的12条登录记录
             'paginator': paginator,  # paginator对象
             'page': page  # page对象
-
         })
     else:
         return redirect('BPlan:login')

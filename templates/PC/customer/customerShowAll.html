@@ -71,6 +71,15 @@
 {#    {% endfor %}#}
 {#    </div>#}
 {% endblock %}
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('#excel').click(function () {
+                window.location.href = '{% url "BPlan:excel_customer" %}'
+            });
+        })
+    </script>
+{% endblock %}
 {#{% block script %}#}
 {#<script>#}
 {#$(document).ready(function () {#}
