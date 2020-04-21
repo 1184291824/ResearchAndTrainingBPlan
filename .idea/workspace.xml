@@ -3,20 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="94bd24e8-e2ea-46d1-b8a9-697fbd9aceff" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/view_customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/view_customer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/view_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/view_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPlan/views_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/BPlan/views_inventory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/更新日志.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/更新日志.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/PC/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/PC/css/show.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/base/baseShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/base/baseShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/customer/customerShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/customer/customerShowAll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryOperationShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventorySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/inventory/inventoryShowAll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PC/user/loginRecordShow.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +238,7 @@
       <workItem from="1586953135951" duration="10599000" />
       <workItem from="1587020072794" duration="49000" />
       <workItem from="1587038535234" duration="7656000" />
-      <workItem from="1587198629514" duration="5676000" />
+      <workItem from="1587198629514" duration="6305000" />
     </task>
     <servers />
   </component>
